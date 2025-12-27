@@ -196,7 +196,7 @@
 /* Large devices (≥1024px) */
 @screen lg {
   .container {
-    @apply max-w-[1024px] px-20;
+    @apply max-w-[1024px] px-16;
   }
 }
 /* cart title font */
@@ -208,4 +208,119 @@
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
+}
+@layer components {
+  
+
+  .text-h1 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 60px;
+  }
+
+  .text-h2 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 48px;
+  }
+
+  .text-h3 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .text-h4 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  
+  /* BODY TEXT */
+  
+
+  .text-body-lg {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .text-body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .text-body-sm {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .text-caption {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+}
+@layer utilities {
+  .bg-prime-50 {
+    background-color: var(--prime-50);
+  }
+  .bg-prime-5 {
+    background-color: var(--prime-5);         
+  }   } 
+
+  @layer components {
+  .text-display-64 {
+    font-family: var(--font-heading); /* Outfit */
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 80px;
+    letter-spacing: 0;
+  }
+}
+@layer components {
+  .text-display-40 {
+    font-family: var(--font-heading); /* Outfit */
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 52px;
+    letter-spacing: 0;
+  }
+}
+@layer components {
+  .text-display-32 {
+    font-family: var(--font-heading); /* Outfit */
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 0;
+  }
+}
+@layer components {
+  .text-display-24 {
+    font-family: var(--font-heading); /* Outfit */      
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: 0;
+  }
 }
