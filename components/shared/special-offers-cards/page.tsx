@@ -6,7 +6,7 @@ export default function Card() {
     <div >
       <CardHeading title={"Special Offers"}/>
     
-    <div>card ui here</div>
+   
     </div>
   )
 }

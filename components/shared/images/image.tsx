@@ -7,7 +7,8 @@ import Star from "@/public/assets/images/Hero-section/Star.png"
 import Group from "@/public/assets/images/Hero-section/Group.png"
 import Frame from "@/public/assets/images/Hero-section/Frame.png";
 import {  RiStarFill } from "react-icons/ri";
-
+import AC from "@/public/assets/images/Hero-section/AC.png"
+import Vector1 from "@/public/assets/images/Hero-section/Vector1.png"
 export const logoImage = {
     logoImg: Logo
 };
@@ -18,7 +19,9 @@ export const HeroImage = {
   heroImg4: H4,
   heroImg5: Star,
   heroImg6: Group,
-  heroImg7: Frame
+  heroImg7: Frame,
+  heroImg8:AC,
+  heroImgbanner:Vector1
   
 };
 export const icon = {

@@ -13,8 +13,8 @@ export default function ServiceCard({ title, image }: ServiceCardProps) {
       className="
         flex flex-col items-center justify-center gap-4
         bg-card text-card-foreground
-        border border-border
-        rounded-xl
+       border border-sidebar-border
+        rounded-lg
         px-6 py-6
         text-center
         transition

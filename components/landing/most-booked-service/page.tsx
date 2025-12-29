@@ -1,0 +1,93 @@
+import ServiceOfferCard from '@/components/shared/booked-services-card'
+import { HeroImage } from '@/components/shared/images/image';
+import CardHeading from '@/components/shared/special-offers-cards/card-heading'
+import { StaticImageData } from 'next/image';
+import React from 'react'
+
+const MostBookedService = () => {
+    type ServiceOffer = {
+        id: number;
+        image: string | StaticImageData;
+        title: string;
+        subtitle: string;
+        rating: number;
+        reviews: string;
+        price: string;
+        originalPrice?: string;
+      };
+      const serviceOffers: ServiceOffer[] = [
+        {
+          id: 1,
+          image: HeroImage.heroImg1,
+          title: "Deep Bathroom Cleaning",
+          subtitle: "(2 bathrooms)",
+          rating: 4.5,
+          reviews: "10k reviews",
+          price: "₹950",
+          originalPrice: "₹1300",
+        },
+        {
+          id: 2,
+          image: HeroImage.heroImg1,
+          title: "Kitchen Deep Cleaning",
+          subtitle: "(Full kitchen)",
+          rating: 4.6,
+          reviews: "8k reviews",
+          price: "₹1199",
+          originalPrice: "₹1600",
+        },
+        {
+          id: 3,
+          image: HeroImage.heroImg1,
+          title: "Full Home Cleaning",
+          subtitle: "(3 BHK)",
+          rating: 4.7,
+          reviews: "12k reviews",
+          price: "₹2499",
+          originalPrice: "₹3200",
+        },
+        {
+          id: 4,
+          image: HeroImage.heroImg1,
+          title: "Full Home Cleaning",
+          subtitle: "(3 BHK)",
+          rating: 4.7,
+          reviews: "12k reviews",
+          price: "₹2499",
+          originalPrice: "₹3200",
+        },
+        {
+          id: 5,
+          image: HeroImage.heroImg1,
+          title: "Full Home Cleaning",
+          subtitle: "(3 BHK)",
+          rating: 4.7,
+          reviews: "12k reviews",
+          price: "₹2499",
+          originalPrice: "₹3200",
+        },
+      ];
+  return (
+    <div>
+        <section className="">
+            <CardHeading title={"Most Booked Services"} />
+        <div className="flex gap-3 overflow-x-auto">
+          {serviceOffers.map((offer) => (
+            <ServiceOfferCard
+              key={offer.id}
+              image={offer.image}
+              title={offer.title}
+              subtitle={offer.subtitle}
+              rating={offer.rating}
+              reviews={offer.reviews}
+              price={offer.price}
+              originalPrice={offer.originalPrice}
+            />
+          ))}
+        </div>
+        </section>
+    </div>
+  )
+}
+
+export default MostBookedService

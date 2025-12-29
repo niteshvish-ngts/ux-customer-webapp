@@ -324,3 +324,91 @@
     letter-spacing: 0;
   }
 }
+@layer components {
+  .offer-card {
+    width: 411px;
+    height: 201px;
+    border-radius: 30px;
+  }
+}
+
+@layer components {
+  .bg-soft-gradient {
+
+    background: #DDE7F4
+  }
+}
+@layer components {
+  .bg-card-overlay-gradient {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 50.21%,
+      rgba(0, 0, 0, 1) 75.76%
+    );
+  }
+}
+
+@layer components {
+  .bg-hero-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--prime-5),
+      var(--prime-50)
+    );
+  }
+}
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeInUp 0.6s ease-out both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+@layer components {
+  .text-subheading {
+    font-family: var(--font-heading); /* Outfit */
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0;
+    
+  }
+}
+@layer components {
+  .text-button {
+    font-family: var(--font-body); /* Lato */
+    font-weight: 600;
+    font-size: 16px;
+  }
+}
+/* offer card  */
+
+
+@layer components {
+  .text-offer-title {
+    font-family: var(--font-heading); /* Outfit */
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: -0.5%;
+    text-align: center;
+  }
+
+  .text-offer-subtitle {
+    font-family: var(--font-heading); /* Outfit */
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.5%;
+    text-align: center;
+  }
+}
