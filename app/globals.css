@@ -176,7 +176,7 @@
 }
 
 .container {
-  @apply mx-auto w-full px-4;
+  @apply mx-auto w-full px-2;
 }
 
 /* Small devices (≥640px) */
@@ -189,14 +189,20 @@
 /* Medium devices (≥768px) */
 @screen md {
   .container {
-    @apply max-w-[768px] px-8;
+    @apply max-w-[768px] px-5;
   }
 }
 
 /* Large devices (≥1024px) */
 @screen lg {
   .container {
-    @apply max-w-[1024px] px-16;
+    @apply max-w-[1024px] px-12;
+  }
+}
+/* Extra large devices (≥1280px) */
+@screen xl {
+  .container {
+    @apply max-w-[1280px] px-24;
   }
 }
 /* cart title font */
@@ -300,17 +306,17 @@
 @layer components {
   .text-display-40 {
     font-family: var(--font-heading); /* Outfit */
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 52px;
+    font-weight: 600;
+    font-size: 47px;
+    line-height: 54px;
     letter-spacing: 0;
   }
 }
 @layer components {
   .text-display-32 {
     font-family: var(--font-heading); /* Outfit */
-    font-weight: 700;
-    font-size: 32px;
+    font-weight: 400;
+    font-size: px;
     line-height: 40px;
     letter-spacing: 0;
   }
@@ -333,11 +339,29 @@
 }
 
 @layer components {
-  .bg-soft-gradient {
+  .bg-hero1-gradient {
 
     background: #DDE7F4
   }
 }
+@layer components {
+  .bg-hero2-gradient {
+
+    background: #FFF5E2;
+
+  }
+}
+
+@layer components {
+  .bg-hero3-gradient {
+
+    background: #FFEDFD;
+
+  }
+}
+
+
+
 @layer components {
   .bg-card-overlay-gradient {
     background: linear-gradient(
@@ -410,5 +434,24 @@
     line-height: 22px;
     letter-spacing: -0.5%;
     text-align: center;
+  }
+}
+/* section divider */
+
+@layer components {
+  .section-spacer {
+    margin-top: 10rem;
+  }
+}
+
+
+@layer components {
+  .section-spacer-bottom {
+    margin-bottom: 3rem;
+  }
+}
+@layer components {
+  .section-spacer-bottom {
+    text:#FFA953;
   }
 }

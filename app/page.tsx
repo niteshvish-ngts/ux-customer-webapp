@@ -1,3 +1,4 @@
+import Footer from "@/components/common/footer/page";
 import Navbar from "@/components/common/navbar/page";
 import Landing from "@/components/landing/page";
 import ServiceOfferCard from "@/components/shared/booked-services-card";
@@ -16,6 +17,7 @@ export default function Home() {
       <div className="container">
         <Landing />
       </div>
+      <Footer />
     </>
   );
 }

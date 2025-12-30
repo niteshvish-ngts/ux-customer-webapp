@@ -23,7 +23,7 @@ export default function OfferBannerCard({
 }: OfferBannerCardProps) {
   return (
     <div
-      className={`${bgColor || "bg-soft-gradient"} relative flex items-center justify-between gap-4 offer-card px-5 py-5`}      
+      className={`${bgColor || "bg-soft-gradient"} relative flex items-center justify-between gap-4 offer-card px-5 py-5 `}      
     >
       {/* LEFT CONTENT */}
       <div className=" space-y-2">

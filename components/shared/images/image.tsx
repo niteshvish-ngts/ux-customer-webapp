@@ -9,6 +9,9 @@ import Frame from "@/public/assets/images/Hero-section/Frame.png";
 import {  RiStarFill } from "react-icons/ri";
 import AC from "@/public/assets/images/Hero-section/AC.png"
 import Vector1 from "@/public/assets/images/Hero-section/Vector1.png"
+import { Button } from "@/components/ui/button"
+import Button1 from "@/public/assets/images/Footer/Button1.png"
+import Button2 from "@/public/assets/images/Footer/Button2.png"
 export const logoImage = {
     logoImg: Logo
 };
@@ -26,4 +29,8 @@ export const HeroImage = {
 };
 export const icon = {
     star: < RiStarFill />
+}
+export const FooterImage = {
+    appStoreImg: Button1,
+    playStoreImg: Button2
 }

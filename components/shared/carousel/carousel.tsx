@@ -23,14 +23,23 @@ const CarouselSection = <T,>({
   renderItem,
 }: CarouselSectionProps<T>) => {
   return (
-    <section>
-      <CardHeading title={title} />
-
+    <section className="space-y-4 section-spacer">
       <Carousel
         opts={{ align: "start" }}
-        className="w-full mt-4"
+        className="w-full"
       >
-        <CarouselContent className="-ml-4">
+        {/* HEADER + ARROWS (INSIDE Carousel) */}
+        <div className="flex items-center justify-between section-spacer-bottom">
+          <CardHeading title={title} />
+
+          <div className="flex items-center gap-2 ">
+            <CarouselPrevious className="static translate-y-0 bg-black text-white hover:text-black cursor-pointer hover:bg-white " />
+            <CarouselNext className="static translate-y-0 bg-black text-white hover:text-black cursor-pointer hover:bg-white " />
+          </div>
+        </div>
+
+        {/* CONTENT */}
+        <CarouselContent className="-ml-4 mt-4 ">
           {items.map((item, index) => (
             <CarouselItem
               key={index}
@@ -40,9 +49,6 @@ const CarouselSection = <T,>({
             </CarouselItem>
           ))}
         </CarouselContent>
-
-        <CarouselPrevious />
-        <CarouselNext />
       </Carousel>
     </section>
   );

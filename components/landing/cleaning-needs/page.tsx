@@ -19,7 +19,7 @@ type ServiceOffer = {
 const serviceOffers: ServiceOffer[] = [
   {
     id: 1,
-    image: HeroImage.heroImg3,
+    image: HeroImage.heroImg1,
     title: "Deep Bathroom Cleaning",
     subtitle: "(2 bathrooms)",
     rating: 4.5,
@@ -29,7 +29,7 @@ const serviceOffers: ServiceOffer[] = [
   },
   {
     id: 2,
-    image: HeroImage.heroImg1,
+    image: HeroImage.heroImg3,
     title: "Kitchen Deep Cleaning",
     subtitle: "(Full kitchen)",
     rating: 4.6,
@@ -39,7 +39,7 @@ const serviceOffers: ServiceOffer[] = [
   },
   {
     id: 3,
-    image: HeroImage.heroImg3,
+    image: HeroImage.heroImg1,
     title: "Full Home Cleaning",
     subtitle: "(3 BHK)",
     rating: 4.7,
@@ -49,7 +49,7 @@ const serviceOffers: ServiceOffer[] = [
   },
   {
     id: 4,
-    image: HeroImage.heroImg1,
+    image: HeroImage.heroImg3,
     title: "Full Home Cleaning",
     subtitle: "(3 BHK)",
     rating: 4.7,
@@ -69,10 +69,10 @@ const serviceOffers: ServiceOffer[] = [
   },
 ];
 
-const MostBookedService = () => {
+const CleaningNeeds = () => {
   return (
     <CarouselSection
-      title="Most Booked Services"
+      title="Cleaning Needs"
       items={serviceOffers}
       renderItem={(offer) => (
         <ServiceOfferCard
@@ -89,4 +89,4 @@ const MostBookedService = () => {
   );
 };
 
-export default MostBookedService;
+export default CleaningNeeds;

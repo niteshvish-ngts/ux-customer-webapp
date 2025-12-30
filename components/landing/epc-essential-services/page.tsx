@@ -19,7 +19,7 @@ type ServiceOffer = {
 const serviceOffers: ServiceOffer[] = [
   {
     id: 1,
-    image: HeroImage.heroImg3,
+    image: HeroImage.heroImg4,
     title: "Deep Bathroom Cleaning",
     subtitle: "(2 bathrooms)",
     rating: 4.5,
@@ -59,7 +59,7 @@ const serviceOffers: ServiceOffer[] = [
   },
   {
     id: 5,
-    image: HeroImage.heroImg3,
+    image: HeroImage.heroImg4,
     title: "Full Home Cleaning",
     subtitle: "(3 BHK)",
     rating: 4.7,
@@ -69,10 +69,10 @@ const serviceOffers: ServiceOffer[] = [
   },
 ];
 
-const MostBookedService = () => {
+const EpcEssentialServices = () => {
   return (
     <CarouselSection
-      title="Most Booked Services"
+      title="EPC Essential Services"
       items={serviceOffers}
       renderItem={(offer) => (
         <ServiceOfferCard
@@ -89,4 +89,4 @@ const MostBookedService = () => {
   );
 };
 
-export default MostBookedService;
+export default EpcEssentialServices;

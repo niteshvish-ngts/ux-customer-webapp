@@ -6,35 +6,58 @@ import { HeroImage, icon } from "../../shared/images/image";
 
 export default function HeroSection() {
   return (
-    <section className="w-full bg-background">
+    <section className="w-full bg-background ">
       <div className="container py-12 lg:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* LEFT CONTENT */}
           <div className="space-y-6">
-            {/* Trustpilot */}
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1 text-white">
-                {[...Array(5)].map((_, index) => (
-                  <span
-                    key={index}
-                    className=" leading-none bg-[#219653] px-2 py-2 "
-                  >
-                    {icon.star}
-                  </span>
-                ))}
-              </span>
+{/* Trustpilot */}
+<div
+  className="
+    flex flex-col items-center text-center gap-2
+    sm:flex-row sm:items-center sm:text-left sm:gap-2
+    text-sm text-muted-foreground
+  "
+>
+  {/* Stars */}
+  <span className="flex items-center gap-1 text-white">
+    {[...Array(5)].map((_, index) => (
+      <span
+        key={index}
+        className="leading-none bg-[#219653] px-2 py-2"
+      >
+        {icon.star}
+      </span>
+    ))}
+  </span>
 
-              <span>436 reviews on</span>
-              <span className="font-semibold text-foreground flex items-center gap-1 px-2 py-2">
-                {icon.star} Trustpilot
-              </span>
-            </div>
+  {/* Reviews text */}
+  <span>436 reviews on</span>
+
+  {/* Trustpilot */}
+  <span className="font-semibold text-foreground flex items-center gap-1">
+    {icon.star} Trustpilot
+  </span>
+</div>
+
+
 
             {/* Heading */}
-            <h1 className="text-display-64">
-              On Demand Service at Your{" "}
-              <span className="text-primary">Doorstep</span> 🚪
-            </h1>
+            <h1
+  className="
+  text-display-64
+  sm:text-display-40
+    text-center
+    md:text-left
+    
+  "
+>
+  On Demand Service at Your{" "}
+  <span className="text-ter inline-flex items-center gap-2">
+    Doorstep <span aria-hidden>🚪</span>
+  </span>
+</h1>
+
 
             {/* Description */}
             <p className="font-body text-muted-foreground max-w-xl">
@@ -115,8 +138,7 @@ export default function HeroSection() {
           </div>
 
           {/* RIGHT IMAGES */}
-          <div className="grid h-full grid-cols-2 grid-rows-10 gap-4">
-            {/* Image 1 (same height as Image 4) */}
+          <div className="grid h-full grid-cols-2 grid-rows-10 gap-4 ">
             <div className="relative row-span-6 rounded-xl overflow-hidden">
               <Image
                 src={HeroImage.heroImg1}
@@ -126,7 +148,6 @@ export default function HeroSection() {
               />
             </div>
 
-            {/* Image 2 (same height as Image 3) */}
             <div className="relative row-span-5 rounded-xl overflow-hidden">
               <Image
                 src={HeroImage.heroImg2}
@@ -136,7 +157,6 @@ export default function HeroSection() {
               />
             </div>
 
-            {/* Image 3 (same height as Image 2) */}
             <div className="relative row-span-6 rounded-xl overflow-hidden">
               <Image
                 src={HeroImage.heroImg3}
@@ -146,7 +166,6 @@ export default function HeroSection() {
               />
             </div>
 
-            {/* Image 4 (same height as Image 1) */}
             <div className="relative row-span-5 rounded-xl overflow-hidden">
               <Image
                 src={HeroImage.heroImg4}
