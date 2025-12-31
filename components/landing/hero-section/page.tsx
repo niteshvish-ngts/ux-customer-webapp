@@ -11,53 +11,63 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* LEFT CONTENT */}
           <div className="space-y-6">
-{/* Trustpilot */}
-<div
-  className="
+            {/* Trustpilot */}
+            <div
+              className="
     flex flex-col items-center text-center gap-2
-    sm:flex-row sm:items-center sm:text-left sm:gap-2
+    lg:flex-row lg:items-center lg:text-left
     text-sm text-muted-foreground
   "
->
-  {/* Stars */}
-  <span className="flex items-center gap-1 text-white">
-    {[...Array(5)].map((_, index) => (
-      <span
-        key={index}
-        className="leading-none bg-[#219653] px-2 py-2"
-      >
-        {icon.star}
-      </span>
-    ))}
-  </span>
+            >
+              {/* Stars */}
+              <span className="flex items-center gap-1 text-white">
+                {[...Array(5)].map((_, index) => (
+                  <span
+                    key={index}
+                    className="leading-none bg-[#219653] px-2 py-2"
+                  >
+                    {icon.star}
+                  </span>
+                ))}
+              </span>
 
-  {/* Reviews text */}
-  <span>436 reviews on</span>
+              {/* Reviews text */}
+              <a
+                href="#reviews"
+                className="
+    cursor-pointer
+    underline
+    underline-offset-4
+    text-black
+    hover:text-foreground
+    transition
+  "
+              >
+                436 reviews on
+              </a>
 
-  {/* Trustpilot */}
-  <span className="font-semibold text-foreground flex items-center gap-1">
-    {icon.star} Trustpilot
-  </span>
-</div>
-
-
+              {/* Trustpilot */}
+              <span className="font-semibold text-foreground flex items-center gap-1">
+                <span className="text-[#219653] text-lg">{icon.star}</span>{" "}
+                Trustpilot
+              </span>
+            </div>
 
             {/* Heading */}
             <h1
-  className="
+              className="
   text-display-64
   sm:text-display-40
     text-center
     md:text-left
     
   "
->
-  On Demand Service at Your{" "}
-  <span className="text-ter inline-flex items-center gap-2">
-    Doorstep <span aria-hidden>🚪</span>
-  </span>
-</h1>
-
+            >
+              On Demand Service at Your{" "}
+              <span className="text-ter inline-flex items-center gap-2">
+                Doorstep <span aria-hidden>🚪</span>
+              </span>
+            </h1>
 
             {/* Description */}
             <p className="font-body text-muted-foreground max-w-xl">
@@ -91,90 +101,157 @@ export default function HeroSection() {
                   type="text"
                   placeholder="Search for AC Service"
                   className="
-                    w-full px-3 py-3 text-sm
-                    bg-background text-foreground
-                    border border-input rounded-md
-                    focus-visible:outline-none
-                    focus-visible:ring-2
-                    focus-visible:ring-ring
-                  "
+      w-full pr-10 pl-3 py-3 text-sm
+      bg-background text-foreground
+      border border-input rounded-md
+      focus-visible:outline-none
+      focus-visible:ring-2
+      focus-visible:ring-ring
+    "
                 />
-              </div>
 
-              {/* Button */}
-              <button
-                className="
-                  px-5 py-3 rounded-md
-                  bg-primary text-primary-foreground
-                  flex items-center justify-center
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-ring
-                "
-              >
-                <Search className="w-4 h-4" />
-              </button>
+                {/* Icon button inside input */}
+                <button
+                  type="button"
+                  className="
+      absolute inset-y-0 right-0
+      px-4 flex items-center justify-center
+      text-foreground/60
+      hover:text-foreground
+      bg-[#F68836]
+ hover:bg-[#F68836]/50
+      rounded-r-md
+    "
+                >
+                  <Search className="w-4 h-4" />
+                </button>
+              </div>
             </div>
 
             {/* Popular Services */}
-            <div className="space-y-2">
-              <p className="text-sm text-muted-foreground">Popular services</p>
-              <div className="flex flex-wrap gap-2">
-                {["AC Repair", "Electrical Fitting", "Painting"].map((item) => (
-                  <span
-                    key={item}
-                    className="
-                        px-3 py-1 text-xs
-                        border border-border
-                        rounded-full
-                        text-muted-foreground
-                      "
-                  >
-                    {item}
-                  </span>
-                ))}
+            <div className="flex items-start justify-between gap-4">
+              {/* LEFT: Popular services */}
+              <div className="space-y-2">
+                <p className="text-sm text-muted-foreground">
+                  Popular services
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {["AC Repair", "Electrical Fitting", "Painting"].map(
+                    (item) => (
+                      <span
+                        key={item}
+                        className="
+            px-3 py-1 text-xs
+            border border-border
+            rounded-full
+            text-muted-foreground
+            cursor-pointer
+            hover:bg-muted
+            transition
+          "
+                      >
+                        {item}
+                      </span>
+                    )
+                  )}
+                </div>
               </div>
+
+              {/* RIGHT: Serviceable Areas */}
+              <a
+                href="#serviceable-areas"
+                className="
+      text-sm
+      text-ter
+      underline
+      underline-offset-4
+      whitespace-nowrap
+      hover:opacity-80
+      transition
+    "
+              >
+                Serviceable Areas
+              </a>
             </div>
           </div>
 
           {/* RIGHT IMAGES */}
-          <div className="grid h-full grid-cols-2 grid-rows-10 gap-4 ">
-            <div className="relative row-span-6 rounded-xl overflow-hidden">
-              <Image
-                src={HeroImage.heroImg1}
-                alt="Image 1"
-                fill
-                className="object-cover"
-              />
-            </div>
+          <div className="grid grid-cols-2 gap-4">
+  {/* LEFT COLUMN */}
+  <div className="flex flex-col gap-4">
+    {/* Top BIG */}
+    <div className="relative h-[340px] rounded-3xl overflow-hidden">
+      <Image
+        src={HeroImage.heroImg1}
+        alt="Image 1"
+        fill
+        className="object-cover"
+      />
 
-            <div className="relative row-span-5 rounded-xl overflow-hidden">
-              <Image
-                src={HeroImage.heroImg2}
-                alt="Image 2"
-                fill
-                className="object-cover"
-              />
-            </div>
+      {/* ⭐ Top-left star */}
+      <Image
+        src={HeroImage.heroImg5}
+        alt=""
+        width={40}
+        height={40}
+        className="absolute top-3 left-3"
+      />
+    </div>
 
-            <div className="relative row-span-6 rounded-xl overflow-hidden">
-              <Image
-                src={HeroImage.heroImg3}
-                alt="Image 3"
-                fill
-                className="object-cover"
-              />
-            </div>
+    {/* Bottom SMALL */}
+    <div className="relative h-[180px] rounded-3xl overflow-hidden">
+      <Image
+        src={HeroImage.heroImg3}
+        alt="Image 3"
+        fill
+        className="object-cover"
+      />
+    </div>
+  </div>
 
-            <div className="relative row-span-5 rounded-xl overflow-hidden">
-              <Image
-                src={HeroImage.heroImg4}
-                alt="Image 4"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
+  {/* RIGHT COLUMN */}
+  <div className="flex flex-col gap-4">
+    {/* Top SMALL */}
+    <div className="relative h-[180px] rounded-3xl overflow-hidden">
+      <Image
+        src={HeroImage.heroImg2}
+        alt="Image 2"
+        fill
+        className="object-cover"
+      />
+
+      {/* ✨ Top-right spark */}
+      <Image
+        src={HeroImage.heroImg6}
+        alt=""
+        width={42}
+        height={42}
+        className="absolute top-0 right-0"
+      />
+    </div>
+
+    {/* Bottom BIG */}
+    <div className="relative h-[340px] rounded-3xl overflow-hidden">
+      <Image
+        src={HeroImage.heroImg4}
+        alt="Image 4"
+        fill
+        className="object-cover"
+      />
+
+      {/* 🟡 Bottom-right blob */}
+      <Image
+        src={HeroImage.heroImg7}
+        alt=""
+        width={48}
+        height={48}
+        className="absolute bottom-0 right-0"
+      />
+    </div>
+  </div>
+</div>
+
         </div>
       </div>
     </section>

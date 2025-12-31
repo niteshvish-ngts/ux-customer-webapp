@@ -440,14 +440,14 @@
 
 @layer components {
   .section-spacer {
-    margin-top: 10rem;
+    margin-top: 4rem;
   }
 }
 
 
 @layer components {
   .section-spacer-bottom {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 }
 @layer components {

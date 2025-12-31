@@ -1,4 +1,3 @@
-import Footer from "@/components/common/footer/page";
 import Navbar from "@/components/common/navbar/page";
 import Landing from "@/components/landing/page";
 import ServiceOfferCard from "@/components/shared/booked-services-card";
@@ -9,6 +8,7 @@ import ServiceCard from "@/components/shared/service-card";
 import CardHeading from "@/components/shared/special-offers-cards/card-heading";
 import Card from "@/components/shared/special-offers-cards/page";
 import Image, { StaticImageData } from "next/image";
+  import Footer from "@/components/common/footer/page";
 
 export default function Home() {
   return (

@@ -18,8 +18,10 @@ export default function Landing() {
       <SpecialOfferForYou />
       <MostBookedService />
       <CleaningNeeds />
+      {/* diff */}
       <EpcEssentialServices />
       <PremiumBanner/>
+      {/* diff */}
       <Testimonials/>
     </section>
   );

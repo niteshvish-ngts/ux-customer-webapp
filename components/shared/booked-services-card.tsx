@@ -10,6 +10,7 @@ type ServiceOfferCardProps = {
   rating: number;
   reviews: string;
   price: string;
+  discount:string,
   originalPrice?: string;
 };
 
@@ -20,11 +21,28 @@ export default function ServiceOfferCard({
   rating,
   reviews,
   price,
+  discount,
   originalPrice,
 }: ServiceOfferCardProps) {
   return (
     <div className="relative overflow-hidden rounded-3xl w-[260px] h-[420px]">
       {/* IMAGE */}
+      {discount && (
+        <span
+          className="
+            absolute top-0 left-0 z-10
+            bg-green-500 text-white
+            text-xs font-semibold
+            px-3 py-1
+    rounded-tr-2xl
+    rounded-bl-2xl
+    rounded-br-full
+            
+          "
+        >
+          {discount}
+        </span>
+      )}
       <Image
         src={image}
         alt={title}

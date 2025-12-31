@@ -5,18 +5,21 @@ import CarouselSection from "@/components/shared/carousel/carousel";
 import { HeroImage } from "@/components/shared/images/image";
 import { StaticImageData } from "next/image";
 
+
+
 type ServiceOffer = {
   id: number;
-  image: string | StaticImageData;
+  image: any;
   title: string;
   subtitle: string;
   rating: number;
   reviews: string;
   price: string;
-  originalPrice?: string;
+  originalPrice: string;
+  discount: string;
 };
 
-const serviceOffers: ServiceOffer[] = [
+export const serviceOffers: ServiceOffer[] = [
   {
     id: 1,
     image: HeroImage.heroImg1,
@@ -26,48 +29,54 @@ const serviceOffers: ServiceOffer[] = [
     reviews: "10k reviews",
     price: "₹950",
     originalPrice: "₹1300",
+    discount: "45% off",
   },
   {
     id: 2,
-    image: HeroImage.heroImg3,
-    title: "Kitchen Deep Cleaning",
-    subtitle: "(Full kitchen)",
-    rating: 4.6,
-    reviews: "8k reviews",
-    price: "₹1199",
+    image: HeroImage.heroImg2,
+    title: "Intense Cleaning",
+    subtitle: "(3 bathrooms)",
+    rating: 4.5,
+    reviews: "10k reviews",
+    price: "₹1350",
     originalPrice: "₹1600",
+    discount: "20% off",
   },
   {
     id: 3,
-    image: HeroImage.heroImg1,
-    title: "Full Home Cleaning",
-    subtitle: "(3 BHK)",
-    rating: 4.7,
-    reviews: "12k reviews",
-    price: "₹2499",
-    originalPrice: "₹3200",
+    image: HeroImage.heroImg3,
+    title: "Kitchen Cleaning",
+    subtitle: "(upto 2 kitchens)",
+    rating: 4.5,
+    reviews: "10k reviews",
+    price: "₹1350",
+    originalPrice: "₹1600",
+    discount: "12% off",
   },
   {
     id: 4,
-    image: HeroImage.heroImg3,
-    title: "Full Home Cleaning",
-    subtitle: "(3 BHK)",
-    rating: 4.7,
-    reviews: "12k reviews",
-    price: "₹2499",
-    originalPrice: "₹3200",
+    image: HeroImage.heroImg4,
+    title: "Carpet Cleaning",
+    subtitle: "(1 carpet)",
+    rating: 4.5,
+    reviews: "10k reviews",
+    price: "₹1350",
+    originalPrice: "₹1600",
+    discount: "50% off",
   },
   {
     id: 5,
-    image: HeroImage.heroImg3,
-    title: "Full Home Cleaning",
-    subtitle: "(3 BHK)",
-    rating: 4.7,
-    reviews: "12k reviews",
-    price: "₹2499",
-    originalPrice: "₹3200",
+    image: HeroImage.heroImg5,
+    title: "Tank Cleaning",
+    subtitle: "(1 tank only)",
+    rating: 4.5,
+    reviews: "10k reviews",
+    price: "₹1350",
+    originalPrice: "₹1600",
+    discount: "50% off",
   },
 ];
+
 
 const CleaningNeeds = () => {
   return (
@@ -82,6 +91,7 @@ const CleaningNeeds = () => {
           rating={offer.rating}
           reviews={offer.reviews}
           price={offer.price}
+          discount={offer.discount}
           originalPrice={offer.originalPrice}
         />
       )}

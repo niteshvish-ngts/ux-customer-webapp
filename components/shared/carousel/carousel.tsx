@@ -30,7 +30,11 @@ const CarouselSection = <T,>({
       >
         {/* HEADER + ARROWS (INSIDE Carousel) */}
         <div className="flex items-center justify-between section-spacer-bottom">
+          
           <CardHeading title={title} />
+          
+        
+
 
           <div className="flex items-center gap-2 ">
             <CarouselPrevious className="static translate-y-0 bg-black text-white hover:text-black cursor-pointer hover:bg-white " />

@@ -13,6 +13,7 @@ type ServiceOffer = {
   rating: number;
   reviews: string;
   price: string;
+  discount:string;
   originalPrice?: string;
 };
 
@@ -25,6 +26,7 @@ const serviceOffers: ServiceOffer[] = [
     rating: 4.5,
     reviews: "10k reviews",
     price: "₹950",
+    discount: "50% off",
     originalPrice: "₹1300",
   },
   {
@@ -35,6 +37,7 @@ const serviceOffers: ServiceOffer[] = [
     rating: 4.6,
     reviews: "8k reviews",
     price: "₹1199",
+    discount: "50% off",
     originalPrice: "₹1600",
   },
   {
@@ -45,6 +48,7 @@ const serviceOffers: ServiceOffer[] = [
     rating: 4.7,
     reviews: "12k reviews",
     price: "₹2499",
+    discount: "50% off",
     originalPrice: "₹3200",
   },
   {
@@ -55,6 +59,7 @@ const serviceOffers: ServiceOffer[] = [
     rating: 4.7,
     reviews: "12k reviews",
     price: "₹2499",
+    discount: "50% off",
     originalPrice: "₹3200",
   },
   {
@@ -65,6 +70,7 @@ const serviceOffers: ServiceOffer[] = [
     rating: 4.7,
     reviews: "12k reviews",
     price: "₹2499",
+    discount: "50% off",
     originalPrice: "₹3200",
   },
 ];
@@ -73,6 +79,7 @@ const EpcEssentialServices = () => {
   return (
     <CarouselSection
       title="EPC Essential Services"
+      
       items={serviceOffers}
       renderItem={(offer) => (
         <ServiceOfferCard
@@ -82,6 +89,7 @@ const EpcEssentialServices = () => {
           rating={offer.rating}
           reviews={offer.reviews}
           price={offer.price}
+          discount={offer.discount}
           originalPrice={offer.originalPrice}
         />
       )}

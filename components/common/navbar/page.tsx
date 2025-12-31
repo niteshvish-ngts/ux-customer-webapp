@@ -64,8 +64,9 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <button
               className="
-                p-2 rounded-md
+                p-2 rounded-2xl
                 text-muted-foreground
+                border border-border 
                 hover:bg-muted
                 transition
               "

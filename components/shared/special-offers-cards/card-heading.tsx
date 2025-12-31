@@ -2,7 +2,9 @@ import React from 'react'
 
 const CardHeading = ({ title }: { title: any }) => {
   return (
-    <div className="card-title">{title}</div>
+    <div><div className="card-title">{title}</div>
+    </div>
+
   )
 }
 

@@ -1,21 +1,20 @@
 import Image, { StaticImageData } from "next/image";
 
-
 type ServiceCardProps = {
   title: string;
   image: string | StaticImageData;
 };
 
-
 export default function ServiceCard({ title, image }: ServiceCardProps) {
   return (
     <div
       className="
+        w-[200px]             
         flex flex-col items-center justify-center gap-4
         bg-card text-card-foreground
-       border border-sidebar-border
+        border border-sidebar-border
         rounded-lg
-        px-6 py-6
+        px-4 py-6
         text-center
         transition
         hover:bg-muted
@@ -32,7 +31,15 @@ export default function ServiceCard({ title, image }: ServiceCardProps) {
       </div>
 
       {/* TITLE */}
-      <p className="text-body-sm font-body text-foreground">
+      <p
+        className="
+          text-body-sm
+          font-body
+          text-foreground
+          leading-snug
+          line-clamp-2     /* ✅ MAX 2 LINES */
+        "
+      >
         {title}
       </p>
     </div>

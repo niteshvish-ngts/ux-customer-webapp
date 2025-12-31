@@ -50,6 +50,7 @@ export default function Testimonials() {
   return (
     <section className="section-spacing">
       <CarouselSection
+      
         title="What Our Customers Say"
         items={testimonials}
         renderItem={(item) => (
