@@ -47,9 +47,20 @@ const offers: Offer[] = [
 
 const SpecialOfferForYou = () => {
   return (
+    <section className="section-spacing">
     <CarouselSection
       title="Special Offers For You"
-      items={offers}
+    
+      showArrows={true}
+      rightSlot={
+    <a
+      href="/services"
+      className="text-sm font-medium text-primary hover:underline"
+    >
+      View All Services
+    </a>
+  }  items={offers}
+  
       renderItem={(offer) => (
         <OfferBannerCard
           title={offer.title}
@@ -61,6 +72,7 @@ const SpecialOfferForYou = () => {
         />
       )}
     />
+    </section>
   );
 };
 

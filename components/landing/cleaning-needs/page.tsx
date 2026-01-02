@@ -2,8 +2,9 @@
 
 import ServiceOfferCard from "@/components/shared/booked-services-card";
 import CarouselSection from "@/components/shared/carousel/carousel";
-import { HeroImage } from "@/components/shared/images/image";
+import { HeroImage, ServicesImage } from "@/components/shared/images/image";
 import { StaticImageData } from "next/image";
+import Link from "next/link";
 
 
 
@@ -22,7 +23,7 @@ type ServiceOffer = {
 export const serviceOffers: ServiceOffer[] = [
   {
     id: 1,
-    image: HeroImage.heroImg1,
+    image: ServicesImage.imageService1,
     title: "Deep Bathroom Cleaning",
     subtitle: "(2 bathrooms)",
     rating: 4.5,
@@ -33,7 +34,7 @@ export const serviceOffers: ServiceOffer[] = [
   },
   {
     id: 2,
-    image: HeroImage.heroImg2,
+    image: ServicesImage.imageService2,
     title: "Intense Cleaning",
     subtitle: "(3 bathrooms)",
     rating: 4.5,
@@ -44,7 +45,7 @@ export const serviceOffers: ServiceOffer[] = [
   },
   {
     id: 3,
-    image: HeroImage.heroImg3,
+    image: ServicesImage.imageService8,
     title: "Kitchen Cleaning",
     subtitle: "(upto 2 kitchens)",
     rating: 4.5,
@@ -55,7 +56,7 @@ export const serviceOffers: ServiceOffer[] = [
   },
   {
     id: 4,
-    image: HeroImage.heroImg4,
+    image: ServicesImage.imageService9,
     title: "Carpet Cleaning",
     subtitle: "(1 carpet)",
     rating: 4.5,
@@ -66,7 +67,7 @@ export const serviceOffers: ServiceOffer[] = [
   },
   {
     id: 5,
-    image: HeroImage.heroImg5,
+    image: ServicesImage.imageService10,
     title: "Tank Cleaning",
     subtitle: "(1 tank only)",
     rating: 4.5,
@@ -80,13 +81,28 @@ export const serviceOffers: ServiceOffer[] = [
 
 const CleaningNeeds = () => {
   return (
+    <section className="section-spacing">
+
     <CarouselSection
-      title="Cleaning Needs"
-      items={serviceOffers}
-      renderItem={(offer) => (
+  title="Cleaning Needs"
+  description="Basic cleaning required for your home"
+  showArrows={true} 
+  controlsPosition="bottom"   
+      
+  rightSlot={
+    <a
+      href="/services"
+      className="text-sm font-medium text-primary hover:underline"
+    >
+      View All Services
+    </a>
+  }
+  items={serviceOffers}
+  renderItem={(offer) => (
         <ServiceOfferCard
           image={offer.image}
           title={offer.title}
+          
           subtitle={offer.subtitle}
           rating={offer.rating}
           reviews={offer.reviews}
@@ -96,6 +112,7 @@ const CleaningNeeds = () => {
         />
       )}
     />
+    </section>
   );
 };
 

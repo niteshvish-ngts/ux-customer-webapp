@@ -49,11 +49,21 @@ const testimonials = [
 export default function Testimonials() {
   return (
     <section className="section-spacing">
-      <CarouselSection
       
-        title="What Our Customers Say"
-        items={testimonials}
-        renderItem={(item) => (
+          <CarouselSection
+  title="What Our Customers Say"
+  description="our client love & trust our platform"
+  showArrows={true}                    
+  rightSlot={
+    <a
+      href="/services"
+      className="text-sm font-medium text-primary hover:underline"
+    >
+      View All Services
+    </a>
+  }
+  items={testimonials}
+  renderItem={(item) => (
           <TestimonialCard
             rating={item.rating}
             text={item.text}

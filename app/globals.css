@@ -118,17 +118,16 @@
   --font-heading: var(--font-outfit);
   --font-body: var(--font-lato);
   /* font family */
-  
-  
-
-
 
 }
+
+
 @layer components {
   .card-title {
     font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 36px;
+    /* font-size: 32px; */
+    
   }
 }
 

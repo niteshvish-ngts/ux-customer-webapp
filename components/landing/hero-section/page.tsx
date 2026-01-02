@@ -7,51 +7,52 @@ import { HeroImage, icon } from "../../shared/images/image";
 export default function HeroSection() {
   return (
     <section className="w-full bg-background ">
-      <div className="container py-12 lg:py-16">
+      <div className="container py-10 lg:py-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* LEFT CONTENT */}
           <div className="space-y-6">
             {/* Trustpilot */}
             <div
-              className="
-    flex flex-col items-center text-center gap-2
-    lg:flex-row lg:items-center lg:text-left
+  className="
+    flex flex-col items-center gap-2
+    sm:flex-row sm:items-center sm:gap-3
     text-sm text-muted-foreground
   "
-            >
-              {/* Stars */}
-              <span className="flex items-center gap-1 text-white">
-                {[...Array(5)].map((_, index) => (
-                  <span
-                    key={index}
-                    className="leading-none bg-[#219653] px-2 py-2"
-                  >
-                    {icon.star}
-                  </span>
-                ))}
-              </span>
+>
+  {/* Stars */}
+  <span className="flex items-center gap-1">
+    {[...Array(5)].map((_, index) => (
+      <span
+        key={index}
+        className="bg-[#219653] px-2 py-2 text-white leading-none"
+      >
+        {icon.star}
+      </span>
+    ))}
+  </span>
 
-              {/* Reviews text */}
-              <a
-                href="#reviews"
-                className="
-    cursor-pointer
-    underline
-    underline-offset-4
-    text-black
-    hover:text-foreground
-    transition
-  "
-              >
-                436 reviews on
-              </a>
+  {/* Reviews + Trustpilot */}
+  <div className="flex items-center gap-1 mt-2">
+    <a
+      href="#reviews"
+      className="
+        underline
+        underline-offset-4
+        text-black
+        hover:text-foreground
+        transition
+      "
+    >
+      436 reviews on
+    </a>
 
-              {/* Trustpilot */}
-              <span className="font-semibold text-foreground flex items-center gap-1">
-                <span className="text-[#219653] text-lg">{icon.star}</span>{" "}
-                Trustpilot
-              </span>
-            </div>
+    <span className="flex items-center gap-1 font-semibold text-foreground">
+      <span className="text-[#219653] text-lg">{icon.star}</span>
+      Trustpilot
+    </span>
+  </div>
+</div>
+
 
             {/* Heading */}
             <h1
@@ -136,7 +137,7 @@ export default function HeroSection() {
                   Popular services
                 </p>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap  gap-2 ">
                   {["AC Repair", "Electrical Fitting", "Painting"].map(
                     (item) => (
                       <span
@@ -177,81 +178,80 @@ export default function HeroSection() {
           </div>
 
           {/* RIGHT IMAGES */}
-          <div className="grid grid-cols-2 gap-4">
-  {/* LEFT COLUMN */}
-  <div className="flex flex-col gap-4">
-    {/* Top BIG */}
-    <div className="relative h-[340px] rounded-3xl overflow-hidden">
-      <Image
-        src={HeroImage.heroImg1}
-        alt="Image 1"
-        fill
-        className="object-cover"
-      />
+          <div className=" hidden md:grid grid-cols-2 gap-4">
+            {/* LEFT COLUMN */}
+            <div className="flex flex-col gap-4">
+              {/* Top BIG */}
+              <div className="relative h-[340px] rounded-3xl overflow-hidden">
+                <Image
+                  src={HeroImage.heroImg1}
+                  alt="Image 1"
+                  fill
+                  className="object-cover"
+                />
 
-      {/* ⭐ Top-left star */}
-      <Image
-        src={HeroImage.heroImg5}
-        alt=""
-        width={40}
-        height={40}
-        className="absolute top-3 left-3"
-      />
-    </div>
+                {/* Top-left star */}
+                <Image
+                  src={HeroImage.heroImg5}
+                  alt=""
+                  width={52}
+                  height={52}
+                  className="absolute top-3 left-3"
+                />
+              </div>
 
-    {/* Bottom SMALL */}
-    <div className="relative h-[180px] rounded-3xl overflow-hidden">
-      <Image
-        src={HeroImage.heroImg3}
-        alt="Image 3"
-        fill
-        className="object-cover"
-      />
-    </div>
-  </div>
+              {/* Bottom SMALL */}
+              <div className="relative h-[180px] rounded-3xl overflow-hidden">
+                <Image
+                  src={HeroImage.heroImg3}
+                  alt="Image 3"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
 
-  {/* RIGHT COLUMN */}
-  <div className="flex flex-col gap-4">
-    {/* Top SMALL */}
-    <div className="relative h-[180px] rounded-3xl overflow-hidden">
-      <Image
-        src={HeroImage.heroImg2}
-        alt="Image 2"
-        fill
-        className="object-cover"
-      />
+            {/* RIGHT COLUMN */}
+            <div className="flex flex-col gap-4">
+              {/* Top SMALL */}
+              <div className="relative h-[180px] rounded-3xl overflow-hidden">
+                <Image
+                  src={HeroImage.heroImg2}
+                  alt="Image 2"
+                  fill
+                  className="object-cover"
+                />
 
-      {/* ✨ Top-right spark */}
-      <Image
-        src={HeroImage.heroImg6}
-        alt=""
-        width={42}
-        height={42}
-        className="absolute top-0 right-0"
-      />
-    </div>
+                {/* ✨ Top-right spark */}
+                <Image
+                  src={HeroImage.heroImg6}
+                  alt=""
+                  width={52}
+                  height={52}
+                  className="absolute  -top-3 -right-5 z-10 "
+                />
+              </div>
 
-    {/* Bottom BIG */}
-    <div className="relative h-[340px] rounded-3xl overflow-hidden">
-      <Image
-        src={HeroImage.heroImg4}
-        alt="Image 4"
-        fill
-        className="object-cover"
-      />
+              {/* Bottom BIG */}
+              <div className="relative h-[340px] rounded-3xl overflow-hidden">
+                <Image
+                  src={HeroImage.heroImg4}
+                  alt="Image 4"
+                  fill
+                  className="object-cover"
+                />
 
-      {/* 🟡 Bottom-right blob */}
-      <Image
-        src={HeroImage.heroImg7}
-        alt=""
-        width={48}
-        height={48}
-        className="absolute bottom-0 right-0"
-      />
-    </div>
-  </div>
-</div>
-
+                {/* Bottom-right blob */}
+                <Image
+                  src={HeroImage.heroImg7}
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="absolute bottom-0 right-0"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

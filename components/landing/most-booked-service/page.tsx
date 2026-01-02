@@ -79,6 +79,7 @@ const MostBookedService = () => {
   return (
     <CarouselSection
       title="Most Booked Services"
+      showArrows={true} 
       items={serviceOffers}
       renderItem={(offer) => (
         <ServiceOfferCard

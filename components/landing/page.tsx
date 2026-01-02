@@ -9,20 +9,19 @@ import { PremiumBanner } from "./premium-kit/page";
 import SpecialOfferForYou from "./special-offer-for-you/page";
 import Testimonials from "./testimonial-card/page";
 
-
 export default function Landing() {
   return (
-    <section>   
+    <section>
       <HeroSection />
       <ExploreService />
       <SpecialOfferForYou />
       <MostBookedService />
+      {/* diff */}
       <CleaningNeeds />
-      {/* diff */}
       <EpcEssentialServices />
-      <PremiumBanner/>
       {/* diff */}
-      <Testimonials/>
+      <PremiumBanner />
+      <Testimonials />
     </section>
   );
 }

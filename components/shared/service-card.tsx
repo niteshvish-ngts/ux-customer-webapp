@@ -9,19 +9,22 @@ export default function ServiceCard({ title, image }: ServiceCardProps) {
   return (
     <div
       className="
-        w-[200px]             
-        flex flex-col items-center justify-center gap-4
+        w-full
+        sm:w-[200px]  
+        sm:h-[200px]          
+        flex flex-col items-center justify-center gap-3
         bg-card text-card-foreground
         border border-sidebar-border
         rounded-lg
-        px-4 py-6
+        px-6 py-2            
+        sm:px-6 sm:py-2
         text-center
         transition
         hover:bg-muted
       "
     >
       {/* IMAGE */}
-      <div className="relative w-20 h-20">
+      <div className="relative w-14 h-14 sm:w-20 sm:h-20">
         <Image
           src={image}
           alt={title}
@@ -33,11 +36,11 @@ export default function ServiceCard({ title, image }: ServiceCardProps) {
       {/* TITLE */}
       <p
         className="
-          text-body-sm
+          text-xs sm:text-body-sm
           font-body
           text-foreground
           leading-snug
-          line-clamp-2     /* ✅ MAX 2 LINES */
+          line-clamp-2
         "
       >
         {title}

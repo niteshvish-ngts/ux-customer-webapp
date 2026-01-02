@@ -22,7 +22,15 @@ import img1 from "@/public/assets/images/Hero-section/img1.png"
 import img2 from "@/public/assets/images/Hero-section/img2.png"    
 import img3 from "@/public/assets/images/Hero-section/img3.png"    
 import img4 from "@/public/assets/images/Hero-section/img4.png"    
-import img5 from "@/public/assets/images/Hero-section/img5.png"    
+import img5 from "@/public/assets/images/Hero-section/img5.png"  
+import img8 from "@/public/assets/images/Hero-section/img8.png"  
+import img9 from "@/public/assets/images/Hero-section/img9.png"  
+import img10 from "@/public/assets/images/Hero-section/img10.png"  
+import img11 from "@/public/assets/images/Hero-section/img11.png"  
+import img12 from "@/public/assets/images/Hero-section/img12.png"  
+import img13 from "@/public/assets/images/Hero-section/img13.png"  
+import img14 from "@/public/assets/images/Hero-section/img14.png"  
+import img15 from "@/public/assets/images/Hero-section/img15.png"  
 export const logoImage = {
     logoImg: Logo
 };
@@ -58,6 +66,16 @@ export const ServicesImage = {
     imageService3:img3,
     imageService4:img4,
     imageService5:img5,
+    
+    imageService8:img8,
+    imageService9:img9,
+    imageService10:img10,
+    imageService11:img11,
+    imageService12:img12,
+    imageService13:img13,
+    imageService14:img14,
+    imageService15:img15
+    
 }
 
 export const icon = {

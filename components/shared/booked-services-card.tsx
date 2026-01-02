@@ -25,7 +25,7 @@ export default function ServiceOfferCard({
   originalPrice,
 }: ServiceOfferCardProps) {
   return (
-    <div className="relative overflow-hidden rounded-3xl w-[260px] h-[420px]">
+    <div className="relative overflow-hidden rounded-3xl w-[260px] h-[420px] ">
       {/* IMAGE */}
       {discount && (
         <span

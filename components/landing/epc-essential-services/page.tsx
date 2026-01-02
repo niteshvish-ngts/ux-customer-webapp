@@ -2,7 +2,7 @@
 
 import ServiceOfferCard from "@/components/shared/booked-services-card";
 import CarouselSection from "@/components/shared/carousel/carousel";
-import { HeroImage } from "@/components/shared/images/image";
+import { HeroImage, ServicesImage } from "@/components/shared/images/image";
 import { StaticImageData } from "next/image";
 
 type ServiceOffer = {
@@ -20,66 +20,78 @@ type ServiceOffer = {
 const serviceOffers: ServiceOffer[] = [
   {
     id: 1,
-    image: HeroImage.heroImg4,
-    title: "Deep Bathroom Cleaning",
-    subtitle: "(2 bathrooms)",
+    image: ServicesImage.imageService11, 
+    title: "Washing Machine Check",
+    subtitle: "(only issue checkup)",
     rating: 4.5,
     reviews: "10k reviews",
     price: "₹950",
-    discount: "50% off",
     originalPrice: "₹1300",
+    discount: "45% off",
   },
   {
     id: 2,
-    image: HeroImage.heroImg1,
-    title: "Kitchen Deep Cleaning",
-    subtitle: "(Full kitchen)",
-    rating: 4.6,
-    reviews: "8k reviews",
-    price: "₹1199",
-    discount: "50% off",
+    image: ServicesImage.imageService12, 
+    title: "Washing Machine Repair",
+    subtitle: "(checkup + repair)",
+    rating: 4.5,
+    reviews: "10k reviews",
+    price: "₹1350",
     originalPrice: "₹1600",
+    discount: "20% off",
   },
   {
     id: 3,
-    image: HeroImage.heroImg3,
-    title: "Full Home Cleaning",
-    subtitle: "(3 BHK)",
-    rating: 4.7,
-    reviews: "12k reviews",
-    price: "₹2499",
-    discount: "50% off",
-    originalPrice: "₹3200",
+    image: ServicesImage.imageService13, 
+    title: "Microwave Repair",
+    subtitle: "(checkup + repair)",
+    rating: 4.5,
+    reviews: "10k reviews",
+    price: "₹1350",
+    originalPrice: "₹1600",
+    discount: "12% off",
   },
   {
     id: 4,
-    image: HeroImage.heroImg1,
-    title: "Full Home Cleaning",
-    subtitle: "(3 BHK)",
-    rating: 4.7,
-    reviews: "12k reviews",
-    price: "₹2499",
+    image: ServicesImage.imageService14, 
+    title: "AC Repair",
+    subtitle: "(1 carpet)",
+    rating: 4.5,
+    reviews: "10k reviews",
+    price: "₹1350",
+    originalPrice: "₹1600",
     discount: "50% off",
-    originalPrice: "₹3200",
   },
   {
     id: 5,
-    image: HeroImage.heroImg4,
-    title: "Full Home Cleaning",
-    subtitle: "(3 BHK)",
-    rating: 4.7,
-    reviews: "12k reviews",
-    price: "₹2499",
+    image: ServicesImage.imageService15, 
+    title: "Socket Fitting",
+    subtitle: "(1 tank only)",
+    rating: 4.5,
+    reviews: "10k reviews",
+    price: "₹1350",
+    originalPrice: "₹1600",
     discount: "50% off",
-    originalPrice: "₹3200",
   },
 ];
 
+
 const EpcEssentialServices = () => {
   return (
-    <CarouselSection
-      title="EPC Essential Services"
-      
+    
+        <CarouselSection
+  title="EPC Essential Services"
+  description="Basic cleaning required for your home"
+  showArrows={true}   
+  controlsPosition="bottom"                 
+  rightSlot={
+      <a
+      href="/services"
+      className="text-sm font-medium text-primary hover:underline"
+      >
+      View All Services
+      </a>
+      }
       items={serviceOffers}
       renderItem={(offer) => (
         <ServiceOfferCard
