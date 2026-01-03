@@ -159,7 +159,7 @@ export default function HeroSection() {
                 </div>
                 <button
                   onClick={() => window.open("https://wa.link/pfsm61", "_blank")}
-                  className="w-fit px-6 py-2 mt-4 rounded-full bg-[var(--green)]  border-2 border-[var(--green)] text-button text-[#fff] hover:bg-[var(--ter)] hover:text-[var(--prime)] transition"
+                  className="w-fit px-6 py-2 mt-4 rounded-full bg-[var(--green)]  border-2 border-[var(--green)] text-button text-[#fff] hover:bg-[var(--lightgreen)] hover:text-[var(--white)] transition"
                 >
                Get A Quote
                 </button>
