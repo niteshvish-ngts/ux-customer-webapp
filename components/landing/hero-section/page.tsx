@@ -159,7 +159,7 @@ export default function HeroSection() {
                 </div>
                 <button
                   onClick={() => window.open("https://wa.link/pfsm61", "_blank")}
-                  className="w-fit px-6 py-2 mt-4 rounded-full bg-[var(--prime)]  border-2 border-[var(--prime)] text-button text-[#fff] hover:bg-muted transition"
+                  className="w-fit px-6 py-2 mt-4 rounded-full bg-[var(--prime)]  border-2 border-[var(--prime)] text-button text-[#fff] hover:bg-[var(--ter)] transition"
                 >
                   Get a Code
                 </button>
