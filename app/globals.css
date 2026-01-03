@@ -290,8 +290,10 @@
     background-color: var(--prime-50);
   }
   .bg-prime-5 {
-    background-color: var(--prime-5);         
-  }   } 
+    background-color: var(--prime-5);
+  }
+}
+
 
   @layer components {
   .text-display-64 {
@@ -315,7 +317,8 @@
   .text-display-32 {
     font-family: var(--font-heading); /* Outfit */
     font-weight: 400;
-    font-size: px;
+    /* font-size: px; invalid css */ 
+      font-size: 32px;
     line-height: 40px;
     letter-spacing: 0;
   }
@@ -446,11 +449,7 @@
 
 @layer components {
   .section-spacer-bottom {
-    margin-bottom: 2rem;
-  }
-}
-@layer components {
-  .section-spacer-bottom {
-    text:#FFA953;
+    color:#FFA953;
+      margin-bottom: 2rem;
   }
 }

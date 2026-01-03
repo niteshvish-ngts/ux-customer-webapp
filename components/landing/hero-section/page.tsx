@@ -13,45 +13,45 @@ export default function HeroSection() {
           <div className="space-y-6">
             {/* Trustpilot */}
             <div
-  className="
+              className="
     flex flex-col items-center gap-2
     sm:flex-row sm:items-center sm:gap-3
     text-sm text-muted-foreground
   "
->
-  {/* Stars */}
-  <span className="flex items-center gap-1">
-    {[...Array(5)].map((_, index) => (
-      <span
-        key={index}
-        className="bg-[#219653] px-2 py-2 text-white leading-none"
-      >
-        {icon.star}
-      </span>
-    ))}
-  </span>
+            >
+              {/* Stars */}
+              <span className="flex items-center gap-1">
+                {[...Array(5)].map((_, index) => (
+                  <span
+                    key={index}
+                    className="bg-[#219653] px-2 py-2 text-white leading-none"
+                  >
+                    {icon.star}
+                  </span>
+                ))}
+              </span>
 
-  {/* Reviews + Trustpilot */}
-  <div className="flex items-center gap-1 mt-2">
-    <a
-      href="#reviews"
-      className="
+              {/* Reviews + Trustpilot */}
+              <div className="flex items-center gap-1 mt-2">
+                <a
+                  href="#reviews"
+                  className="
         underline
         underline-offset-4
         text-black
         hover:text-foreground
         transition
       "
-    >
-      436 reviews on
-    </a>
+                >
+                  436 reviews on
+                </a>
 
-    <span className="flex items-center gap-1 font-semibold text-foreground">
-      <span className="text-[#219653] text-lg">{icon.star}</span>
-      Trustpilot
-    </span>
-  </div>
-</div>
+                <span className="flex items-center gap-1 font-semibold text-foreground">
+                  <span className="text-[#219653] text-lg">{icon.star}</span>
+                  Trustpilot
+                </span>
+              </div>
+            </div>
 
 
             {/* Heading */}
@@ -157,6 +157,13 @@ export default function HeroSection() {
                     )
                   )}
                 </div>
+                <button
+                  onClick={() => window.open("https://wa.link/pfsm61", "_blank")}
+                  className="w-fit px-6 py-2 mt-4 rounded-full bg-[var(--prime)]  border-2 border-[var(--prime)] text-button text-[#fff] hover:bg-muted transition"
+                >
+                  Get a Code
+                </button>
+
               </div>
 
               {/* RIGHT: Serviceable Areas */}
