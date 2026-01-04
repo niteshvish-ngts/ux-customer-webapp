@@ -14,26 +14,24 @@ export default function TestimonialCard({
   role,
 }: TestimonialCardProps) {
   return (
-    
-    
     <div
       className="
         bg-card
         border border-border
-        rounded-2xl
+        rounded-[30px]
         p-5
-        w-[260px]
-        min-h-[260px]
+        w-[240px]
+        h-[260px]
         flex-shrink-0
         flex flex-col
         justify-between
       "
     >
-      {/* RATING */}
+      {/* TOP CONTENT */}
       <div>
-        
-        <div className="flex items-center gap-2 mb-3 justify-between">
-          <div className="flex">
+        {/* RATING */}
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex gap-1">
             {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
@@ -41,23 +39,25 @@ export default function TestimonialCard({
               />
             ))}
           </div>
+
           <span className="text-caption text-primary">
             {rating} rated
           </span>
         </div>
 
         {/* TEXT */}
-        <p className="text-body text-muted-foreground">
-          {text}
-        </p>
+        <p className="text-body-14 ">
+  {text}
+</p>
+
       </div>
 
       {/* AUTHOR */}
-      <div className="pt-4">
-        <p className="text-body font-semibold">
+      <div>
+        <p className="text-sm font-semibold">
           {name}
         </p>
-        <p className="text-caption text-muted-foreground">
+        <p className="text-[10px] text-muted-foreground ">
           {role}
         </p>
       </div>

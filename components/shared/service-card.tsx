@@ -10,14 +10,14 @@ export default function ServiceCard({ title, image }: ServiceCardProps) {
     <div
       className="
         w-full
-        sm:w-[200px]  
-        sm:h-[200px]          
+        sm:w-[195px]  
+        sm:h-[180px]          
         flex flex-col items-center justify-center gap-3
         bg-card text-card-foreground
         border border-sidebar-border
-        rounded-lg
-        px-6 py-2            
-        sm:px-6 sm:py-2
+        rounded-4xl
+        px-5 py-2            
+        sm:px-5 sm:py-2
         text-center
         transition
         hover:bg-muted

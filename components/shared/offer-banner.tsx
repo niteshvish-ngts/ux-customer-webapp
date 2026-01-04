@@ -19,29 +19,37 @@ export default function OfferBannerCard({
   buttonText,
   image,
   href = "#",
-  bgColor
+  bgColor,
 }: OfferBannerCardProps) {
   return (
     <div
-      className={`${bgColor || "bg-soft-gradient"} relative flex items-center justify-between gap-4 offer-card px-5 py-5 `}      
+      className={`
+        ${bgColor || "bg-soft-gradient"}
+        relative flex justify-between gap-4
+        offer-card px-5 py-5
+      `}
     >
       {/* LEFT CONTENT */}
-      <div className=" space-y-2">
-        <h3 className="text-subheading leading-tight">
-          {title}
-        </h3>
+      <div className="relative flex flex-col w-full pr-2">
+        {/* Text block */}
+        <div className="space-y-2 pb-10">
+          <h3 className="text-subheading leading-tight">
+            {title}
+          </h3>
 
-        <p className="text-body-sm text-muted-foreground">
-          {description}
-        </p>
+          <p className="text-body-sm text-muted-foreground">
+            {description}
+          </p>
+        </div>
 
+        {/* 🔒 FIXED BUTTON POSITION */}
         <Link
           href={href}
           className="
+            absolute bottom-0 left-0
             inline-flex items-center gap-1
             text-body-sm
             text-foreground
-            border-sidebar-border
             bg-card px-4 py-2
             rounded-md
             hover:underline

@@ -1,5 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* your global styles below */
+
 
 @custom-variant dark (&:is(.dark *));
 
@@ -113,7 +119,8 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --green :#219653;
+  --green :#3CBE81;
+
   --lightgreen: #6bd197;
   --font-outfit: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-lato: system-ui, sans-serif;
@@ -181,33 +188,32 @@
   @apply mx-auto w-full px-2;
 }
 
-/* Small devices (≥640px) */
-@screen sm {
-  .container {
-    @apply max-w-[640px] px-6;
+@layer components {
+  @screen sm {
+    .container {
+      @apply max-w-[640px] px-6;
+    }
+  }
+
+  @screen md {
+    .container {
+      @apply max-w-[768px] px-5;
+    }
+  }
+
+  @screen lg {
+    .container {
+      @apply max-w-[1024px] px-12;
+    }
+  }
+
+  @screen xl {
+    .container {
+      @apply max-w-[1280px] px-24;
+    }
   }
 }
 
-/* Medium devices (≥768px) */
-@screen md {
-  .container {
-    @apply max-w-[768px] px-5;
-  }
-}
-
-/* Large devices (≥1024px) */
-@screen lg {
-  .container {
-    @apply max-w-[1024px] px-12;
-  }
-}
-/* Extra large devices (≥1280px) */
-@screen xl {
-  .container {
-    @apply max-w-[1280px] px-24;
-  }
-}
-/* cart title font */
 
 @font-face {
   font-family: "Outfit";
@@ -336,6 +342,28 @@
   }
 }
 @layer components {
+  .text-body-14 {
+    font-family: var(--font-body); /* Lato */
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0;
+    font: lato;
+  }
+}
+@layer components {
+  .text-body-14 {
+    font-family: var(--font-body); /* Lato */
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0;
+    font: lato;
+
+  }
+}
+
+@layer components {
   .offer-card {
     width: 411px;
     height: 201px;
@@ -452,7 +480,7 @@
 
 @layer components {
   .section-spacer-bottom {
-    color:#FFA953;
+    /* color:#FFA953; */
       margin-bottom: 2rem;
   }
 }
