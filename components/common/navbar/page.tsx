@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Search, ShoppingCart, Menu, X } from "lucide-react";
 import Image from "next/image";
 import { logoImage } from "@/components/shared/images/image";
+import { ChevronDown } from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -16,7 +17,7 @@ export default function Navbar() {
 
           {/* LEFT: Logo */}
           <Link href="/" className="flex items-center gap-2 shrink-0">
-            <div className="relative w-8 h-8 shrink-0">
+            <div className="relative w-10 h-10 shrink-0">
               <Image
                 src={logoImage.logoImg}
                 alt="UrbanXperts Logo"
@@ -25,19 +26,28 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <span className="font-heading font-semibold text-lg text-foreground">
+            <span className="font-heading font-semibold text-xl text-foreground">
               UrbanXperts
             </span>
           </Link>
 
           {/* CENTER: Desktop Menu */}
-          <nav className="hidden lg:flex items-center gap-6 text-sm font-body text-muted-foreground">
+          <nav className="hidden lg:flex items-center gap-6 text-sm font-body ">
             <Link href="#" className="hover:text-foreground transition">
               How it works?
             </Link>
-            <Link href="#" className="hover:text-foreground transition">
-              Services
-            </Link>
+            <Link
+  href="#"
+  className="
+    flex items-center gap-1
+    
+    hover:text-foreground
+    transition
+  "
+>
+  Services
+  <ChevronDown className="w-4 h-4" />
+</Link>
             <Link href="#" className="hover:text-foreground transition">
               Become a provider
             </Link>
@@ -78,7 +88,7 @@ export default function Navbar() {
               href="/login"
               className="
                 hidden sm:inline-flex items-center justify-center
-                px-4 py-2 text-sm font-body
+                px-5 py-2 text-sm font-body
                 border border-border rounded-md
                 text-foreground
                 hover:bg-muted
@@ -107,13 +117,25 @@ export default function Navbar() {
       {/* MOBILE MENU */}
       {open && (
         <div className="lg:hidden border-t border-border bg-background">
-          <div className="container py-4 space-y-3 text-sm font-body">
+          <div className="container py-4 space-y-3 text-sm font-lato">
             <Link href="#" className="block text-muted-foreground hover:text-foreground">
               How it works?
             </Link>
-            <Link href="#" className="block text-muted-foreground hover:text-foreground">
-              Services
-            </Link>
+            
+
+<Link
+  href="#"
+  className="
+    flex items-center gap-1
+    text-muted-foreground
+    hover:text-foreground
+    transition
+  "
+>
+  Services
+  <ChevronDown className="w-4 h-4" />
+</Link>
+
             <Link href="#" className="block text-muted-foreground hover:text-foreground">
               Become a provider
             </Link>

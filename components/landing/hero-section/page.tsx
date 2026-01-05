@@ -46,14 +46,17 @@ export default function HeroSection() {
               <div className="flex items-center gap-1">
                 <a
                   href="#reviews"
-                  className="underline underline-offset-4 text-black hover:text-foreground transition"
+                  className="underline  text-black hover:text-foreground transition font-bold"
                 >
-                  436 reviews on
+                  436 <span className="font-medium">reviews on</span>
                 </a>
-                <span className="flex items-center gap-1 font-semibold text-foreground">
-                  <span className="text-[#219653] text-xs">{icon.star}</span>
-                  Trustpilot
-                </span>
+               <span className="flex items-center gap-1 text-label-12 text-foreground">
+  <span className="text-[#219653] text-xs">
+    {icon.star}
+  </span>
+  Trustpilot
+</span>
+
               </div>
             </div>
 
@@ -75,7 +78,7 @@ export default function HeroSection() {
             {/* Search Box */}
             <div className="flex flex-col sm:flex-row gap-3 w-full max-w-[670px] mx-auto lg:mx-0">
               <div className="relative flex-1">
-                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 " />
                 <input
                   type="text"
                   placeholder="Enter Location"
@@ -86,31 +89,36 @@ export default function HeroSection() {
               <div className="relative flex-1">
                 <input
                   type="text"
-                  placeholder="Search for AC Service"
+                  placeholder="Search for 'AC Service'"
                   className="w-full pr-10 pl-3 py-4 text-sm bg-background border border-input rounded-md focus-visible:ring-2 focus-visible:ring-ring"
                 />
                 <button
                   type="button"
                   className="absolute inset-y-0 right-0 px-4 flex items-center justify-center bg-[#F68836] hover:bg-[#F68836]/80 rounded-r-md"
                 >
-                  <Search className="w-5 h-5 text-white" />
+                  <Search className="w-6 h-6 text-white" />
                 </button>
               </div>
             </div>
+{/* Dashed Divider */}
+<div className="w-full max-w-[670px] mx-auto lg:mx-0 my-4">
+  <div className="border-t border-dashed border-border" />
+</div>
 
             {/* Popular Services */}
             <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between w-full gap-4">
               <div className="space-y-2 text-center lg:text-left">
-                <p className="text-sm text-muted-foreground">Popular services</p>
-                <div className="flex flex-wrap justify-center lg:justify-start gap-2">
+                <p className="text-sm ">Popular services</p>
+                <div className="flex flex-wrap justify- lg:justify-start gap-2">
                   {["AC Repair", "Electrical Fitting", "Painting"].map((item) => (
                     <span
                       key={item}
-                      className="px-3 py-1 text-xs border border-border rounded-full text-muted-foreground cursor-pointer hover:bg-muted transition"
+                      className="px-3 py-1 text-xs border border-border rounded-full  cursor-pointer hover:bg-muted transition"
                     >
                       {item}
                     </span>
                   ))}
+                  
                 </div>
 
                 <button
@@ -120,13 +128,13 @@ export default function HeroSection() {
                   Get A Quote
                 </button>
               </div>
-
-              <a
+<a
                 href="#serviceable-areas"
-                className="text-sm text-ter underline underline-offset-4 hover:opacity-80"
+                className="text-sm text-ter underline  hover:opacity-80"
               >
                 Serviceable Areas
               </a>
+              
             </div>
           </div>
 
