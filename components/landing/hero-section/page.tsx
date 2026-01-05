@@ -143,7 +143,7 @@ export default function HeroSection() {
             <div className="flex flex-col gap-4">
               <div className="relative h-[319px] rounded-[20px] overflow-hidden">
                 <Image src={HeroImage.heroImg2} alt="" fill className="object-cover" />
-                <Image src={HeroImage.heroImg5} alt="" width={52} height={52} className="absolute top-3 left-3" />
+                <Image src={HeroImage.heroImg5} alt="" width={52} height={52} className="absolute top-0 left-0" />
               </div>
 
               <div className="relative h-[180px] rounded-[20px] overflow-hidden">

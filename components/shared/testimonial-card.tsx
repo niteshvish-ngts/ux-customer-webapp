@@ -40,7 +40,7 @@ export default function TestimonialCard({
             ))}
           </div>
 
-          <span className="text-caption text-primary">
+          <span className="text-base text-prime font-semibold">
             {rating} rated
           </span>
         </div>
