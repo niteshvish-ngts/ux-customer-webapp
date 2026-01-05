@@ -77,6 +77,7 @@ const serviceOffers: ServiceOffer[] = [
 
 const MostBookedService = () => {
   return (
+    <section>
     <CarouselSection
       title="Most Booked Services"
       showArrows={true} 
@@ -94,6 +95,7 @@ const MostBookedService = () => {
         />
       )}
     />
+    </section>
   );
 };
 

@@ -79,33 +79,38 @@ const serviceOffers: ServiceOffer[] = [
 const EpcEssentialServices = () => {
   return (
     
-        <CarouselSection
+      <CarouselSection
   title="EPC Essential Services"
   description="Basic cleaning required for your home"
-  showArrows={true}   
-  controlsPosition="bottom"                 
+  showArrows={true}
+  controlsPosition="bottom"
   rightSlot={
-      <a
+    <a
       href="/services"
-      className="text-sm font-medium text-primary hover:underline"
-      >
-      View All Services
-      </a>
-      }
-      items={serviceOffers}
-      renderItem={(offer) => (
-        <ServiceOfferCard
-          image={offer.image}
-          title={offer.title}
-          subtitle={offer.subtitle}
-          rating={offer.rating}
-          reviews={offer.reviews}
-          price={offer.price}
-          discount={offer.discount}
-          originalPrice={offer.originalPrice}
-        />
-      )}
+      className="text-sm font-medium -mt-15 text-primary hover:underline whitespace-nowrap"
+    >
+      {/* Mobile */}
+      <span className="sm:hidden">View All</span>
+
+      {/* Desktop */}
+      <span className="hidden sm:inline">View All Services</span>
+    </a>
+  }
+  items={serviceOffers}
+  renderItem={(offer) => (
+    <ServiceOfferCard
+      image={offer.image}
+      title={offer.title}
+      subtitle={offer.subtitle}
+      rating={offer.rating}
+      reviews={offer.reviews}
+      price={offer.price}
+      discount={offer.discount}
+      originalPrice={offer.originalPrice}
     />
+  )}
+/>
+
   );
 };
 

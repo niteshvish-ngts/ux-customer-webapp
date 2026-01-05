@@ -50,18 +50,15 @@ export default function HeroSection() {
                 >
                   436 <span className="font-medium">reviews on</span>
                 </a>
-               <span className="flex items-center gap-1 text-label-12 text-foreground">
-  <span className="text-[#219653] text-xs">
-    {icon.star}
-  </span>
-  Trustpilot
-</span>
-
+                <span className="flex items-center gap-1 text-label-12 text-foreground">
+                  <span className="text-[#219653] text-xs">{icon.star}</span>
+                  Trustpilot
+                </span>
               </div>
             </div>
 
             {/* Heading */}
-            <h1 className="text-display-64 lg:text-display-64">
+            <h1 className="text-display-40 text-display-64">
               On Demand Service at Your{" "}
               <span className="text-ter inline-flex items-center gap-2">
                 Doorstep <span aria-hidden>🚪</span>
@@ -100,41 +97,43 @@ export default function HeroSection() {
                 </button>
               </div>
             </div>
-{/* Dashed Divider */}
-<div className="w-full max-w-[670px] mx-auto lg:mx-0 my-4">
-  <div className="border-t border-dashed border-border" />
-</div>
+            {/* Dashed Divider */}
+            <div className="w-full max-w-[670px] mx-auto lg:mx-0 my-4">
+              <div className="border-t border-dashed border-border" />
+            </div>
 
             {/* Popular Services */}
             <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between w-full gap-4">
               <div className="space-y-2 text-center lg:text-left">
-                <p className="text-sm ">Popular services</p>
-                <div className="flex flex-wrap justify- lg:justify-start gap-2">
-                  {["AC Repair", "Electrical Fitting", "Painting"].map((item) => (
-                    <span
-                      key={item}
-                      className="px-3 py-1 text-xs border border-border rounded-full  cursor-pointer hover:bg-muted transition"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                  
+                <p className="text-sm  font-bold">Popular services</p>
+                <div className="flex flex-wrap justify- lg:justify-start gap-2 ">
+                  {["AC Repair", "Electrical Fitting", "Painting"].map(
+                    (item) => (
+                      <span
+                        key={item}
+                        className="px-3 py-1 text-xs font-lato font-mediumˀ border border-border rounded-full  cursor-pointer hover:bg-muted transition"
+                      >
+                        {item}
+                      </span>
+                    )
+                  )}
                 </div>
 
                 <button
-                  onClick={() => window.open("https://wa.link/pfsm61", "_blank")}
+                  onClick={() =>
+                    window.open("https://wa.link/pfsm61", "_blank")
+                  }
                   className="mt-4 px-6 py-2 rounded-full bg-[var(--green)] border-2 border-[var(--green)] text-white hover:bg-[var(--lightgreen)] hover:text-[var(--green)] transition"
                 >
                   Get A Quote
                 </button>
               </div>
-<a
+              <a
                 href="#serviceable-areas"
                 className="text-sm text-ter underline  hover:opacity-80"
               >
                 Serviceable Areas
               </a>
-              
             </div>
           </div>
 
@@ -142,24 +141,62 @@ export default function HeroSection() {
           <div className="hidden lg:grid grid-cols-2 gap-5 w-[519px] h-[519px]">
             <div className="flex flex-col gap-4">
               <div className="relative h-[319px] rounded-[20px] overflow-hidden">
-                <Image src={HeroImage.heroImg2} alt="" fill className="object-cover" />
-                <Image src={HeroImage.heroImg5} alt="" width={52} height={52} className="absolute top-0 left-0" />
+                <Image
+                  src={HeroImage.heroImg2}
+                  alt=""
+                  fill
+                  className="object-cover"
+                />
+                <Image
+                  src={HeroImage.heroImg5}
+                  alt=""
+                  width={52}
+                  height={52}
+                  className="absolute top-0 left-0"
+                />
               </div>
 
               <div className="relative h-[180px] rounded-[20px] overflow-hidden">
-                <Image src={HeroImage.heroImg4} alt="" fill className="object-cover" />
+                <Image
+                  src={HeroImage.heroImg4}
+                  alt=""
+                  fill
+                  className="object-cover"
+                />
               </div>
             </div>
 
             <div className="flex flex-col gap-4">
               <div className="relative h-[180px] rounded-[20px] overflow-hidden">
-                <Image src={HeroImage.heroImg3} alt="" fill className="object-cover" />
-                <Image src={HeroImage.heroImg6} alt="" width={52} height={52} className="absolute -top-3 -right-5" />
+                <Image
+                  src={HeroImage.heroImg3}
+                  alt=""
+                  fill
+                  className="object-cover"
+                />
+                <Image
+                  src={HeroImage.heroImg6}
+                  alt=""
+                  width={52}
+                  height={52}
+                  className="absolute -top-3 -right-5"
+                />
               </div>
 
               <div className="relative h-[319px] rounded-[20px] overflow-hidden">
-                <Image src={HeroImage.heroImg1} alt="" fill className="object-cover" />
-                <Image src={HeroImage.heroImg7} alt="" width={48} height={48} className="absolute bottom-0 right-0" />
+                <Image
+                  src={HeroImage.heroImg1}
+                  alt=""
+                  fill
+                  className="object-cover"
+                />
+                <Image
+                  src={HeroImage.heroImg7}
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="absolute bottom-0 right-0"
+                />
               </div>
             </div>
           </div>

@@ -33,10 +33,10 @@ const CarouselSection = <T,>({
 <div className="section-spacer">
         {/* ✅ HEADER + ARROWS (SAME ROW, INSIDE CAROUSEL) */}
         {(title || rightSlot) && (
-          <div className="flex items-center justify-between section-spacer-bottom">
+          <div className="flex items-center justify-between section-spacer-bottom ">
             <CardHeading title={title} description={description} />
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 mt-6">
               {showArrows && controlsPosition === "top" ? (
                 <>
                   <CarouselPrevious className="static bg-black text-white hover:bg-white hover:text-black" />
