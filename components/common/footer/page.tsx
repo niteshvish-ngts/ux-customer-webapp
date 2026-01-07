@@ -14,7 +14,7 @@ import { FooterImage } from "@/components/shared/images/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-foreground text-background section-spacer">
+<footer className="bg-foreground text-background section-spacer overflow-x-hidden">
       <div className="container py-12">
 
         {/* TOP GRID */}
@@ -53,21 +53,27 @@ export default function Footer() {
           </div>
 
           {/* COLUMN 4 */}
-          <div>
+          <div >
             <h4 className="text-subheading mb-4">Get the App</h4>
 
-            <div className="flex gap-3 mb-5">
-              <Image
-                src={FooterImage.appStoreImg}
-                alt="App Store"
-                className="h-10 w-auto"
-              />
-              <Image
-                src={FooterImage.playStoreImg}
-                alt="Google Play"
-                className="h-10 w-auto"
-              />
-            </div>
+<div className="flex gap-3 mb-5 max-w-full overflow-hidden">
+  <Image
+    src={FooterImage.appStoreImg}
+    alt="App Store"
+    width={135}
+    height={40}
+    className="h-10 max-w-full object-contain"
+  />
+  <Image
+    src={FooterImage.playStoreImg}
+    alt="Google Play"
+    width={135}
+    height={40}
+    className="h-10 max-w-full object-contain"
+  />
+</div>
+
+
 
             <p className="text-caption mb-3 text-muted-foreground">
               Follow Us

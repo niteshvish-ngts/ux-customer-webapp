@@ -16,10 +16,9 @@ export default function Landing() {
       <ExploreService />
       <SpecialOfferForYou />
       <MostBookedService />
-      {/* diff */}
+    
       <CleaningNeeds />
       <EpcEssentialServices />
-      {/* diff */}
       <PremiumBanner />
       <Testimonials />
     </section>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Outfit, Lato } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/redux/store/store-provider";
@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   title:
     "Urban Experts | Trusted experts for AC, Appliance, Electrical, Plumbing, and more with real-time tracking, verified visits, transparent pricing, and secure job completion.",
   description: "On Demand Service at Your Doorstep",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

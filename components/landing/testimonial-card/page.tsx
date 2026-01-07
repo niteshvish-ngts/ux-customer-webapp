@@ -51,7 +51,7 @@ export default function Testimonials() {
     <section className="section-spacing">
       
           <CarouselSection
-  title="What Our Customers Say"
+  title="Love From the Platform"
   description="our client love & trust our platform"
   showArrows={true}                    
   rightSlot={

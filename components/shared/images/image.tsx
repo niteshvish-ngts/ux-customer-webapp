@@ -23,6 +23,7 @@ import img2 from "@/public/assets/images/Hero-section/img2.png"
 import img3 from "@/public/assets/images/Hero-section/img3.png"    
 import img4 from "@/public/assets/images/Hero-section/img4.png"    
 import img5 from "@/public/assets/images/Hero-section/img5.png"  
+import Carpenter from "@/public/assets/images/Hero-section/Carpenter.png"
 import img8 from "@/public/assets/images/Hero-section/img8.png"  
 import img9 from "@/public/assets/images/Hero-section/img9.png"  
 import img10 from "@/public/assets/images/Hero-section/img10.png"  
@@ -56,7 +57,7 @@ export const ServiceIcon = {
     seviceImg3: Pest,
     seviceImg4: Hclean,
     seviceImg5: Water,
-    seviceImg6: Pest,
+    seviceImg6: Carpenter,
 
 
 }

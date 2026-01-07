@@ -29,8 +29,8 @@ const CarouselSection = <T,>({
   return (
     <section className=" ">
 
-      <Carousel opts={{ align: "start" }} className="w-full">
-<div className="section-spacer">
+      <Carousel opts={{ align: "start" }} className="w-full ">
+<div className="section-spacer ">
         {/* ✅ HEADER + ARROWS (SAME ROW, INSIDE CAROUSEL) */}
         {(title || rightSlot) && (
           <div className="flex items-center justify-between section-spacer-bottom ">
@@ -50,7 +50,7 @@ const CarouselSection = <T,>({
         )}
 
         {/* ✅ CAROUSEL CONTENT */}
-        <CarouselContent className="-ml-4">
+        <CarouselContent className="-ml-4 flex gap-0  xl:gap-0 2xl:gap-3">
           {items.map((item, index) => (
             <CarouselItem key={index} className="pl-4 basis-auto">
               {renderItem(item, index)}

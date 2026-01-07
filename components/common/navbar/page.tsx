@@ -73,6 +73,8 @@ export default function Navbar() {
           {/* RIGHT ACTIONS */}
           <div className="flex items-center gap-3">
             <button
+                              onClick={() => window.open("https://wa.link/pfsm61", "_blank")}
+
               className="
                 p-2 rounded-2xl
                 text-muted-foreground
@@ -100,6 +102,7 @@ export default function Navbar() {
 
             {/* MOBILE MENU BUTTON */}
             <button
+            
               className="
                 lg:hidden p-2 rounded-md
                 text-muted-foreground

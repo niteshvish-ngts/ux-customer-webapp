@@ -1,9 +1,15 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* your global styles below */
 
+
 @custom-variant dark (&:is(.dark *));
+
+
 
 @theme inline {
   --color-prime: var(--prime);
@@ -59,12 +65,15 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
-  --font-outfit: "Outfit", system-ui, -apple-system, BlinkMacSystemFont,
-    sans-serif;
-  --font-lato: system-ui, sans-serif;
+--font-outfit: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+--font-lato: system-ui, sans-serif;
+
+  
+
 }
 
 :root {
+
   --prime: rgba(255, 136, 54, 1);
   --prime-50: rgba(255, 136, 54, 0.5);
   --prime-5: rgba(255, 136, 54, 0.05);
@@ -110,16 +119,16 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --green: #3cbe81;
+  --green :#3CBE81;
 
   --lightgreen: #6bd197;
-  --font-outfit: "Outfit", system-ui, -apple-system, BlinkMacSystemFont,
-    sans-serif;
+  --font-outfit: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-lato: system-ui, sans-serif;
 
   --font-heading: var(--font-outfit);
   --font-body: var(--font-lato);
   /* font family */
+
 }
 
 @layer components {
@@ -132,11 +141,13 @@
   }
 }
 
+
 @layer components {
   .card-title {
     font-family: var(--font-heading);
     font-weight: 600;
     /* font-size: 32px; */
+    
   }
 }
 
@@ -179,12 +190,18 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground ;
   }
 }
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 
 .container {
-  @apply mx-auto w-full px-2;
+  @apply mx-auto w-full px-2 overflow-x-hidden ;
 }
 
 @layer components {
@@ -211,7 +228,16 @@
       @apply max-w-[1280px] px-24;
     }
   }
+
+  /* ✅ 1920px and above */
+  @screen 2xl {
+    .container {
+      @apply max-w-[1920px] px-19;
+    }
+  }
 }
+
+
 
 @font-face {
   font-family: "Outfit";
@@ -222,6 +248,8 @@
   font-display: swap;
 }
 @layer components {
+  
+
   .text-h1 {
     font-family: var(--font-heading);
     font-weight: 600;
@@ -250,7 +278,9 @@
     line-height: 28px;
   }
 
+  
   /* BODY TEXT */
+  
 
   .text-body-lg {
     font-family: var(--font-body);
@@ -297,38 +327,38 @@
   }
 }
 
-@layer components {
-  .text-display-40 {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 47px;
-    line-height: 54px;
-  }
-/* @layer components { */
 
-  @media (min-width: 1024px) {
-    .text-display-64 {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 64px;
-      line-height: 80px;
-    }
+  @layer components {
+  .text-display-64 {
+    font-family: var(--font-heading); /* Outfit */
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 80px;
+    letter-spacing: 0;
   }
 }
-
+@layer components {
+  .text-display-40 {
+    font-family: var(--font-heading); /* Outfit */
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 54px;
+    letter-spacing: 0;
+  }
+}
 @layer components {
   .text-display-32 {
     font-family: var(--font-heading); /* Outfit */
     font-weight: 400;
-    /* font-size: px; invalid css */
-    font-size: 32px;
+    /* font-size: px; invalid css */ 
+      font-size: 32px;
     line-height: 40px;
     letter-spacing: 0;
   }
 }
 @layer components {
   .text-display-24 {
-    font-family: var(--font-heading); /* Outfit */
+    font-family: var(--font-heading); /* Outfit */      
     font-weight: 700;
     font-size: 24px;
     line-height: 32px;
@@ -353,6 +383,7 @@
     line-height: 24px;
     letter-spacing: 0;
     font: lato;
+
   }
 }
 
@@ -366,20 +397,27 @@
 
 @layer components {
   .bg-hero1-gradient {
-    background: #dde7f4;
+
+    background: #DDE7F4
   }
 }
 @layer components {
   .bg-hero2-gradient {
-    background: #fff5e2;
+
+    background: #FFF5E2;
+
   }
 }
 
 @layer components {
   .bg-hero3-gradient {
-    background: #ffedfd;
+
+    background: #FFEDFD;
+
   }
 }
+
+
 
 @layer components {
   .bg-card-overlay-gradient {
@@ -393,7 +431,11 @@
 
 @layer components {
   .bg-hero-gradient {
-    background: linear-gradient(135deg, var(--prime-5), var(--prime-50));
+    background: linear-gradient(
+      135deg,
+      var(--prime-5),
+      var(--prime-50)
+    );
   }
 }
 @layer utilities {
@@ -419,6 +461,7 @@
     font-size: 20px;
     line-height: 28px;
     letter-spacing: 0;
+    
   }
 }
 @layer components {
@@ -429,6 +472,7 @@
   }
 }
 /* offer card  */
+
 
 @layer components {
   .text-offer-title {
@@ -457,9 +501,10 @@
   }
 }
 
+
 @layer components {
   .section-spacer-bottom {
     /* color:#FFA953; */
-    margin-bottom: 2rem;
+      margin-bottom: 2rem;
   }
 }

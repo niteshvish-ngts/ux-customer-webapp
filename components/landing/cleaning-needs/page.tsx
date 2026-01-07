@@ -89,12 +89,24 @@ const CleaningNeeds = () => {
   showArrows={true} 
   controlsPosition="bottom"   
       
+  // rightSlot={
+  //   <a
+  //     href="/services"
+  //     className="text-sm font-medium text-primary hover:underline"
+  //   >
+  //     View All Services
+  //   </a>
+  // }
   rightSlot={
     <a
       href="/services"
-      className="text-sm font-medium text-primary hover:underline"
+      className="text-sm font-medium -mt-15 text-primary hover:underline whitespace-nowrap"
     >
-      View All Services
+      {/* Mobile */}
+      <span className="sm:hidden">View All</span>
+
+      {/* Desktop */}
+      <span className="hidden sm:inline">View All Services</span>
     </a>
   }
   items={serviceOffers}

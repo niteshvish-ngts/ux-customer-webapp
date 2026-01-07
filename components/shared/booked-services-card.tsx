@@ -36,7 +36,7 @@ export default function ServiceOfferCard({
       "
     >
       {/* DISCOUNT BADGE */}
-      {discount && (
+      {/* {discount && (
         <span
           className="
             absolute top-0 left-0 z-10
@@ -51,7 +51,7 @@ export default function ServiceOfferCard({
         >
           {discount}
         </span>
-      )}
+      )} */}
 
       {/* IMAGE */}
       <Image
@@ -94,8 +94,8 @@ export default function ServiceOfferCard({
         {/* CTA */}
         <div className="flex items-center justify-between pt-3 border-t border-white/20">
           <span className="text-body-sm">
-            Book Service @{" "}
-            <span className="font-semibold text-prime">
+            Book Service @
+            <span className="font-semibold text-prime text-sm">
               {price}
             </span>
             {originalPrice && (
