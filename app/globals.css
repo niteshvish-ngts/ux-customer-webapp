@@ -195,19 +195,20 @@
 }
 html,
 body {
-  max-width: 100%;
+  /* max-width: 100%; */
   overflow-x: hidden;
 }
 
 
 .container {
-  @apply mx-auto w-full px-2 overflow-x-hidden ;
+  @apply mx-auto px-2 overflow-x-hidden  ;
 }
+
 
 @layer components {
   @screen sm {
     .container {
-      @apply max-w-[640px] px-6;
+      @apply max-w-[640px] px-16;
     }
   }
 
@@ -232,7 +233,7 @@ body {
   /* ✅ 1920px and above */
   @screen 2xl {
     .container {
-      @apply max-w-[1920px] px-19;
+      @apply max-w-[1920px] px-24;
     }
   }
 }

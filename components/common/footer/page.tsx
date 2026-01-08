@@ -14,7 +14,7 @@ import { FooterImage } from "@/components/shared/images/image";
 
 export default function Footer() {
   return (
-<footer className="bg-foreground text-background section-spacer overflow-x-hidden">
+<footer className="bg-foreground text-background section-spacer overflow-x-hidden ">
       <div className="container py-12">
 
         {/* TOP GRID */}
