@@ -1,9 +1,12 @@
 "use client";
 
-import ServiceOfferCard from "@/components/shared/booked-services-card";
 import CarouselSection from "@/components/shared/carousel/carousel";
-import { HeroImage, ServicesImage } from "@/components/shared/images/image";
+import { ServicesImage } from "@/components/shared/images/image";
 import { StaticImageData } from "next/image";
+import { useMediaQuery } from "react-responsive";
+
+import ServiceOfferCard from "@/components/shared/booked-services-card";
+import ServiceOfferCardMobile from "@/components/shared/m-booked-service-card";
 
 type ServiceOffer = {
   id: number;
@@ -13,7 +16,7 @@ type ServiceOffer = {
   rating: number;
   reviews: string;
   price: string;
-  discount:string;
+  discount: string;
   originalPrice?: string;
 };
 
@@ -48,7 +51,7 @@ const serviceOffers: ServiceOffer[] = [
     rating: 4.5,
     reviews: "10k reviews",
     price: "₹20000",
-    originalPrice: "₹2500",
+    originalPrice: "₹25000",
     discount: "20% off",
   },
   {
@@ -59,7 +62,7 @@ const serviceOffers: ServiceOffer[] = [
     rating: 4.5,
     reviews: "10k reviews",
     price: "₹20000",
-    originalPrice: "₹2500",
+    originalPrice: "₹25000",
     discount: "20% off",
   },
   {
@@ -73,53 +76,42 @@ const serviceOffers: ServiceOffer[] = [
     originalPrice: "₹2500",
     discount: "20% off",
   },
-  {
-    id: 6,
-    image: ServicesImage.imageService5,
-    title: "Leakage Fix Service",
-    subtitle: "(upto 3 leakages)",
-    rating: 4.5,
-    reviews: "10k reviews",
-    price: "₹2000",
-    originalPrice: "₹2500",
-    discount: "20% off",
-  },
-  {
-    id: 7,
-    image: ServicesImage.imageService5,
-    title: "Leakage Fix Service",
-    subtitle: "(upto 3 leakages)",
-    rating: 4.5,
-    reviews: "10k reviews",
-    price: "₹2000",
-    originalPrice: "₹2500",
-    discount: "20% off",
-  },
-  
-  
 ];
-
-
 const MostBookedService = () => {
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
   return (
     <section>
-    <CarouselSection
-      title="Most Booked Services"
-      showArrows={true} 
-      items={serviceOffers}
-      renderItem={(offer) => (
-        <ServiceOfferCard
-          image={offer.image}
-          title={offer.title}
-          subtitle={offer.subtitle}
-          rating={offer.rating}
-          reviews={offer.reviews}
-          price={offer.price}
-          discount={offer.discount}
-          originalPrice={offer.originalPrice}
-        />
-      )}
+      <CarouselSection
+        title="Most Booked Services"
+        showArrows={true}
+        items={serviceOffers}
+        renderItem={(offer) =>
+  isMobile ? (
+    <ServiceOfferCardMobile
+      image={offer.image}
+      title={offer.title}
+      subtitle={offer.subtitle}
+      rating={offer.rating}
+      reviews={offer.reviews}
+      price={offer.price}
+      originalPrice={offer.originalPrice}
     />
+  ) : (
+    <ServiceOfferCard
+      image={offer.image}
+      title={offer.title}
+      subtitle={offer.subtitle}
+      rating={offer.rating}
+      reviews={offer.reviews}
+      price={offer.price}
+      discount={offer.discount}
+      originalPrice={offer.originalPrice}
+    />
+  )
+}
+
+      />
     </section>
   );
 };

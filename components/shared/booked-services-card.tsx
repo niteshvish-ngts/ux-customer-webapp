@@ -10,7 +10,7 @@ type ServiceOfferCardProps = {
   rating: number;
   reviews: string;
   price: string;
-  discount: string;
+  discount?: string;
   originalPrice?: string;
 };
 

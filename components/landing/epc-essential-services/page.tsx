@@ -3,7 +3,11 @@
 import ServiceOfferCard from "@/components/shared/booked-services-card";
 import CarouselSection from "@/components/shared/carousel/carousel";
 import { ServicesImage } from "@/components/shared/images/image";
+import ServiceOfferCardMobile from "@/components/shared/m-booked-service-card";
 import { StaticImageData } from "next/image";
+import { useMediaQuery } from "react-responsive";
+
+
 
 type ServiceOffer = {
   id: number;
@@ -55,7 +59,7 @@ const serviceOffers: ServiceOffer[] = [
     id: 4,
     image: ServicesImage.imageService14,
     title: "AC Repair",
-    subtitle: "(1 carpet)",
+    subtitle: "(issue diagnosis)",
     rating: 4.5,
     reviews: "10k reviews",
     price: "₹1350",
@@ -66,58 +70,62 @@ const serviceOffers: ServiceOffer[] = [
     id: 5,
     image: ServicesImage.imageService15,
     title: "Socket Fitting",
-    subtitle: "(1 tank only)",
+    subtitle: "(single socket)",
     rating: 4.5,
     reviews: "10k reviews",
     price: "₹1350",
     originalPrice: "₹1600",
     discount: "50% off",
   },
-  // Agar aur items add karne hain to yahan add kar sakte ho
 ];
 
 const EpcEssentialServices = () => {
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
   return (
-    <CarouselSection
-      title="EPC Essential Services"
-      description="Basic cleaning required for your home"
-      showArrows={true}
-      controlsPosition="bottom"
-      rightSlot={
-        <a
-          href="/services"
-          className="text-sm font-medium text-primary hover:underline whitespace-nowrap"
-        >
-          <span className="sm:hidden">View All</span>
-          <span className="hidden sm:inline">View All Services</span>
-        </a>
-      }
-      items={serviceOffers}
-      renderItem={(offer) => (
-        // Responsive basis classes
-        <div
-          className="
-            basis-full          /* Mobile: 1 item → but we want 4, so override below */
-            md:basis-1/2         /* Tablet (md): 2 items */
-            lg:basis-1/6         /* Desktop (lg+): 6 items */
-            pl-0                 /* spacing between items */
-          "
-        >
-          <div className="w-full h-full">
-            <ServiceOfferCard
-              image={offer.image}
-              title={offer.title}
-              subtitle={offer.subtitle}
-              rating={offer.rating}
-              reviews={offer.reviews}
-              price={offer.price}
-              discount={offer.discount}
-              originalPrice={offer.originalPrice}
+    <section className="section-spacing">
+      <CarouselSection<ServiceOffer>
+        title="EPC Essential Services"
+        description="Quick fixes and essential home services"
+        showArrows={true}
+        controlsPosition="bottom"
+        rightSlot={
+          <a
+            href="/services"
+            className="text-sm font-medium text-primary hover:underline whitespace-nowrap"
+          >
+            <span className="sm:hidden ">View All</span>
+            <span className="hidden sm:inline">View All Services</span>
+          </a>
+        }
+        items={serviceOffers}
+        renderItem={(item) =>
+          isMobile ? (
+            <ServiceOfferCardMobile
+              image={item.image}
+              title={item.title}
+              subtitle={item.subtitle}
+              rating={item.rating}
+              reviews={item.reviews}
+              price={item.price}
+              discount={item.discount}
+              originalPrice={item.originalPrice}
             />
-          </div>
-        </div>
-      )}
-    />
+          ) : (
+            <ServiceOfferCard
+              image={item.image}
+              title={item.title}
+              subtitle={item.subtitle}
+              rating={item.rating}
+              reviews={item.reviews}
+              price={item.price}
+              discount={item.discount}
+              originalPrice={item.originalPrice}
+            />
+          )
+        }
+      />
+    </section>
   );
 };
 

@@ -4,6 +4,9 @@ import { HeroImage } from "@/components/shared/images/image";
 import OfferBannerCard from "@/components/shared/offer-banner";
 import CarouselSection from "@/components/shared/carousel/carousel";
 import { StaticImageData } from "next/image";
+import { useMediaQuery } from "react-responsive";
+
+import MobileOfferBannerCard from "@/components/shared/m-offer-banner";
 
 type Offer = {
   id: number;
@@ -46,6 +49,8 @@ const offers: Offer[] = [
 ];
 
 const SpecialOfferForYou = () => {
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
   return (
     <section className="section-spacing">
     <CarouselSection
@@ -61,16 +66,29 @@ const SpecialOfferForYou = () => {
     </a>
   }  items={offers}
   
-      renderItem={(offer) => (
-        <OfferBannerCard
-          title={offer.title}
-          description={offer.description}
-          buttonText={offer.buttonText}
-          image={offer.image}
-          href={offer.href}
-          bgColor={offer.bgColor}
-        />
-      )}
+      renderItem={(offer) =>
+        
+  isMobile ? (
+    <MobileOfferBannerCard
+      title={offer.title}
+      description={offer.description}
+      buttonText={offer.buttonText}
+      image={offer.image}
+      href={offer.href}
+      bgColor={offer.bgColor}
+    />
+  ) : (
+    <OfferBannerCard
+      title={offer.title}
+      description={offer.description}
+      buttonText={offer.buttonText}
+      image={offer.image}
+      href={offer.href}
+      bgColor={offer.bgColor}
+    />
+  )
+}
+
     />
     </section>
   );

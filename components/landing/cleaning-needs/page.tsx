@@ -2,25 +2,25 @@
 
 import ServiceOfferCard from "@/components/shared/booked-services-card";
 import CarouselSection from "@/components/shared/carousel/carousel";
-import { HeroImage, ServicesImage } from "@/components/shared/images/image";
+import { ServicesImage } from "@/components/shared/images/image";
+import ServiceOfferCardMobile from "@/components/shared/m-booked-service-card";
 import { StaticImageData } from "next/image";
-import Link from "next/link";
-
+import { useMediaQuery } from "react-responsive";
 
 
 type ServiceOffer = {
   id: number;
-  image: any;
+  image: string | StaticImageData;
   title: string;
   subtitle: string;
   rating: number;
   reviews: string;
   price: string;
   originalPrice: string;
-  discount: string;
+  discount?: string;
 };
 
-export const serviceOffers: ServiceOffer[] = [
+const serviceOffers: ServiceOffer[] = [
   {
     id: 1,
     image: ServicesImage.imageService1,
@@ -78,52 +78,52 @@ export const serviceOffers: ServiceOffer[] = [
   },
 ];
 
-
 const CleaningNeeds = () => {
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
   return (
     <section className="section-spacing">
-
-    <CarouselSection
-  title="Cleaning Needs"
-  description="Basic cleaning required for your home"
-  showArrows={true} 
-  controlsPosition="bottom"   
-      
-  // rightSlot={
-  //   <a
-  //     href="/services"
-  //     className="text-sm font-medium text-primary hover:underline"
-  //   >
-  //     View All Services
-  //   </a>
-  // }
-  rightSlot={
-    <a
-      href="/services"
-      className="text-sm font-medium -mt-15 text-primary hover:underline whitespace-nowrap"
-    >
-      {/* Mobile */}
-      <span className="sm:hidden">View All</span>
-
-      {/* Desktop */}
-      <span className="hidden sm:inline">View All Services</span>
-    </a>
-  }
-  items={serviceOffers}
-  renderItem={(offer) => (
-        <ServiceOfferCard
-          image={offer.image}
-          title={offer.title}
-          
-          subtitle={offer.subtitle}
-          rating={offer.rating}
-          reviews={offer.reviews}
-          price={offer.price}
-          discount={offer.discount}
-          originalPrice={offer.originalPrice}
-        />
-      )}
-    />
+      <CarouselSection<ServiceOffer>
+        title="Cleaning Needs"
+        description="Basic cleaning required for your home"
+        showArrows={true}
+        controlsPosition="bottom"
+        rightSlot={
+          <a
+            href="/services"
+            className="text-sm font-medium text-primary hover:underline whitespace-nowrap"
+          >
+            <span className="sm:hidden">View All</span>
+            <span className="hidden sm:inline">View All Services</span>
+          </a>
+        }
+        items={serviceOffers}
+        renderItem={(item) =>
+          isMobile ? (
+            <ServiceOfferCardMobile
+              image={item.image}
+              title={item.title}
+              subtitle={item.subtitle}
+              rating={item.rating}
+              reviews={item.reviews}
+              price={item.price}
+              discount={item.discount}
+              originalPrice={item.originalPrice}
+            />
+          ) : (
+            <ServiceOfferCard
+              image={item.image}
+              title={item.title}
+              subtitle={item.subtitle}
+              rating={item.rating}
+              reviews={item.reviews}
+              price={item.price}
+              discount={item.discount}
+              originalPrice={item.originalPrice}
+            />
+          )
+        }
+      />
     </section>
   );
 };
