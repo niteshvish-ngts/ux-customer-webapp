@@ -32,6 +32,10 @@ import img12 from "@/public/assets/images/Hero-section/img12.png"
 import img13 from "@/public/assets/images/Hero-section/img13.png"  
 import img14 from "@/public/assets/images/Hero-section/img14.png"  
 import img15 from "@/public/assets/images/Hero-section/img15.png"  
+// auth
+import Phone from "@/public/assets/auth/Phone.png"
+import CloudflareLogo from "@/public/assets/auth/CloudflareLogo.png"
+import Pencil from "@/public/assets/auth/Pencil.png"
 export const logoImage = {
     logoImg: Logo
 };
@@ -85,4 +89,9 @@ export const icon = {
 export const FooterImage = {
     appStoreImg: Button1,
     playStoreImg: Button2
+}
+export const auth = {
+    loginDialer:Phone,
+    cloudflareLogo:CloudflareLogo,
+    pencilImg:Pencil
 }
