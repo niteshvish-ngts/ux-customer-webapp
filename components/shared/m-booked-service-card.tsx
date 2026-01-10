@@ -47,14 +47,14 @@ export default function ServiceOfferCardMobile({
 
         {/* RATING */}
         <div className="flex items-center gap-1 text-xs text-muted-foreground">
-          <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+          <Star className="w-3.5 h-3.5 fill-ter text-ter" />
           <span>{rating} rated</span>
           <span>({reviews})</span>
         </div>
 
         {/* PRICE */}
         <div className="flex items-center gap-2">
-          <span className="text-base font-semibold text-[#F68836]">
+          <span className="text-base font-semibold text-ter">
             {price}
           </span>
           <span className="text-xs text-muted-foreground line-through">

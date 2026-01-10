@@ -9,6 +9,7 @@ import CardHeading from "@/components/shared/special-offers-cards/card-heading";
 import Card from "@/components/shared/special-offers-cards/page";
 import Image, { StaticImageData } from "next/image";
   import Footer from "@/components/common/footer/page";
+import BottomNavbar from "@/components/common/bottom-navbar/page";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <Landing />
       </div>
       <Footer />
+      <BottomNavbar />
     </>
   );
 }

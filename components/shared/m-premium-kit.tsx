@@ -26,47 +26,53 @@ export default function MobilePremiumOfferBanner({
           relative
           overflow-hidden
           rounded-[24px]
-           bg-[#bb9956]
-          flex items-center
-          min-h-[150px]
+          bg-gradient-to-r from-[#CBB98A] to-[#E8E1C7]
+          flex items-stretch
+          min-h-[160px]
         "
       >
-        {/* BADGE */}
+        {/* BADGE (top-left circle) */}
         <span
-          className="
-            absolute top-3 left-3
-            bg-[#2E7D32]
-            text-white
-            text-[10px]
-            font-semibold
-            px-3 py-1
-            rounded-full
-            z-10
-          "
-        >
-          {badgeText}
-        </span>
+  className="
+    absolute top-3 left-3
+    
+    w-9 h-9
+    rounded-full
+    bg-[#205131]
+    text-white
+    flex flex-col items-center justify-center
+    text-center
+    leading-none
+    z-10
+  "
+>
+  <span className="text-[5px] font-semibold opacity-90">
+    Save up to
+  </span>
+  <span className="text-[8px] font-bold mt-0.5">
+    ₹2,000
+  </span>
+</span>
+
 
         {/* LEFT CONTENT */}
-        <div className="flex-1 pl-4 pr-2 py-4 space-y-1">
-          <p className="text-[11px] tracking-widest text-foreground/60">
+<div className="flex-1 pl-4 pr-3 pt-14 pb-4 space-y-1 ">
+          <p className="text-[10px] tracking-widest text-black/70 font-medium">
             {brand.toUpperCase()}
           </p>
 
-          <h3 className="text-[16px] font-semibold leading-tight text-foreground">
+          <h3 className="text-xl font-extrabold leading-normal text-black">
             {title}
           </h3>
 
-          <p className="text-[13px] text-muted-foreground">
+          <p className="text-[13px] text-black/60">
             {subtitle}
           </p>
 
           <button
             className="
               mt-2
-              inline-flex
-              items-center
-              justify-center
+              inline-flex items-center justify-center
               px-4 py-1.5
               rounded-full
               border border-[#B08B4F]
@@ -81,7 +87,7 @@ export default function MobilePremiumOfferBanner({
         </div>
 
         {/* RIGHT IMAGE */}
-        <div className="relative w-[120px] h-[160px] shrink-0">
+        <div className="relative w-[130px] shrink-0">
           <Image
             src={image}
             alt={title}
