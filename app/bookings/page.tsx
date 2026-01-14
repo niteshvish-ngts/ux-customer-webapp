@@ -47,8 +47,14 @@ export default function MyBookingsPage() {
       <div className="container py-8 space-y-6">
         <h2 className="text-lg font-medium">All Bookings</h2>
 
-        <div className="grid grid-cols-2 gap-6">
-          <BookingCard
+<div
+    className="
+      grid gap-6
+      grid-cols-1
+      lg:grid-cols-2
+      justify-items-center
+    "
+  >          <BookingCard
             title="Foam-jet service (2 ACs)"
             date="Date Completed: Dec 19, 2025"
             id="170356238345"

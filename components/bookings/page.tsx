@@ -24,46 +24,46 @@ export default function BookingCard({
   return (
     <div
       className="
-        w-[630px] h-[185px]
-        border border-border
+        w-full max-w-[630px]
+        min-h-[185px]
         rounded-[20px]
+        border border-[#E6EFFA]
+        bg-[#F9FCFF]
         p-5
-        bg-card
         flex flex-col justify-between
       "
     >
       {/* TOP */}
-      <div className="flex justify-between">
+      <div className="flex justify-between items-start gap-4">
         {/* LEFT */}
         <div className="flex gap-4">
-          <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center">
+          {/* ICON */}
+          <div className="w-12 h-12 rounded-lg bg-[#FFD54F] flex items-center justify-center shrink-0">
             🛠️
           </div>
 
           <div className="space-y-1">
-            <p className="font-medium">{title}</p>
+            <p className="text-sm font-medium">{title}</p>
             <p className="text-xs text-muted-foreground">{date}</p>
-            <p className="text-xs text-muted-foreground flex items-center gap-1">
-              ⭐ ID: {id}
-            </p>
+            <p className="text-xs text-muted-foreground">⭐ ID: {id}</p>
           </div>
         </div>
 
-        {/* STATUS TAGS */}
-        <div className="flex gap-2">
+        {/* STATUS */}
+        <div className="flex flex-wrap gap-2 justify-end">
           {statusTags.map((tag, i) => (
             <span
               key={i}
               className={`
-                px-2 py-1 rounded-full text-xs font-medium
+                px-2.5 py-1 rounded-full text-[11px] font-medium
                 ${
                   tag === "Completed"
-                    ? "bg-green-100 text-green-700"
+                    ? "bg-[#22C55E] text-white"
                     : tag === "Cancelled"
-                    ? "bg-red-100 text-red-700"
+                    ? "bg-[#EF4444] text-white"
                     : tag === "In Warranty"
                     ? "bg-black text-white"
-                    : "bg-orange-100 text-orange-700"
+                    : "bg-[#F97316] text-white"
                 }
               `}
             >
@@ -74,27 +74,36 @@ export default function BookingCard({
       </div>
 
       {/* BOTTOM */}
-      <div className="flex items-end justify-between">
-        {/* LEFT ACTION */}
-        <div className="space-y-1">
+      <div className="flex items-end justify-between mt-4">
+        {/* RATING */}
+        <div>
           {rating > 0 ? (
-            <div className="flex gap-1 text-yellow-400">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <span key={i}>{i < rating ? "★" : "☆"}</span>
-              ))}
-            </div>
+            <>
+              <p className="text-xs text-muted-foreground mb-1">
+                Your Rating
+              </p>
+              <div className="flex gap-1 text-[#FFC107]">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <span key={i}>{i < rating ? "★" : "☆"}</span>
+                ))}
+              </div>
+            </>
           ) : (
-            <p className="text-sm text-muted-foreground">Give Rating</p>
+            <p className="text-xs text-muted-foreground">
+              Give Rating
+            </p>
           )}
         </div>
 
-        {/* RIGHT PRICE */}
+        {/* PRICE */}
         <div className="text-right space-y-1">
-          <p className="font-medium">{price}</p>
-          <p className="text-xs line-through text-muted-foreground">
-            {oldPrice}
-          </p>
-          <button className="text-sm text-primary underline">
+          <div className="flex gap-2 justify-end items-center">
+            <span className="text-sm font-medium">{price}</span>
+            <span className="text-xs line-through text-muted-foreground">
+              {oldPrice}
+            </span>
+          </div>
+          <button className="text-xs text-primary underline">
             {action}
           </button>
         </div>
