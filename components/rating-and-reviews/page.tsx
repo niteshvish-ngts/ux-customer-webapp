@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Navbar from "../common/navbar/page";
 
 const StarRating = ({
   value,
@@ -78,7 +79,9 @@ export default function RatingsReviewsPage() {
   const [providerRating, setProviderRating] = useState(5);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
+    <>  
+    <Navbar />
+     <div className="min-h-screen bg-[#F8FAFC]">
       {/* HEADER */}
       <div className="border-b bg-white">
         <div className="container py-4 flex justify-between items-start">
@@ -164,5 +167,7 @@ export default function RatingsReviewsPage() {
         </div>
       </div>
     </div>
+    </>
+ 
   );
 }
