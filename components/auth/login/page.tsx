@@ -12,7 +12,6 @@ export default function PhoneLoginPage() {
   const handleSubmit = () => {
     if (isVerified && phoneNumber) {
       console.log('Phone:', countryCode + phoneNumber);
-      // Handle form submission
     }
   };
 
