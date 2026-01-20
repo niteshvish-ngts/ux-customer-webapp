@@ -36,6 +36,8 @@ import img15 from "@/public/assets/images/Hero-section/img15.png"
 import Phone from "@/public/assets/auth/Phone.png"
 import CloudflareLogo from "@/public/assets/auth/CloudflareLogo.png"
 import Pencil from "@/public/assets/auth/Pencil.png"
+// booking
+import vector1 from "@/public/assets/images/booking/vector1.svg"
 export const logoImage = {
     logoImg: Logo
 };
@@ -94,4 +96,15 @@ export const auth = {
     loginDialer:Phone,
     cloudflareLogo:CloudflareLogo,
     pencilImg:Pencil
+}
+
+export const Booking = {
+    bookingImg1: vector1, 
+    // bookingImg2: Painting,
+    // bookingImg3: Pest,
+    // bookingImg4: Hclean,
+    // bookingImg5: Water,
+    // bookingImg6: Carpenter,
+
+
 }

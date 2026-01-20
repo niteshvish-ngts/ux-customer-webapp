@@ -1,5 +1,8 @@
 "use client";
 
+import Image from "next/image";
+import { auth, Booking } from "../shared/images/image";
+
 type BookingCardProps = {
   title: string;
   date: string;
@@ -38,9 +41,15 @@ export default function BookingCard({
         {/* LEFT */}
         <div className="flex gap-4">
           {/* ICON */}
-          <div className="w-12 h-12 rounded-lg bg-[#FFD54F] flex items-center justify-center shrink-0">
-            🛠️
-          </div>
+          <div className="w-21 h-21 rounded-lg bg-secondary flex items-center justify-center shrink-0">
+  <Image
+    src={Booking.bookingImg1}
+    alt="Service Icon"
+    width={38}
+    height={38}
+    className="object-contain"
+  />
+</div>
 
           <div className="space-y-1">
             <p className="text-sm font-medium">{title}</p>

@@ -15,7 +15,7 @@ export default function MyBookingsPage() {
               ← back
             </button>
 
-            <h1 className="flex items-center gap-2 text-[24px] font-medium leading-[32px]">
+            <h1 className="flex items-center gap-2 text-4xl font-semibold leading-8 font-outfit">
               <span className="text-primary">▦</span>
               My Bookings
             </h1>
