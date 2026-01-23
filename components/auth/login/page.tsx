@@ -2,17 +2,20 @@
 
 import { auth, logoImage } from '@/components/shared/images/image';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 export default function PhoneLoginPage() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode, setCountryCode] = useState('+91');
   const [isVerified, setIsVerified] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = () => {
     if (isVerified && phoneNumber) {
       console.log('Phone:', countryCode + phoneNumber);
     }
+    router.push('/otp-verify');
   };
 
   return (

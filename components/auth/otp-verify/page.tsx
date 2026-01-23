@@ -3,9 +3,11 @@
 import Image from 'next/image';
 import { auth } from '@/components/shared/images/image';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function OtpVerifyPage() {
   const [otp, setOtp] = useState<string[]>(Array(6).fill(''));
+  const router = useRouter();
 
   const handleChange = (value: string, index: number) => {
     if (!/^\d?$/.test(value)) return;
@@ -19,6 +21,11 @@ export default function OtpVerifyPage() {
       next?.focus();
     }
   };
+
+const handleVerifyOTP = async () => {
+  // verify logic ...
+  router.push('/'); 
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-50 flex flex-col items-center justify-center px-4">
@@ -86,6 +93,7 @@ export default function OtpVerifyPage() {
 
         {/* Button */}
         <button
+        onClick={handleVerifyOTP}
           disabled={otp.some((d) => !d)}
           className="w-full bg-prime hover:bg-prime disabled:bg-dark-20 disabled:cursor-not-allowed text-white py-3 rounded-xl text-button transition"
         >
