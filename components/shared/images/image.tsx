@@ -38,6 +38,9 @@ import CloudflareLogo from "@/public/assets/auth/CloudflareLogo.png"
 import Pencil from "@/public/assets/auth/Pencil.png"
 // booking
 import vector1 from "@/public/assets/images/booking/vector1.svg"
+import receipt from "@/public/assets/images/booking/receipt.svg"
+import back from "@/public/assets/images/booking/back.svg"
+import star from "@/public/assets/images/booking/star.svg"
 export const logoImage = {
     logoImg: Logo
 };
@@ -100,9 +103,9 @@ export const auth = {
 
 export const Booking = {
     bookingImg1: vector1, 
-    // bookingImg2: Painting,
-    // bookingImg3: Pest,
-    // bookingImg4: Hclean,
+    bookingImg2: receipt,
+    bookingImg3: back,
+    bookingImg4: star
     // bookingImg5: Water,
     // bookingImg6: Carpenter,
 

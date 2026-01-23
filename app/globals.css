@@ -120,6 +120,9 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --green :#3CBE81;
+  --border: #FFFFFF;
+
+
 
   --lightgreen: #6bd197;
   --font-outfit: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -183,6 +186,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  
 }
 
 @layer base {

@@ -1,9 +1,14 @@
 "use client";
 
 import BookingCard from "@/components/bookings/page";
+import { Booking } from "@/components/shared/images/image";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 
 export default function MyBookingsPage() {
+  const router = useRouter();
+
   return (
     <div className="min-h-screen bg-background font-[var(--font-outfit)]">
       {/* HEADER */}
@@ -11,18 +16,37 @@ export default function MyBookingsPage() {
         <div className="container py-5 flex items-center justify-between">
           {/* LEFT */}
           <div className="space-y-1">
-            <button className="text-sm text-muted-foreground flex items-center gap-1">
-              ← back
-            </button>
+            
 
-            <h1 className="flex items-center gap-2 text-4xl font-semibold leading-8 font-outfit">
-              <span className="text-primary">▦</span>
-              My Bookings
-            </h1>
+
+<button
+  onClick={() => router.back()}
+  className="flex items-center gap-2 text-sm text-muted-foreground"
+>
+  <Image src={Booking.bookingImg3} alt="Back" width={16} height={16} />
+  back
+</button>
+
+
+
+<h1 className="flex items-center gap-2 text-4xl font-semibold leading-8 font-outfit mt-3">
+  <span className="flex items-center justify-center w-7 h-7">
+    <Image
+      src={Booking.bookingImg2}
+      alt="Bookings Icon"
+      width={34}
+      height={34}
+      className="object-contain"
+    />
+  </span>
+  My Bookings
+</h1>
+
           </div>
 
           {/* RIGHT FILTERS */}
-          <div className="flex gap-2">
+          <div className="flex gap-2 border rounded-lg overflow-hidden">
+
             {["All Bookings", "Cancelled", "Completed", "In warranty"].map(
               (item, i) => (
                 <button
@@ -30,7 +54,6 @@ export default function MyBookingsPage() {
                   className="
                     px-4 py-2
                     rounded-lg
-                    border
                     text-sm font-medium
                     hover:bg-muted
                   "
