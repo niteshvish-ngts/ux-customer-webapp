@@ -1,59 +1,113 @@
 // components/service/cart.tsx
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 export default function CartSidebar() {
-  const cartItems = [
-    { name: "Foam-jet service (2 ACs) X1", price: 2000, oldPrice: 2500 },
-    { name: "Window AC installation X1", price: 1240, oldPrice: 2500 },
-  ];
+  const [cartItems, setCartItems] = useState([
+    {
+      name: "Foam-jet service (2 ACs) X1",
+      price: 2000,
+      oldPrice: 2500,
+      qty: 1,
+    },
+    {
+      name: "Window AC installation X1",
+      price: 1240,
+      oldPrice: 2500,
+      qty: 1,
+    },
+  ]);
 
-  const total = cartItems.reduce((sum, i) => sum + i.price, 0);
+  const increaseQty = (index: number) => {
+    setCartItems((prev) =>
+      prev.map((item, i) =>
+        i === index ? { ...item, qty: item.qty + 1 } : item
+      )
+    );
+  };
+
+  const decreaseQty = (index: number) => {
+    setCartItems((prev) =>
+      prev.map((item, i) =>
+        i === index && item.qty > 1
+          ? { ...item, qty: item.qty - 1 }
+          : item
+      )
+    );
+  };
+
+  const total = cartItems.reduce(
+    (sum, item) => sum + item.price * item.qty,
+    0
+  );
 
   return (
     <aside className="sticky top-6">
-  <div className="bg-white rounded-2xl border border-[#E6EFFA] p-4 w-full max-w-[320px]">
-    <h2 className="text-sm font-semibold text-black mb-4">Cart</h2>
+      <h2 className="mb-4 text-2xl font-semibold text-black font-outfit">
+        Cart
+      </h2>
 
-    <div className="space-y-4">
-      {cartItems.map((item, i) => (
-        <div key={i} className="flex justify-between items-start">
-          <div>
-            <p className="text-xs font-medium leading-snug">
-              {item.name}
-            </p>
+      <div className="w-full max-w-[320px] rounded-2xl border border-[#E6EFFA] bg-white p-4">
+        {/* ITEMS */}
+        <div className="space-y-4">
+          {cartItems.map((item, i) => (
+            <div key={i}>
+              <div className="flex items-start justify-between">
+                {/* LEFT */}
+                <div className="pr-2">
+                  <p className="text-sm font-medium leading-snug text-black">
+                    {item.name}
+                  </p>
 
-            <div className="flex items-center gap-2 mt-1">
-              <span className="text-xs font-semibold">₹{item.price}</span>
-              <span className="text-[11px] line-through text-muted-foreground">
-                ₹{item.oldPrice}
-              </span>
+                  <div className="mt-1 flex items-center gap-2">
+                    <span className="text-sm font-semibold text-black font-lato">
+                      ₹{item.price}
+                    </span>
+                    <span className="text-xs text-muted-foreground line-through font-lato">
+                      ₹{item.oldPrice}
+                    </span>
+                  </div>
+                </div>
+
+                {/* RIGHT QTY */}
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => decreaseQty(i)}
+                    disabled={item.qty === 1}
+                    className="flex h-7 w-7 items-center justify-center rounded-lg bg-orange-50 text-prime text-base disabled:opacity-40"
+                  >
+                    −
+                  </button>
+
+                  <span className="text-xs font-medium">
+                    {item.qty}
+                  </span>
+
+                  <button
+                    onClick={() => increaseQty(i)}
+                    className="flex h-7 w-7 items-center justify-center rounded-lg bg-orange-50 text-prime text-base"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              {/* DIVIDER */}
+              {i !== cartItems.length - 1 && (
+                <div className="mt-4 h-px w-full bg-[#E6EFFA]" />
+              )}
             </div>
-          </div>
-
-          <div className="flex items-center gap-1">
-            <button className="w-6 h-6 rounded bg-orange-100 text-orange-600 text-sm">
-              −
-            </button>
-            <span className="text-xs font-medium">1</span>
-            <button className="w-6 h-6 rounded bg-orange-100 text-orange-600 text-sm">
-              +
-            </button>
-          </div>
+          ))}
         </div>
-      ))}
-    </div>
 
-    <div className="border-t border-[#E6EFFA] mt-4 pt-3 flex justify-between text-sm font-semibold">
-      <span>Total</span>
-      <span>₹{total}</span>
-    </div>
-
-    <button className="w-full mt-4 bg-orange-600 hover:bg-orange-700 text-white py-2 rounded-lg text-sm font-semibold">
-      View Cart
-    </button>
-  </div>
-</aside>
-
+        {/* CTA */}
+        <div className="mt-5">
+          <button className="flex w-full items-center justify-between rounded-xl bg-prime px-5 py-3 text-white font-semibold">
+            <span className="text-base">₹{total}</span>
+            <span className="text-sm">View Cart</span>
+          </button>
+        </div>
+      </div>
+    </aside>
   );
 }

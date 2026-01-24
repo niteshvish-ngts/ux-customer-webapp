@@ -41,6 +41,10 @@ import vector1 from "@/public/assets/images/booking/vector1.svg"
 import receipt from "@/public/assets/images/booking/receipt.svg"
 import back from "@/public/assets/images/booking/back.svg"
 import star from "@/public/assets/images/booking/star.svg"
+// services
+import singlestar from "@/public/assets/images/services/singlestar.svg"
+import stars from "@/public/assets/images/services/stars.svg"
+import tag from "@/public/assets/images/services/tag.svg"
 export const logoImage = {
     logoImg: Logo
 };
@@ -108,6 +112,16 @@ export const Booking = {
     bookingImg4: star
     // bookingImg5: Water,
     // bookingImg6: Carpenter,
+
+
+}
+export const Services = {
+    serviceImg1: singlestar, 
+    serviceImg2: stars,
+    serviceImg3: tag,
+    // serviceImg4: star
+    // serviceImg5: Water,
+    // serviceImg6: Carpenter,
 
 
 }

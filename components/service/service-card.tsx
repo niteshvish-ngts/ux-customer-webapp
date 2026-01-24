@@ -1,7 +1,8 @@
 // components/service/service-card.tsx
 "use client";
+import Image from "next/image";
 import React from "react";
-
+import { Services } from "../shared/images/image";
 interface ServiceCardProps {
   title: string;
   rating: string;
@@ -33,31 +34,42 @@ export default function ServiceCard({
   <div>
     <div className="flex justify-between">
       <div>
-        <p className="text-xs text-muted-foreground mb-1 flex items-center gap-1">
-          ⭐ {rating}
-        </p>
+        <p className="text-xs text-dark mb-1 flex items-center gap-1 font-lato font-regular">
+<Image
+src={Services.serviceImg1}
+alt="rating star"
+width={14}
+height={14}
+className="object-contain"
+/>
+{rating}
+</p>
 
-        <h3 className="text-sm font-semibold text-black leading-snug">
+        <h3 className="text-lg font-medium text-black leading-snug font-outfit">
           {title}
         </h3>
       </div>
 
-      {isSaver && (
-        <span className="text-[10px] px-2 py-0.5 rounded-full bg-orange-100 text-orange-700 font-medium">
-          Maxx Saver
-        </span>
-      )}
+      
     </div>
 
     <p className="text-xs text-muted-foreground mt-2">
-      ⏱ {time}
+       {time} worktime
     </p>
 
-    <p className="text-xs text-green-600 mt-1">
-      ₹{pricePerUnit} per unit
-    </p>
+  
 
-    <p className="text-[11px] text-muted-foreground mt-3 leading-relaxed">
+<p className="mt-1 flex items-center gap-1 text-sm font-regular text-success">
+  <Image
+    src={Services.serviceImg3}
+    alt="price tag"
+    width={14}
+    height={14}
+    className="object-contain"
+  />
+  ₹{pricePerUnit} per unit
+</p>
+    <p className="text-xs text-dark-30 mt-3 leading-relaxed font-lato">
       {description}
     </p>
   </div>
@@ -65,11 +77,11 @@ export default function ServiceCard({
   {/* BOTTOM */}
   <div className="flex justify-between items-center mt-4">
     <div>
-      <span className="text-sm font-semibold text-black">
+      <span className="text-base font-semibold text-black">
         ₹{discountedPrice}
       </span>
       {originalPrice && (
-        <span className="ml-2 text-xs line-through text-muted-foreground">
+        <span className="ml-2 text-sm line-through text-muted-foreground">
           ₹{originalPrice}
         </span>
       )}
@@ -79,8 +91,8 @@ export default function ServiceCard({
       onClick={onAdd}
       className="
         px-4 py-1.5
-        border border-orange-500
-        text-orange-500
+        border border-prime
+        text-prime
         rounded-md
         text-xs font-medium
         hover:bg-orange-50
