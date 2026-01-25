@@ -1,8 +1,22 @@
 // components/service/cart.tsx
 "use client";
-import React, { useState } from "react";
+
+
+import { useRouter } from "next/navigation";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function CartSidebar() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [pos, setPos] = useState<{ top: number; left: number } | null>(null);
+  useEffect(() => {
+  if (ref.current) {
+    const rect = ref.current.getBoundingClientRect();
+    setPos({
+      top: rect.top,
+      left: rect.left,
+    });
+  }
+}, []);
   const [cartItems, setCartItems] = useState([
     {
       name: "Foam-jet service (2 ACs) X1",
@@ -40,9 +54,21 @@ export default function CartSidebar() {
     (sum, item) => sum + item.price * item.qty,
     0
   );
-
+const router = useRouter();
   return (
-    <aside className="sticky top-6">
+  <aside
+  ref={ref}
+  style={
+    pos
+      ? {
+          position: "fixed",
+          top: pos.top,
+          left: pos.left,
+          width: 320,
+        }
+      : undefined
+  }
+>
       <h2 className="mb-4 text-2xl font-semibold text-black font-outfit">
         Cart
       </h2>
@@ -102,10 +128,13 @@ export default function CartSidebar() {
 
         {/* CTA */}
         <div className="mt-5">
-          <button className="flex w-full items-center justify-between rounded-xl bg-prime px-5 py-3 text-white font-semibold">
-            <span className="text-base">₹{total}</span>
-            <span className="text-sm">View Cart</span>
-          </button>
+          <button
+  onClick={() => router.push("/cart")}
+  className="flex w-full items-center justify-between rounded-xl bg-prime px-5 py-3 text-white font-semibold"
+>
+  <span className="text-base">₹{total}</span>
+  <span className="text-sm">View Cart</span>
+</button>
         </div>
       </div>
     </aside>

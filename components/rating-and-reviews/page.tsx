@@ -2,6 +2,10 @@
 
 import { useState } from "react";
 import Navbar from "../common/navbar/page";
+import Image from "next/image";
+import { Booking } from "../shared/images/image";
+import Router from "next/router";
+import { useRouter } from "next/navigation";
 
 const StarRating = ({
   value,
@@ -77,7 +81,7 @@ const ReviewCard = ({
 export default function RatingsReviewsPage() {
   const [serviceRating, setServiceRating] = useState(5);
   const [providerRating, setProviderRating] = useState(5);
-
+  const router = useRouter();
   return (
     <>  
     <Navbar />
@@ -86,9 +90,13 @@ export default function RatingsReviewsPage() {
       <div className="border-b bg-white">
         <div className="container py-4 flex justify-between items-start">
           <div>
-            <button className="text-sm text-muted-foreground mb-1 flex items-center gap-1">
-              ← back
-            </button>
+           <button
+             onClick={() => router.back()}
+             className="flex items-center gap-2 text-sm text-muted-foreground"
+           >
+             <Image src={Booking.bookingImg3} alt="Back" width={16} height={16} />
+             back
+           </button>
             <h1 className="flex items-center gap-2 text-xl font-medium">
               ⭐ Ratings & Reviews
             </h1>
@@ -99,9 +107,15 @@ export default function RatingsReviewsPage() {
               Foam-jet service (2 ACs)
             </p>
             <p>Date Completed: Dec 19, 2025</p>
-            <p className="flex justify-end items-center gap-1">
-              ⭐ ID: 170356238345
-            </p>
+            <p className="text-xs text-dark flex items-center gap-1">
+                          <Image
+                            src={Booking.bookingImg4}
+                            alt="star"
+                            width={14}
+                            height={14}
+                          />
+                          ID: 
+                        </p>
           </div>
         </div>
       </div>

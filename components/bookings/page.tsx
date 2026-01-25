@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Booking } from "../shared/images/image";
+import { useRouter } from "next/navigation";
 
 type BookingCardProps = {
   title: string;
@@ -24,6 +25,7 @@ export default function BookingCard({
   action,
   rating = 4,
 }: BookingCardProps) {
+  const router = useRouter();
   return (
 
     <div
@@ -129,9 +131,12 @@ export default function BookingCard({
         </div>
 
         {/* ACTION */}
-        <button className="text-xs text-primary underline">
-          {action}
-        </button>
+       <button
+  onClick={() => router.push("/rating-and-reviews")}
+  className="text-xs text-primary underline"
+>
+  {action}
+</button>
       </div>
     </div>
   );

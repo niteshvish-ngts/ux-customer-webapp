@@ -45,6 +45,8 @@ import star from "@/public/assets/images/booking/star.svg"
 import singlestar from "@/public/assets/images/services/singlestar.svg"
 import stars from "@/public/assets/images/services/stars.svg"
 import tag from "@/public/assets/images/services/tag.svg"
+
+import cart from "@/public/assets/images/cart/cart.svg"
 export const logoImage = {
     logoImg: Logo
 };
@@ -122,6 +124,16 @@ export const Services = {
     // serviceImg4: star
     // serviceImg5: Water,
     // serviceImg6: Carpenter,
+
+
+}
+export const Cart = {
+    cartImg1: cart 
+    // cartImg2: stars,
+    // cartImg3: tag,
+    // cartImg4: star
+    // cartImg5: Water,
+    // cartImg6: Carpenter,
 
 
 }
