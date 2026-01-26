@@ -31,7 +31,7 @@ export default function CartPage() {
                 height={32}
                 className="rounded-full"
               />
-              <span className="text-sm font-medium">Mihir Verma</span>
+              <span className="text-sm font-medium">Nitesh Vishwakarma</span>
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@ export default function CartPage() {
       <div className="container py-8 grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-8">
         {/* LEFT – CART ITEMS */}
         <div>
-          <h2 className="text-lg font-semibold mb-4">
+          <h2 className="text-xl font-medium font-outfit mb-4">
             Your Service Cart
           </h2>
 
@@ -53,7 +53,7 @@ export default function CartPage() {
               price={2000}
               oldPrice={2500}
               discount="20% OFF"
-              image="/ac-install.jpg"
+              image={Cart.cartImg4}
             />
 
             <CartItem
@@ -63,7 +63,7 @@ export default function CartPage() {
               price={2000}
               oldPrice={2500}
               discount="20% OFF"
-              image="/ac-pack.jpg"
+              image={Cart.cartImg3}
               badge="4 ACs PACK"
             />
           </div>
@@ -71,11 +71,13 @@ export default function CartPage() {
 
         {/* RIGHT – SUMMARY */}
         <div className="space-y-4">
+
           {/* SUMMARY */}
-          <div className="rounded-xl border border-[#E6EFFA] bg-white p-5 space-y-3">
-            <h3 className="text-sm font-semibold">
+           <h3 className="text-xl font-medium font-outfit">
               Cart Summary
             </h3>
+          <div className="rounded-xl border border-[#E6EFFA] bg-white p-5 space-y-3">
+           
 
             <SummaryRow label="Cart Total" value="₹ 229,985" />
             <SummaryRow
@@ -152,7 +154,7 @@ function CartItem({
   return (
     <div className="rounded-xl border border-[#E6EFFA] bg-white p-4 flex gap-4">
       {/* IMAGE */}
-      <div className="relative w-24 h-20 rounded-lg overflow-hidden border">
+      <div className="relative w-33 h-33 rounded-lg overflow-hidden border">
         {badge && (
           <span className="absolute top-1 left-1 text-[10px] bg-black text-white px-1.5 py-0.5 rounded">
             {badge}
@@ -162,28 +164,28 @@ function CartItem({
           src={image}
           alt={title}
           fill
-          className="object-cover"
+          className="object-contain"
         />
       </div>
 
       {/* INFO */}
       <div className="flex-1">
-        <p className="text-sm font-medium">
+        <p className="text-lg font-medium font-outfit">
           {title} X1
         </p>
-        <p className="text-xs text-muted-foreground">
+        <p className="text-sm text-dark">
           {category}
         </p>
-        <p className="text-[11px] text-muted-foreground">
+        <p className="text-[10px] text-black mt-1 font-lato">
           PRODUCT CODE: {code}
         </p>
 
         <div className="mt-2 flex items-center gap-2">
-          <button className="w-7 h-7 rounded bg-orange-50 text-orange-600">
+          <button className="w-8 h-8 rounded bg-orange-50 text-orange-600">
             −
           </button>
           <span className="text-sm">1</span>
-          <button className="w-7 h-7 rounded bg-orange-50 text-orange-600">
+          <button className="w-8 h-8 rounded bg-orange-50 text-orange-600">
             +
           </button>
         </div>
@@ -191,19 +193,26 @@ function CartItem({
 
       {/* PRICE */}
       <div className="text-right space-y-1">
-        <p className="text-sm font-semibold">
+        <p className="text-base font-semibold font-lato ">
           ₹{price}
         </p>
-        <p className="text-xs line-through text-muted-foreground">
+        <p className="text-sm line-through text-muted-foreground font-lato">
           ₹{oldPrice}
         </p>
-        <p className="text-xs text-green-600 font-medium">
+
+        <p className="text-xs text-[#3CBE81] font-semibold">
           {discount}
         </p>
 
-        <button className="text-red-500 text-sm mt-2">
-          🗑
-        </button>
+       <button className="mt-2">
+  <Image
+    src={Cart.cartImg2}
+    alt="Remove item"
+    width={24}
+    height={24}
+    className="object-contain"
+  />
+</button>
       </div>
     </div>
   );
