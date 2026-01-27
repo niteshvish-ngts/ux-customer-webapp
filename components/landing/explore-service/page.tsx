@@ -43,7 +43,9 @@ const ExploreService = () => {
                 image={service.image}
                 // Mobile par short title dikhane ke liye override
                 mobileTitleOverride={service.mobileTitle}
+                href="/service"
               />
+              
             </div>
           )}
         />
@@ -63,6 +65,8 @@ const ExploreService = () => {
               key={service.id}
               title={service.mobileTitle}
               image={service.image}
+                href="/service" 
+
             />
           ))}
         </div>

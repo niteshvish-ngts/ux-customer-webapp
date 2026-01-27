@@ -91,7 +91,7 @@ Checkout                    </button>
                 {!addressSelected ? (
                   <button
                     onClick={() => setAddressModalOpen(true)}
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2.5 rounded-lg text-sm font-medium transition-colors"
+                    className="w-full bg-prime hover:bg-prime text-white py-2.5 rounded-lg text-sm font-medium transition-colors"
                   >
                     Select Address
                   </button>
@@ -122,7 +122,7 @@ Checkout                    </button>
                   addressSelected ? (
                     <button
                       onClick={() => setSlotModalOpen(true)}
-                      className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2.5 rounded-lg text-sm font-medium transition-colors"
+                      className="w-full bg-prime hover:bg-prime text-white py-2.5 rounded-lg text-sm font-medium transition-colors"
                     >
                       Select Time Slot
                     </button>
@@ -155,7 +155,7 @@ Checkout                    </button>
                 </div>
 
                 {slotSelected ? (
-                  <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2.5 rounded-lg text-sm font-medium transition-colors">
+                  <button className="w-full bg-prime hover:bg-prime text-white py-2.5 rounded-lg text-sm font-medium transition-colors">
                     Proceed To Pay
                   </button>
                 ) : (
@@ -173,7 +173,7 @@ Checkout                    </button>
                 <p className="text-sm text-slate-600 leading-relaxed mb-2">
                   Free cancellations if done more than 12 hrs before the service or if a professional isn't assigned. A fee will be charged otherwise.
                 </p>
-                <button className="text-sm text-orange-600 font-medium hover:text-orange-700">
+                <button className="text-sm text-prime font-medium hover:text-prime">
                   Read Full Policy
                 </button>
               </div>
@@ -309,7 +309,7 @@ function CartItem({ name, price, originalPrice }: CartItemProps) {
         <span className="w-6 text-center font-medium text-sm">{quantity}</span>
         <button
           onClick={() => setQuantity(quantity + 1)}
-          className="w-6 h-6 flex items-center justify-center text-orange-600 hover:bg-orange-100 rounded transition-colors text-lg"
+          className="w-6 h-6 flex items-center justify-center text-prime hover:bg-prime rounded transition-colors text-lg"
         >
           +
         </button>

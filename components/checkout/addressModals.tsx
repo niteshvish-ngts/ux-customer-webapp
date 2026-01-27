@@ -36,7 +36,7 @@ export default function AddressModal({
         <div className="px-6 py-4 space-y-4">
 
           {/* ADD NEW */}
-          <button className="flex items-center gap-2 text-sm font-medium text-orange-600">
+          <button className="flex items-center gap-2 text-sm font-medium text-prime hover:underline">
             <Plus size={18} />
             Add new address
           </button>
@@ -60,7 +60,7 @@ export default function AddressModal({
         <div className="px-6 py-4 border-t">
           <button
             onClick={onProceed}
-            className="w-full rounded-xl bg-orange-500 hover:bg-orange-600 text-white py-3 text-sm font-semibold"
+            className="w-full rounded-xl bg-prime hover:bg-prime text-white py-3 text-sm font-semibold"
           >
             Proceed to Slots
           </button>
@@ -87,7 +87,7 @@ function AddressOption({
         type="radio"
         name="address"
         defaultChecked={checked}
-        className="mt-1 accent-orange-500"
+        className="mt-1 accent-prime"
       />
 
       <div>

@@ -75,7 +75,7 @@ export default function SlotModal({
                 className={`flex flex-col items-center justify-center w-16 h-16 rounded-xl border text-sm
                   ${
                     selectedDay === d.date
-                      ? "border-orange-500 bg-orange-50 text-orange-600 font-semibold"
+                      ? "border-prime bg-prime text-white font-semibold"
                       : "border-border text-muted-foreground"
                   }`}
               >
@@ -101,7 +101,7 @@ export default function SlotModal({
                   className={`rounded-lg border py-2 text-sm
                     ${
                       selectedTime === time
-                        ? "border-orange-500 bg-orange-50 text-orange-600 font-medium"
+                        ? "border-prime bg-prime text-white font-medium"
                         : "border-border text-muted-foreground"
                     }`}
                 >
@@ -116,7 +116,7 @@ export default function SlotModal({
         <div className="px-6 py-4 border-t">
           <button
             onClick={onProceed}
-            className="w-full rounded-xl bg-orange-500 hover:bg-orange-600 text-white py-3 text-sm font-semibold"
+            className="w-full rounded-xl bg-prime hover:bg-prime text-white py-3 text-sm font-semibold"
           >
             Proceed to Payment
           </button>
