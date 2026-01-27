@@ -66,10 +66,12 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 --font-outfit: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
---font-lato: system-ui, sans-serif;
 --color-success: var(--success);
 --color-success-foreground: var(--white);
+  --font-heading: var(--font-outfit);
+  --font-body: var(--font-lato);
 }
+
 
 :root {
 
@@ -121,15 +123,23 @@
   --green: #3CBE81;
   --border: #FFFFFF;
 --success: #3CBE81;
+--black: #1A1A1A;
 
   --lightgreen: #6bd197;
   --font-outfit: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-lato: system-ui, sans-serif;
-
   --font-heading: var(--font-outfit);
-  --font-body: var(--font-lato);
   /* font family */
 
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-heading); /* Outfit */
+  }
+
+  .font-body {
+    font-family: var(--font-body); /* Lato */
+  }
 }
 
 @layer components {
@@ -149,6 +159,15 @@
     font-weight: 600;
     /* font-size: 32px; */
     
+  }
+}
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
   }
 }
 

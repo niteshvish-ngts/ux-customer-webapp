@@ -50,6 +50,13 @@ import cart from "@/public/assets/images/cart/cart.svg"
 import trash from "@/public/assets/images/cart/trash.svg"
 import cartimg1 from "@/public/assets/images/cart/cartimg1.svg"
 import cartimg2 from "@/public/assets/images/cart/cartimg2.svg"
+// checkout
+import discounttag from "@/public/assets/images/checkout/discounttag.svg"
+import banknote from "@/public/assets/images/checkout/banknote.svg"
+import clock from "@/public/assets/images/checkout/clock.svg"
+import contact from "@/public/assets/images/checkout/contact.svg"
+import map from "@/public/assets/images/checkout/map.svg"
+
 export const logoImage = {
     logoImg: Logo
 };
@@ -135,6 +142,17 @@ export const Cart = {
     cartImg2: trash,
     cartImg3: cartimg1,
     cartImg4: cartimg2,
+    // cartImg5: Water,
+    // cartImg6: Carpenter,
+
+
+}
+export const Checkout = {
+    checkoutImg1: discounttag,
+    checkoutImg2: banknote,
+    checkoutImg3: clock,
+    checkoutImg4:  contact,
+    checkoutImg5: map,
     // cartImg5: Water,
     // cartImg6: Carpenter,
 
