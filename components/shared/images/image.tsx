@@ -57,6 +57,33 @@ import clock from "@/public/assets/images/checkout/clock.svg"
 import contact from "@/public/assets/images/checkout/contact.svg"
 import map from "@/public/assets/images/checkout/map.svg"
 
+// modal2
+import homepainting from "@/public/assets/images/modal-icon/painting-modal/homepainting.svg"
+import electricalservice from "@/public/assets/images/modal-icon/painting-modal/electricalservice.svg"
+import plumbing from "@/public/assets/images/modal-icon/painting-modal/plumbing.svg"
+import carpentry from "@/public/assets/images/modal-icon/painting-modal/carpentry.svg"
+import furnitureassembly from "@/public/assets/images/modal-icon/painting-modal/furnitureassembly.svg"
+import gyser from "@/public/assets/images/modal-icon/painting-modal/gyser.svg"
+// modal3   
+import corporate from "@/public/assets/images/modal-icon/pest-modal/corporate.svg"
+import fridge from "@/public/assets/images/modal-icon/pest-modal/fridge.svg"
+import gyserInstalletion from "@/public/assets/images/modal-icon/pest-modal/gyserInstalletion.svg"
+import Housecleaning from "@/public/assets/images/modal-icon/pest-modal/Housecleaning.svg"
+import microwave from "@/public/assets/images/modal-icon/pest-modal/microwave.svg"
+// modal4
+import ACrepair from "@/public/assets/images/modal-icon/carpenter-modal/ACrepair.svg"
+import almira from "@/public/assets/images/modal-icon/carpenter-modal/almira.svg"
+import renovation from "@/public/assets/images/modal-icon/carpenter-modal/renovation.svg"
+import washing from "@/public/assets/images/modal-icon/carpenter-modal/washing.svg"
+// modal5
+import vect6 from "@/public/assets/images/modal-icon/ac-modal/vect6.svg"
+import vect1 from "@/public/assets/images/modal-icon/ac-modal/vect1.svg" 
+import vect2 from "@/public/assets/images/modal-icon/ac-modal/vect2.svg"
+import vect3 from "@/public/assets/images/modal-icon/ac-modal/vect3.svg"
+import vect4 from "@/public/assets/images/modal-icon/ac-modal/vect4.svg"
+import vect5 from "@/public/assets/images/modal-icon/ac-modal/vect5.svg"
+
+
 export const logoImage = {
     logoImg: Logo
 };
@@ -157,4 +184,43 @@ export const Checkout = {
     // cartImg6: Carpenter,
 
 
+}
+
+export const Modal2 = {
+    modalImg1: homepainting,
+    modalImg2: electricalservice,
+    modalImg3: plumbing,
+    modalImg4: carpentry,
+    modalImg5: furnitureassembly,
+    modalImg6: gyser,
+    // cartImg6: Carpenter,
+
+
+}
+
+export const Modal3 = {
+    modalImg1: corporate,
+    modalImg2: fridge,
+    modalImg3: gyserInstalletion,
+    modalImg4: Housecleaning,
+    modalImg5: microwave,
+}
+
+export const Modal4 = {
+    modalImg1: ACrepair,
+    modalImg2: almira,
+    modalImg3: carpentry,
+    modalImg4: gyser,
+    modalImg5: renovation,
+    modalImg6: washing,
+}
+
+
+export const Modal5 = {
+    modalImg1: vect1, 
+    modalImg2: vect2,
+    modalImg3: vect3,
+    modalImg4: vect4,
+    modalImg5: vect5,
+    modalImg6: vect6
 }
