@@ -157,7 +157,7 @@ export default function ServicePage() {
                 originalPrice={2500}
                 discountedPrice={1240}
                 description={`Applicable for both window or split ACs
-Indoor unit deep cleaning with foam & jet spray`}
+    Indoor unit deep cleaning with foam & jet spray`}
                 onAdd={() => {}}
               />
             </div>
@@ -177,7 +177,7 @@ Indoor unit deep cleaning with foam & jet spray`}
                 originalPrice={2500}
                 discountedPrice={1240}
                 description={`Applicable for both window or split ACs
-Indoor unit regular checkup included`}
+    Indoor unit regular checkup included`}
                 onAdd={() => {}}
               />
 
@@ -190,7 +190,7 @@ Indoor unit regular checkup included`}
                 originalPrice={2500}
                 discountedPrice={499}
                 description={`Applicable for both window or split ACs
-Indoor unit regular checkup included`}
+    Indoor unit regular checkup included`}
                 onAdd={() => {}}
               />
 
@@ -203,7 +203,7 @@ Indoor unit regular checkup included`}
                 originalPrice={2500}
                 discountedPrice={1240}
                 description={`Applicable for both window or split ACs
-Indoor unit regular checkup included`}
+    Indoor unit regular checkup included`}
                 onAdd={() => {}}
               />
 
@@ -216,7 +216,7 @@ Indoor unit regular checkup included`}
                 originalPrice={2500}
                 discountedPrice={599}
                 description={`Applicable for both window or split ACs
-Indoor unit regular checkup included`}
+      Indoor unit regular checkup included`}
                 onAdd={() => {}}
               />
             </div>
@@ -237,7 +237,7 @@ Indoor unit regular checkup included`}
                 originalPrice={2500}
                 discountedPrice={1499}
                 description={`Applicable for both window or split ACs
-Indoor unit regular checkup included`}
+        Indoor unit regular checkup included`}
                 onAdd={() => {}}
               />
 
@@ -250,7 +250,7 @@ Indoor unit regular checkup included`}
                 originalPrice={2500}
                 discountedPrice={1099}
                 description={`Applicable for both window or split ACs
-Indoor unit regular checkup included`}
+        Indoor unit regular checkup included`}
                 onAdd={() => {}}
               />
               <ServiceCard
@@ -262,16 +262,16 @@ Indoor unit regular checkup included`}
                 originalPrice={2500}
                 discountedPrice={1099}
                 description={`Applicable for both window or split ACs
-Indoor unit regular checkup included`}
+        Indoor unit regular checkup included`}
                 onAdd={() => {}}
               />
             </div>
           </section>
-        </div>
+      </div>
 
         {/* CART */}
         <CartSidebar />
       </div>
-    </>
+  </>
   );
 }
