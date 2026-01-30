@@ -13,6 +13,9 @@ interface ServiceCardProps {
   discountedPrice: number;
   description: string;
   onAdd: () => void;
+  onIncrease?: () => void;
+  onDecrease?: () => void;
+  cartQty?: number;
   isSaver?: boolean;
 }
 
@@ -26,6 +29,9 @@ export default function ServiceCard({
   discountedPrice,
   description,
   onAdd,
+  onIncrease,
+  onDecrease,
+  cartQty = 0,
   isSaver,
 }: ServiceCardProps) {
   return (
@@ -87,19 +93,39 @@ className="object-contain"
       )}
     </div>
 
-    <button
-      onClick={onAdd}
-      className="
-        px-4 py-1.5
-        border border-prime
-        text-prime
-        rounded-md
-        text-xs font-medium
-        hover:bg-orange-50
-      "
-    >
-      Add
-    </button>
+    {cartQty > 0 ? (
+      <div className="flex items-center gap-2">
+        <button
+          onClick={onDecrease}
+          className="flex h-7 w-7 items-center justify-center rounded-lg bg-orange-50 text-prime text-base hover:bg-orange-100"
+        >
+          −
+        </button>
+        <span className="text-xs font-medium min-w-[20px] text-center">
+          {cartQty}
+        </span>
+        <button
+          onClick={onIncrease}
+          className="flex h-7 w-7 items-center justify-center rounded-lg bg-orange-50 text-prime text-base hover:bg-orange-100"
+        >
+          +
+        </button>
+      </div>
+    ) : (
+      <button
+        onClick={onAdd}
+        className="
+          px-4 py-1.5
+          border border-prime
+          text-prime
+          rounded-md
+          text-xs font-medium
+          hover:bg-orange-50
+        "
+      >
+        Add
+      </button>
+    )}
   </div>
 </div>
 
