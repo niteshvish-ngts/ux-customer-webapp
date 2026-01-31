@@ -127,6 +127,7 @@
 
   --lightgreen: #6bd197;
   --font-outfit: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-lato: "Lato", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-heading: var(--font-outfit);
   /* font family */
 
@@ -222,39 +223,44 @@ body {
 
 
 .container {
-  @apply mx-auto px-2 overflow-x-hidden  ;
+  @apply mx-auto px-2 overflow-x-hidden;
 }
 
 
 @layer components {
-  @screen sm {
+  /* Small screens */
+  @media (min-width: 640px) {
     .container {
       @apply max-w-[640px] px-12;
     }
   }
 
-  @screen md {
+  /* Medium screens */
+  @media (min-width: 768px) {
     .container {
       @apply max-w-[768px] px-5;
     }
   }
 
-  @screen lg {
+  /* Large screens */
+  @media (min-width: 1024px) {
     .container {
       @apply max-w-[1024px] px-12;
     }
   }
 
-  @screen xl {
+  /* Extra large screens */
+  @media (min-width: 1280px) {
     .container {
       @apply max-w-[1280px] px-24;
     }
   }
 
-  /* ✅ 1920px and above */
-  @screen 2xl {
+  /* 2XL screens and above - Fixed max-width to prevent layout issues */
+  @media (min-width: 1536px) {
     .container {
-      @apply max-w-[1920px] px-24;
+      max-width: 1440px;
+      @apply px-24;
     }
   }
 }
@@ -266,6 +272,30 @@ body {
   src: url("/assets/font/Outfit/Outfit-VariableFont_wght.ttf")
     format("truetype");
   font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/font/Lato/Lato-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/font/Lato/Lato-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/font/Lato/Lato-Light.ttf") format("truetype");
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }

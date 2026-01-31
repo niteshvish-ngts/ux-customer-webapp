@@ -19,66 +19,57 @@ export default function PhoneLoginPage() {
   };
 
   return (
-    <div className=" bg-gradient-to-br from-orange-80 via-white to-orange-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-lg">
-        {/* Logo */}
-        <div className="flex justify-center mb-2">
-  <div className="w-18 h-18 bg-white rounded-full shadow-lg flex items-center justify-center">
-    <div className="w-18 h-18 bg-white rounded-full flex items-center justify-center relative">
+    <div className="min-h-screen bg-white flex items-start justify-center pt-8 pb-8 px-4 relative overflow-hidden">
+      {/* Decorative orange shapes in top corners */}
+      <div className="absolute top-0 left-0 w-64 h-64 bg-[#FFF5E2] rounded-full blur-3xl opacity-60 -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute top-0 right-0 w-64 h-64 bg-[#FFF5E2] rounded-full blur-3xl opacity-60 translate-x-1/2 -translate-y-1/2"></div>
       
-      {/* LOGO IMAGE */}
-      <Image
-        src={logoImage.logoImg} 
-        alt="Logo"
-        width={44}
-        height={44}
-        className="object-contain"
-      />
-
-      {/* USER BADGE */}
-      {/* <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-prime rounded-full border-2 border-white flex items-center justify-center">
-        <span className="text-white text-xs font-bold font-heading">U</span>
-      </div> */}
-
-    </div>
-  
-</div>
+      <div className="w-full max-w-lg relative z-10 mt-4">
+        {/* Logo */}
+        <div className="flex justify-center mb-3">
+          <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center p-2">
+            <Image
+              src={logoImage.logoImg} 
+              alt="Logo"
+              width={40}
+              height={40}
+              className="object-contain"
+            />
+          </div>
         </div>
 
         {/* Welcome Text */}
-        <h1 className="text-xl text-dark text-center mb-5 font-outfit font-medium">
+        <h1 className="text-xl text-dark text-center mb-6 font-heading font-medium">
           Welcome to UrbanXperts
         </h1>
 
         {/* Login Card */}
-        <div className="w-full bg-white rounded-[30px] border border-border p-10 shadow-sm">
+        <div className="w-full bg-white rounded-[30px] border border-border p-6 md:p-8 shadow-sm">
           {/* Phone Icon */}
           <div className="mb-3">
-            <div className="inline-flex items-center justify-center relative">
-              <Image
-                src={auth.loginDialer}
-                alt="Dialer"
-                width={44}
-                height={44}
-                className="object-contain"
-              />
-            </div>
+            <Image
+              src={auth.loginDialer}
+              alt="Dialer"
+              width={44}
+              height={44}
+              className="object-contain"
+            />
           </div>
 
           {/* Title */}
-          <h2 className="text-h4 text-dark mb-1">
+          <h2 className="text-h4 text-dark mb-1.5 font-heading font-semibold">
             Enter Your Phone number
           </h2>
           
           {/* Subtitle */}
-          <p className="text-body-sm text-dark-50 mb-7">
+          <p className="text-body-sm text-dark-50 mb-5 font-body">
             We will send you a verification code on your provided number
           </p>
 
           {/* Phone Input */}
-          <div className="mb-5">
+          <div className="mb-4">
             <div className="flex items-stretch border border-border rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-prime focus-within:border-transparent transition-all">
-              <div className="flex items-center px-4 bg-white border-r border-border">
+              <div className="flex items-center px-4 py-3.5 bg-white border-r border-border">
                 <select
                   value={countryCode}
                   onChange={(e) => setCountryCode(e.target.value)}
@@ -89,14 +80,14 @@ export default function PhoneLoginPage() {
                   <option value="+44">+44</option>
                   <option value="+86">+86</option>
                 </select>
-                <span className="text-dark-30 text-sm">▼</span>
+                <span className="text-dark-30 text-xs ml-1">▼</span>
               </div>
               <input
                 type="tel"
                 placeholder="Enter your phone number"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ''))}
-                className="flex-1 px-4 py-4 focus:outline-none text-dark placeholder:text-dark-30 text-sm font-body"
+                className="flex-1 px-4 py-3.5 focus:outline-none text-dark placeholder:text-dark-30 text-sm font-body"
                 maxLength={10}
               />
             </div>
@@ -111,25 +102,22 @@ export default function PhoneLoginPage() {
                   id="verify"
                   checked={isVerified}
                   onChange={(e) => setIsVerified(e.target.checked)}
-                  className="w-6 h-6 text-prime border-2 border-border rounded focus:ring-2 focus:ring-prime cursor-pointer"
+                  className="w-5 h-5 text-prime border-2 border-border rounded focus:ring-2 focus:ring-prime cursor-pointer"
                 />
-                <label htmlFor="verify" className="text-body-sm text-dark cursor-pointer select-none">
+                <label htmlFor="verify" className="text-body-sm text-dark cursor-pointer select-none font-body">
                   Verify you are human
                 </label>
               </div>
-              <div className="flex items-center gap-2">
-  {/* Cloudflare Logo */}
-  <Image
-    src={auth.cloudflareLogo}
-    alt="Cloudflare"
-    width={75}
-    height={25}
-    className="object-contain"
-  />
-
-  {/* Text */}
-  
-</div>
+              <div className="flex flex-col items-end">
+                <Image
+                  src={auth.cloudflareLogo}
+                  alt="Cloudflare"
+                  width={75}
+                  height={25}
+                  className="object-contain"
+                />
+                <p className="text-[10px] text-dark-30 mt-0.5 font-body">Privacy • Terms</p>
+              </div>
             </div>
           </div>
 
@@ -137,13 +125,13 @@ export default function PhoneLoginPage() {
           <button
             onClick={handleSubmit}
             disabled={!isVerified || !phoneNumber}
-            className="w-full bg-prime hover:bg-prime disabled:bg-dark-20 disabled:cursor-not-allowed text-white text-button py-3 rounded-xl transition-all shadow-sm"
+            className="w-full bg-prime hover:bg-prime/90 disabled:bg-dark-20 disabled:cursor-not-allowed text-white text-button py-3 rounded-xl transition-all shadow-sm font-body font-semibold"
           >
             Continue
           </button>
 
           {/* Terms */}
-          <p className="text-caption text-dark-50 text-center mt-5 leading-relaxed">
+          <p className="text-caption text-dark-50 text-center mt-5 leading-relaxed font-body">
             By continuing, you agree to our{' '}
             <a href="#" className="text-dark underline hover:text-dark-70">
               T&C
