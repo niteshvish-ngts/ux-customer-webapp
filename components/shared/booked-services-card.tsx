@@ -36,7 +36,7 @@ export default function ServiceOfferCard({
       "
     >
       {/* DISCOUNT BADGE */}
-      {/* {discount && (
+      {discount && (
         <span
           className="
             absolute top-0 left-0 z-10
@@ -51,7 +51,7 @@ export default function ServiceOfferCard({
         >
           {discount}
         </span>
-      )} */}
+      )}
 
       {/* IMAGE */}
       <Image

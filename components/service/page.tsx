@@ -127,7 +127,7 @@ const installationRef = useRef<HTMLDivElement>(null);
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Check initial state
+    handleScroll(); 
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);

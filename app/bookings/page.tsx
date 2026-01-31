@@ -1,6 +1,7 @@
 "use client";
 
 import BookingCard from "@/components/bookings/page";
+import Navbar from "@/components/common/navbar/page";
 import { Booking } from "@/components/shared/images/image";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -10,9 +11,13 @@ export default function MyBookingsPage() {
   const router = useRouter();
 
   return (
+    <>
+    <Navbar/>
     <div className="min-h-screen bg-background font-[var(--font-outfit)]">
+
+
       {/* HEADER */}
-      <div className="border-b bg-muted/30">
+      <div className="">
         <div className="container py-5 flex items-center justify-between">
           {/* LEFT */}
           <div className="space-y-1">
@@ -45,17 +50,20 @@ export default function MyBookingsPage() {
           </div>
 
           {/* RIGHT FILTERS */}
-          <div className="flex gap-2 border rounded-lg overflow-hidden">
+          <div className="flex gap-2 border border-2  border-[#eef1f6] rounded-lg overflow-hidden 
+">
 
             {["All Bookings", "Cancelled", "Completed", "In warranty"].map(
               (item, i) => (
                 <button
                   key={i}
                   className="
-                    px-4 py-2
+                    px-2 py-2
                     rounded-lg
-                    text-sm font-medium
-                    hover:bg-muted
+                    text-sm font-semibold
+                    hover:bg-secondary
+                    font-lato
+
                   "
                 >
                   {item}
@@ -68,7 +76,7 @@ export default function MyBookingsPage() {
 
       {/* CONTENT */}
       <div className="container py-8 space-y-6">
-        <h2 className="text-lg font-medium">All Bookings</h2>
+        <h2 className="text-2xl font-medium">All Bookings</h2>
 
 <div
     className="
@@ -111,5 +119,6 @@ export default function MyBookingsPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

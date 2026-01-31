@@ -163,7 +163,7 @@ const ExploreService = () => {
       </div>
 
       {/* ONLY MOBILE - Grid */}
-      <div className="sm:hidden px-4">
+      <div className="sm:hidden px-3">
         <div className="flex items-center justify-between section-spacer-bottom">
           <div className="card-title text-2xl sm:text-4xl">Explore Services</div>
           <a href="/services" className="text-sm font-medium text-primary hover:underline">

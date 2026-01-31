@@ -229,7 +229,7 @@ body {
 @layer components {
   @screen sm {
     .container {
-      @apply max-w-[640px] px-16;
+      @apply max-w-[640px] px-12;
     }
   }
 

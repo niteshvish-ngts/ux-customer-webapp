@@ -79,7 +79,7 @@ export default function Navbar() {
   return (
     <header className="w-full border-b border-border bg-background relative z-50">
       <div className="container">
-        <div className="flex h-16 items-center justify-between gap-4">
+        <div className="flex h-20 items-center justify-between gap-4">
 
           {/* LEFT: Logo */}
           <Link href="/" className="flex items-center gap-2 shrink-0">
