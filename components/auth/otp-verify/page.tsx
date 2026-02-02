@@ -28,7 +28,7 @@ const handleVerifyOTP = async () => {
 };
 
   return (
-    <div className="min-h-screen bg-white flex items-start justify-center pt-8 pb-8 px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-white flex items-start justify-center pt-8 pb-8 px-5 relative overflow-hidden">
       {/* Decorative orange shapes in top corners */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-[#FFF5E2] rounded-full blur-3xl opacity-60 -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute top-0 right-0 w-64 h-64 bg-[#FFF5E2] rounded-full blur-3xl opacity-60 translate-x-1/2 -translate-y-1/2"></div>
@@ -36,12 +36,12 @@ const handleVerifyOTP = async () => {
       <div className="w-full max-w-lg relative z-10 mt-4">
         {/* Logo */}
         <div className="flex justify-center mb-3">
-          <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center p-2">
+          <div className=" flex items-center justify-center p-2">
             <Image
               src={logoImage.logoImg} 
               alt="Logo"
-              width={40}
-              height={40}
+              width={50}
+              height={50}
               className="object-contain"
             />
           </div>
@@ -53,9 +53,9 @@ const handleVerifyOTP = async () => {
         </h1>
 
         {/* Card */}
-        <div className="w-full bg-white rounded-[30px] border border-border p-6 md:p-8 shadow-sm">
+        <div className="w-full bg-white rounded-[30px] border border-border p-6 md:p-7 shadow-sm">
           {/* Phone Icon */}
-          <div className="mb-3">
+          <div className="mb-4">
             <Image
               src={auth.loginDialer}
               alt="Phone"
@@ -66,8 +66,8 @@ const handleVerifyOTP = async () => {
           </div>
 
           {/* Title with Edit phone */}
-          <div className="mb-1.5">
-            <h2 className="text-h4 text-dark font-heading font-semibold flex items-center justify-between flex-wrap gap-2">
+          <div className="mb-2">
+            <h2 className="text-h4 text-dark font-heading font-semibold flex items-center justify-between flex-wrap gap-1">
               <span className="flex-1 min-w-0">Enter OTP Sent to +91 987****12</span>
               <button
                 type="button"
@@ -86,12 +86,12 @@ const handleVerifyOTP = async () => {
           </div>
 
           {/* Subtitle */}
-          <p className="text-body-sm text-dark-50 mb-5 font-body">
+          <p className="text-body-sm text-dark-50 mb-6 font-body">
             Please be patient OTP waiting time is 1 minute
           </p>
 
           {/* OTP Inputs */}
-          <div className="flex justify-center gap-3 mb-5">
+          <div className="flex justify-center gap-3 mb-6">
             {otp.map((digit, index) => (
               <input
                 key={index}
@@ -99,7 +99,7 @@ const handleVerifyOTP = async () => {
                 value={digit}
                 onChange={(e) => handleChange(e.target.value, index)}
                 maxLength={1}
-                className="w-12 h-12 text-center text-lg font-body border border-border rounded-lg focus:ring-2 focus:ring-prime focus:border-transparent outline-none"
+                className="w-16 h-14 text-center text-lg font-body border border-border rounded-lg focus:ring-2 focus:ring-prime focus:border-transparent outline-none"
               />
             ))}
           </div>
@@ -114,13 +114,13 @@ const handleVerifyOTP = async () => {
           </button>
 
           {/* Terms */}
-          <p className="text-caption text-dark-50 text-center mt-5 leading-relaxed font-body">
+          <p className="text-caption text-muted-foreground text-start mt-6 leading-relaxed font-body text-sm">
             By continuing, you agree to our{' '}
-            <a href="#" className="text-dark underline hover:text-dark-70">
+            <a href="#" className="text-muted-foreground underline hover:text-dark-70">
               T&C
             </a>{' '}
             and{' '}
-            <a href="#" className="text-dark underline hover:text-dark-70">
+            <a href="#" className="text-muted-foreground underline hover:text-dark-70">
               privacy policy.
             </a>
           </p>

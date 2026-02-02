@@ -2,7 +2,11 @@
 "use client";
 import Image from "next/image";
 import React from "react";
+import { Info } from "lucide-react";
 import { Services } from "../shared/images/image";
+import ServiceDetailModal from "../ui/modals/service-detail-modal";
+import { useModal } from "@/hooks/useModals";
+
 interface ServiceCardProps {
   title: string;
   rating: string;
@@ -34,12 +38,17 @@ export default function ServiceCard({
   cartQty = 0,
   isSaver,
 }: ServiceCardProps) {
+  const modal = useModal();
+
   return (
-    <div className="bg-white rounded-2xl border border-[#E6EFFA] p-4 flex flex-col justify-between h-full">
+    <>
+      <div 
+        className="bg-white rounded-2xl border border-[#E6EFFA] p-4 flex flex-col justify-between h-full hover:shadow-md transition-shadow"
+      >
   {/* TOP */}
   <div>
-    <div className="flex justify-between">
-      <div>
+    <div className="flex justify-between items-start">
+      <div className="flex-1">
         <p className="text-xs text-dark mb-1 flex items-center gap-1 font-lato font-regular">
 <Image
 src={Services.serviceImg1}
@@ -56,7 +65,17 @@ className="object-contain"
         </h3>
       </div>
 
-      
+      {/* Info Icon Button */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          modal.openModal();
+        }}
+        className="w-6 h-6 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors shrink-0 ml-2"
+        aria-label="View service details"
+      >
+        <Info className="w-4 h-4 text-dark" />
+      </button>
     </div>
 
     <p className="text-xs text-muted-foreground mt-2">
@@ -129,5 +148,22 @@ className="object-contain"
   </div>
 </div>
 
+      <ServiceDetailModal
+        open={modal.open}
+        onClose={modal.closeModal}
+        title={title}
+        rating={rating}
+        account={account}
+        time={time}
+        pricePerUnit={pricePerUnit}
+        originalPrice={originalPrice}
+        discountedPrice={discountedPrice}
+        description={description}
+        onAdd={onAdd}
+        onIncrease={onIncrease}
+        onDecrease={onDecrease}
+        cartQty={cartQty}
+      />
+    </>
   );
 }
