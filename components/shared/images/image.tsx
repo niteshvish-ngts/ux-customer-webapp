@@ -32,6 +32,9 @@ import img12 from "@/public/assets/images/Hero-section/img12.png"
 import img13 from "@/public/assets/images/Hero-section/img13.png"  
 import img14 from "@/public/assets/images/Hero-section/img14.png"  
 import img15 from "@/public/assets/images/Hero-section/img15.png"  
+import star5 from "@/public/assets/images/Hero-section/stars-5.svg"
+import Shape from "@/public/assets/images/Hero-section/Shape.svg"
+import stars5 from "@/public/assets/images/Hero-section/stars5.svg"
 // auth
 import Phone from "@/public/assets/auth/Phone.png"
 import CloudflareLogo from "@/public/assets/auth/CloudflareLogo.png"
@@ -95,11 +98,13 @@ export const HeroImage = {
   heroImg5: Star,
   heroImg6: Group,
   heroImg7: Frame,
+  HeroImg8:star5,
+    HeroImg9:Shape,
+    HeroImg10:stars5,
 //   heroImg8:AC,
   heroImgbanner1:Vector1,
   heroImgbanner2:Vector2,
   heroImgbanner3:Vector3
-  
 
   
 };

@@ -129,7 +129,7 @@ const ExploreService = () => {
   const parsedCategory = selectedCategory ? JSON.parse(selectedCategory) : null;
 
   return (
-    <section className="section-spacer ">
+    <section className="section-spacer  ">
       {/* DESKTOP/TABLET ONLY - Carousel */}
       <div className="hidden sm:block">
         <CarouselSection

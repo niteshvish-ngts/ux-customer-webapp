@@ -82,7 +82,7 @@ const CleaningNeeds = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
-    <section className="section-spacing">
+    <section className="section-spacing md:px-0 px-2">
       <CarouselSection<ServiceOffer>
         title="Cleaning Needs"
         description="Basic cleaning required for your home"

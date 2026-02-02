@@ -6,6 +6,8 @@ import { Search, ShoppingCart, Menu, X } from "lucide-react";
 import Image from "next/image";
 import { logoImage } from "@/components/shared/images/image";
 import { ChevronDown } from "lucide-react";
+import { IoMdArrowDropdown } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -75,7 +77,7 @@ export default function Navbar() {
       viewAll: true,
     },
   ];
-
+const route = useRouter();
   return (
     <header className="w-full border-b border-border bg-background relative z-50">
       <div className="container">
@@ -83,7 +85,7 @@ export default function Navbar() {
 
           {/* LEFT: Logo */}
           <Link href="/" className="flex items-center gap-2 shrink-0">
-            <div className="relative w-10 h-10 shrink-0">
+            <div className="relative w-11 h-11 shrink-0">
               <Image
                 src={logoImage.logoImg}
                 alt="UrbanXperts Logo"
@@ -92,7 +94,7 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <span className="font-heading font-medium text-xl text-foreground">
+            <span className="font-outfit font-medium text-xl text-dark">
               UrbanXperts
             </span>
           </Link>
@@ -113,7 +115,7 @@ export default function Navbar() {
                 "
               >
                 Services
-                <ChevronDown className={`w-4 h-4 transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
+                <IoMdArrowDropdown  className={`w-4 h-4 transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
             </div>
 
@@ -124,12 +126,12 @@ export default function Navbar() {
 
           {/* SEARCH */}
           <div className="hidden md:flex flex-1 max-w-md relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-dark" />
             <input
               type="text"
               placeholder="Search"
               className="
-                w-full pl-9 pr-3 py-2 text-sm
+                w-full pl-9 pr-3 py-2.5 text-sm
                 bg-background text-foreground
                 border border-input rounded-md
                 focus-visible:outline-none
@@ -142,23 +144,23 @@ export default function Navbar() {
           {/* RIGHT ACTIONS */}
           <div className="flex items-center gap-3">
             <button
-              onClick={() => window.open("https://wa.link/pfsm61", "_blank")}
+              onClick={() => route.push('/cart')}
               className="
-                p-2 rounded-2xl
+                p-2.5 rounded-3xl
                 text-muted-foreground
                 border border-border 
                 hover:bg-muted
                 transition
               "
             >
-              <ShoppingCart className="w-5 h-5 text-black" />
+              <ShoppingCart className="w-5 h-5 text-dark" />
             </button>
 
             <Link
               href="/login"
               className="
                 hidden sm:inline-flex items-center justify-center
-                px-6 py-2 text-sm font-body
+                px-6.5 py-2.5 text-sm font-body
                 border border-border rounded-md
                 text-black
                 hover:bg-muted

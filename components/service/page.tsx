@@ -121,7 +121,6 @@ const installationRef = useRef<HTMLDivElement>(null);
     const handleScroll = () => {
       if (headerRef.current) {
         const rect = headerRef.current.getBoundingClientRect();
-        // When header section is scrolled past, make cart sticky
         setIsSticky(rect.bottom <= 0);
       }
     };

@@ -24,7 +24,7 @@ export default function ServiceOfferCardMobile({
   originalPrice,
 }: Props) {
   return (
-    <div className="w-full">
+    <div className="w-45 leading-2 ">
       {/* IMAGE */}
       <div className="relative aspect-square rounded-2xl overflow-hidden">
         <Image
@@ -33,14 +33,14 @@ export default function ServiceOfferCardMobile({
           fill
           className="object-cover"
         />
-      </div>
+      </div> 
 
       {/* CONTENT */}
       <div className="mt-3 space-y-1">
-        <p className="text-xs font-semibold leading-tight">
+        <p className="text-sm font-medium leading-tight font-outfit">
           {title}
           <br />
-          <span className="font-normal text-muted-foreground">
+          <span className="font-medium ">
             {subtitle}
           </span>
         </p>
@@ -54,7 +54,7 @@ export default function ServiceOfferCardMobile({
 
         {/* PRICE */}
         <div className="flex items-center gap-2">
-          <span className="text-base font-semibold text-ter">
+          <span className="text-base font-semibold text-prime">
             {price}
           </span>
           <span className="text-xs text-muted-foreground line-through">

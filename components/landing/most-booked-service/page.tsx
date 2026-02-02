@@ -81,7 +81,7 @@ const MostBookedService = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
-    <section>
+    <section className="md:px-0 px-2">
       <CarouselSection
         title="Most Booked Services"
         showArrows={true}

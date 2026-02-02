@@ -2,6 +2,7 @@
 
 import Image, { StaticImageData } from "next/image";
 import { Star } from "lucide-react";
+import { HeroImage } from "./images/image";
 
 type ServiceOfferCardProps = {
   image: string | StaticImageData;
@@ -42,7 +43,7 @@ export default function ServiceOfferCard({
             absolute top-0 left-0 z-10
             bg-[var(--green)] text-white
             text-xs font-semibold
-            px-4 py-2
+            px-5 py-2
             rounded-tr-2xl
             rounded-bl-2xl
             rounded-br-full
@@ -69,13 +70,12 @@ export default function ServiceOfferCard({
         {/* RATING */}
         <div className="text-center space-y-1">
           <div className="flex items-center justify-center gap-1">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                className="w-4 h-4 fill-ter text-ter"
-              />
-            ))}
-          </div>
+  <Image 
+    src={HeroImage.HeroImg10} 
+    alt="5 stars rating" 
+    className="h-4 w-auto"
+  />
+</div>
           <span className="text-body-sm">
             {rating} rated ({reviews})
           </span>
@@ -93,7 +93,7 @@ export default function ServiceOfferCard({
 
         {/* CTA */}
         <div className="flex items-center justify-between pt-3 border-t border-white/20">
-          <span className="text-body-sm">
+          <span className="text-sm font-lato font-semibold ">
             Book Service @
             <span className="font-semibold text-prime text-sm">
               {price}

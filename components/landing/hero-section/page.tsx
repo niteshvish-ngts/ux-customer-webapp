@@ -6,7 +6,7 @@ import { HeroImage, icon } from "../../shared/images/image";
 
 export default function HeroSection() {
   return (
-    <section className="w-full bg-background mt-10">
+    <section className="w-full bg-background mt-6">
       <div className="py-10">
         {/* Container with right padding zero to prevent right overflow */}
         <div className="container pr-0 lg:pr-0">
@@ -14,7 +14,7 @@ export default function HeroSection() {
             className="
               grid grid-cols-1
               lg:grid-cols-[671px_519px]
-              gap-[35px]
+              gap-[45px]
               items-center
               justify-between
             "
@@ -34,28 +34,29 @@ export default function HeroSection() {
             >
               {/* Trustpilot */}
               <div className="flex flex-col sm:flex-row items-center gap-2 text-xs text-muted-foreground">
-                <span className="flex items-center gap-1">
-                  {[...Array(5)].map((_, index) => (
-                    <span
-                      key={index}
-                      className="bg-[#219653] px-1 py-1 text-white leading-none"
-                    >
-                      {icon.star}
-                    </span>
-                  ))}
-                </span>
+                <span className="flex items-center">
+  <Image 
+    src={HeroImage.HeroImg8} 
+    alt="5 stars rating" 
+    className="h-5 w-auto"
+  />
+</span>
 
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1.5">
                   <a
                     href="#reviews"
                     className="underline text-black hover:text-foreground transition font-bold"
                   >
-                    436 <span className="font-medium">reviews on</span>
+                    436 <span className="font-semibold">reviews on</span>
                   </a>
                   <span className="flex items-center gap-1 text-label-12 text-foreground">
-                    <span className="text-[#219653] text-xs">
-                      {icon.star}
-                    </span>
+                    <span className="inline-flex items-center">
+  <Image 
+    src={HeroImage.HeroImg9} 
+    alt="stars" 
+    className="h-4 w-auto"
+  />
+</span>
                     Trustpilot
                   </span>
                 </div>
@@ -70,7 +71,7 @@ export default function HeroSection() {
               </h1>
 
               {/* Description */}
-              <p className="font-body text-muted-foreground max-w-xl mx-auto lg:mx-0">
+              <p className="text-muted-foreground max-w-xl mx-auto lg:mx-0 font-inter text-base  leading-relaxed">
                 Trusted experts for AC, Appliance, Electrical, Plumbing, and more
                 with real-time tracking, verified visits, transparent pricing, and
                 secure job completion.
@@ -79,7 +80,7 @@ export default function HeroSection() {
               {/* Search Box */}
               <div className="flex flex-col sm:flex-row gap-3 w-full max-w-[670px] mx-auto lg:mx-0">
                 <div className="relative flex-1">
-                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" />
+                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 " />
                   <input
                     type="text"
                     placeholder="Enter Location"
@@ -110,7 +111,7 @@ export default function HeroSection() {
               {/* Popular Services */}
               <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between w-full gap-4">
                 <div className="space-y-2 text-center lg:text-left">
-                  <p className="text-sm">Popular services</p>
+                  <p className="text-base font-semibold">Popular services</p>
                   <div className="flex flex-wrap justify-center lg:justify-start gap-2">
                     {["AC Repair", "Electrical Fitting", "Painting"].map((item) => (
                       <span
@@ -122,12 +123,12 @@ export default function HeroSection() {
                     ))}
                   </div>
 
-                  <button
+                  {/* <button
                     onClick={() => window.open("https://wa.link/pfsm61", "_blank")}
                     className="mt-4 px-6 py-2 rounded-full bg-[var(--green)] border-2 border-[var(--green)] text-white hover:bg-[var(--lightgreen)] hover:text-[var(--green)] transition"
                   >
                     Get A Quote
-                  </button>
+                  </button> */}
                 </div>
 
                 <a
@@ -139,33 +140,75 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* RIGHT IMAGES - Normal flow mein, scroll ke saath move karega */}
+            {/* RIGHT IMAGES -  */}
             <div className="hidden lg:block w-[519px] h-[519px]">
-              <div className="grid grid-cols-2 gap-5 h-full">
-                <div className="flex flex-col gap-4">
-                  <div className="relative h-[319px] rounded-[20px] overflow-hidden">
-                    <Image src={HeroImage.heroImg2} alt="" fill className="object-cover" />
-                    <Image src={HeroImage.heroImg5} alt="" width={52} height={52} className="absolute top-0 left-0" />
-                  </div>
+  <div className="grid grid-cols-2 gap-5 h-full">
+    <div className="flex flex-col gap-4">
+      {/* First Card with Star */}
+      <div className="relative h-[319px] rounded-[20px] overflow-hidden">
+        <Image 
+          src={HeroImage.heroImg5} 
+          alt="" 
+          width={40} 
+          height={40} 
+          className="absolute top-0 -left-4 z-10" 
+        />
+        <Image 
+          src={HeroImage.heroImg2} 
+          alt="" 
+          fill 
+          className="object-cover" 
+        />
+      </div>
 
-                  <div className="relative h-[180px] rounded-[20px] overflow-hidden">
-                    <Image src={HeroImage.heroImg4} alt="" fill className="object-cover" />
-                  </div>
-                </div>
+      {/* Second Card */}
+      <div className="relative h-[180px] rounded-[20px] overflow-hidden">
+        <Image 
+          src={HeroImage.heroImg4} 
+          alt="" 
+          fill 
+          className="object-cover" 
+        />
+      </div>
+    </div>
 
-                <div className="flex flex-col gap-4">
-                  <div className="relative h-[180px] rounded-[20px] overflow-hidden">
-                    <Image src={HeroImage.heroImg3} alt="" fill className="object-cover" />
-                    <Image src={HeroImage.heroImg6} alt="" width={52} height={52} className="absolute -top-3 -right-5" />
-                  </div>
+    <div className="flex flex-col gap-4">
+      {/* Third Card with Star */}
+      <div className="relative h-[180px] rounded-[20px] overflow-hidden">
+        <Image 
+          src={HeroImage.heroImg6} 
+          alt="" 
+          width={40} 
+          height={40} 
+          className="absolute top-3 right-3 z-10" 
+        />
+        <Image 
+          src={HeroImage.heroImg3} 
+          alt="" 
+          fill 
+          className="object-cover" 
+        />
+      </div>
 
-                  <div className="relative h-[319px] rounded-[20px] overflow-hidden">
-                    <Image src={HeroImage.heroImg1} alt="" fill className="object-cover" />
-                    <Image src={HeroImage.heroImg7} alt="" width={48} height={48} className="absolute bottom-0 right-0" />
-                  </div>
-                </div>
-              </div>
-            </div>
+      {/* Fourth Card with Circle */}
+      <div className="relative h-[319px] rounded-[20px] overflow-hidden">
+        <Image 
+          src={HeroImage.heroImg7} 
+          alt="" 
+          width={40} 
+          height={40} 
+          className="absolute bottom-0 right-0 z-10" 
+        />
+        <Image 
+          src={HeroImage.heroImg1} 
+          alt="" 
+          fill 
+          className="object-cover" 
+        />
+      </div>
+    </div>
+  </div>
+</div>
           </div>
         </div>
       </div>

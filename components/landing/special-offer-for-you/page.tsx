@@ -52,7 +52,7 @@ const SpecialOfferForYou = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
-    <section className="section-spacing ">
+    <section className="section-spacing md:px-0 px-3">
     <CarouselSection
       title="Special Offers For You"
     

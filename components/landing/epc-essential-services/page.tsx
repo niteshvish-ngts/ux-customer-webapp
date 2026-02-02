@@ -83,7 +83,7 @@ const EpcEssentialServices = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
-    <section className="section-spacing">
+    <section className="section-spacing md:px-0 px-2">
       <CarouselSection<ServiceOffer>
         title="EPC Essential Services"
         description="Quick fixes and essential home services"

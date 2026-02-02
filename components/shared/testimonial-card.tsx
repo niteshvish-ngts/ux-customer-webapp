@@ -1,17 +1,20 @@
+  "use client"
 import { Star } from "lucide-react";
+import { HeroImage } from "./images/image";
+import Image from "next/image";
 
 type TestimonialCardProps = {
   rating: number;
-  text: string;
   name: string;
   role: string;
+  review: string;
 };
 
 export default function TestimonialCard({
   rating,
-  text,
   name,
   role,
+  review,
 }: TestimonialCardProps) {
   return (
     <div
@@ -30,24 +33,24 @@ export default function TestimonialCard({
       {/* TOP CONTENT */}
       <div>
         {/* RATING */}
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-5">
           <div className="flex gap-1">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                className="w-4 h-4 fill-ter text-ter"
-              />
-            ))}
-          </div>
+  <Image  
+    src={HeroImage.HeroImg10} 
+    alt="5 stars rating" 
+    className="h-5 w-auto"
+  />
+</div>
 
-          <span className="text-base text-prime font-semibold">
+          <span className="text-base text-prime font-bold font-lato">
             {rating} rated
           </span>
         </div>
 
         {/* TEXT */}
-        <p className="text-body-14 ">
-  {text}
+        
+<p className="text-body-14 ">
+  {review}
 </p>
 
       </div>
