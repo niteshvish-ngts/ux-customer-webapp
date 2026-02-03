@@ -5,10 +5,11 @@ import ServiceCard from "@/components/service/service-card";
 import CartSidebar from "@/components/service/cart";
 import Navbar from "../common/navbar/page";
 import Image from "next/image";
-import { Booking, Services } from "../shared/images/image";
-import Router from "next/router";
+import { Services } from "../shared/images/image";
 import { useState, useRef, useEffect } from "react";
 import Footer from "../common/footer/page";
+import BottomNavbar from "../common/bottom-navbar/page";
+import { useRouter } from "next/navigation";
 
 type CartItem = {
   id: string;
@@ -116,6 +117,8 @@ const installationRef = useRef<HTMLDivElement>(null);
 
   const headerRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
+  const [activeTab, setActiveTab] = useState("Maxx Saver");
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -131,11 +134,24 @@ const installationRef = useRef<HTMLDivElement>(null);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Calculate cart totals
+  const total = cartItems.reduce(
+    (sum, item) => sum + item.price * item.qty,
+    0
+  );
+
+  const originalTotal = cartItems.reduce(
+    (sum, item) => sum + item.oldPrice * item.qty,
+    0
+  );
+
+  const savings = originalTotal - total;
+
   return (
     <>
       <Navbar />
       <div className=" bg-background " ref={headerRef}>
-        <div className="container flex items-center justify-between py-5">
+        <div className="container flex flex-col lg:flex-row lg:items-center lg:justify-between py-5 gap-4">
           {/* LEFT */}
           <div>
             <h1 className="text-4xl font-semibold text-dark leading-tight">
@@ -158,62 +174,73 @@ const installationRef = useRef<HTMLDivElement>(null);
             </div>
           </div>
 
-          {/* RIGHT FILTERS */}
-          <div className="flex items-center gap-1 rounded-lg border bg-background p-1">
+          {/* RIGHT FILTERS - Desktop: Right side, Mobile: Below title */}
+          <div className="flex items-center gap-1 rounded-lg border bg-background p-1 w-full lg:w-auto">
             <button
-  onClick={() =>
-    maxxSaverRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    })
-  }
-  className="rounded-md px-4 py-1.5 text-sm font-semibold text-dark hover:bg-muted"
->
-  Maxx Saver
-</button>
+              onClick={() => {
+                setActiveTab("Maxx Saver");
+                maxxSaverRef.current?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+              className={`rounded-md px-4 py-1.5 text-sm font-semibold text-dark hover:bg-muted flex-1 lg:flex-none ${
+                activeTab === "Maxx Saver" ? "bg-muted" : ""
+              }`}
+            >
+              Maxx Saver
+            </button>
 
-<button
-  onClick={() =>
-    serviceRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    })
-  }
-  className="rounded-md px-4 py-1.5 text-sm font-semibold text-dark hover:bg-muted"
->
-  Service
-</button>
+            <button
+              onClick={() => {
+                setActiveTab("Service");
+                serviceRef.current?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+              className={`rounded-md px-4 py-1.5 text-sm font-semibold text-dark hover:bg-muted flex-1 lg:flex-none ${
+                activeTab === "Service" ? "bg-muted" : ""
+              }`}
+            >
+              Service
+            </button>
 
-<button
-  onClick={() =>
-    repairRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    })
-  }
-  className="rounded-md px-4 py-1.5 text-sm font-semibold text-dark hover:bg-muted"
->
-  Repair
-</button>
+            <button
+              onClick={() => {
+                setActiveTab("Repair");
+                repairRef.current?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+              className={`rounded-md px-4 py-1.5 text-sm font-semibold text-dark hover:bg-muted flex-1 lg:flex-none ${
+                activeTab === "Repair" ? "bg-muted" : ""
+              }`}
+            >
+              Repair
+            </button>
 
-<button
-  onClick={() =>
-    installationRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    })
-  }
-  className="rounded-md px-4 py-1.5 text-sm font-semibold text-dark hover:bg-muted"
->
-  Installation
-</button>
-
+            <button
+              onClick={() => {
+                setActiveTab("Installation");
+                installationRef.current?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+              className={`rounded-md px-4 py-1.5 text-sm font-semibold text-dark hover:bg-muted flex-1 lg:flex-none ${
+                activeTab === "Installation" ? "bg-muted" : ""
+              }`}
+            >
+              Installation
+            </button>
           </div>
         </div>
       </div>
 
       {/* CONTENT */}
-      <div className="container py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="container py-8 pb-24 lg:pb-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* SERVICES */}
         <div className="lg:col-span-2 space-y-10">
           <section  ref={maxxSaverRef}>
@@ -469,18 +496,49 @@ const installationRef = useRef<HTMLDivElement>(null);
           
       </div>
 
-        {/* CART */}
- 
-        <CartSidebar
-          cartItems={cartItems}
-          increaseQty={increaseQty}
-          decreaseQty={decreaseQty}
-          updateItemQty={updateItemQty}
-        />
-       
+        {/* CART - Hidden on mobile, visible on desktop */}
+        <div className="hidden lg:block">
+          <CartSidebar
+            cartItems={cartItems}
+            increaseQty={increaseQty}
+            decreaseQty={decreaseQty}
+            updateItemQty={updateItemQty}
+          />
+        </div>
         
       </div>
+
+      {/* Mobile Cart Bottom Bar */}
+      {cartItems.length > 0 && (
+        <div className="lg:hidden fixed bottom-16 left-0 right-0 z-40 bg-white border-t border-gray-200 shadow-lg">
+          {savings > 0 && (
+            <div className="bg-green-500 text-white text-center py-2 px-4 text-sm font-medium">
+              Congratulations! you saved ₹{savings.toLocaleString('en-IN')} so far!
+            </div>
+          )}
+          <div className="flex items-center justify-between px-4 py-3">
+            <div className="flex flex-col">
+              <span className="text-lg font-semibold text-dark">
+                ₹{total.toLocaleString('en-IN')}
+              </span>
+              {originalTotal > total && (
+                <span className="text-xs text-gray-400 line-through">
+                  ₹{originalTotal.toLocaleString('en-IN')}
+                </span>
+              )}
+            </div>
+            <button
+              onClick={() => router.push("/cart")}
+              className="bg-prime text-white px-6 py-2.5 rounded-lg font-semibold text-sm"
+            >
+              View Cart
+            </button>
+          </div>
+        </div>
+      )}
+
       <Footer/>
+      <BottomNavbar />
   </>
   );
 }

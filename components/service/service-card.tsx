@@ -5,6 +5,7 @@ import React from "react";
 import { Info } from "lucide-react";
 import { Services } from "../shared/images/image";
 import ServiceDetailModal from "../ui/modals/service-detail-modal";
+import RatingsFaqModal from "../ui/modals/ratings-faq-modal";
 import { useModal } from "@/hooks/useModals";
 
 interface ServiceCardProps {
@@ -39,6 +40,7 @@ export default function ServiceCard({
   isSaver,
 }: ServiceCardProps) {
   const modal = useModal();
+  const ratingsModal = useModal();
 
   return (
     <>
@@ -49,16 +51,22 @@ export default function ServiceCard({
   <div>
     <div className="flex justify-between items-start">
       <div className="flex-1">
-        <p className="text-xs text-dark mb-1 flex items-center gap-1 font-lato font-regular">
-<Image
-src={Services.serviceImg1}
-alt="rating star"
-width={14}
-height={14}
-className="object-contain"
-/>
-{rating}
-</p>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            ratingsModal.openModal();
+          }}
+          className="text-xs text-dark mb-1 flex items-center gap-1 font-lato font-regular hover:opacity-80 transition-opacity underline underline-offset-4"
+        >
+          <Image
+            src={Services.serviceImg1}
+            alt="rating star"
+            width={14}
+            height={14}
+            className="object-contain"
+          />
+          {rating}
+        </button>
 
         <h3 className="text-lg font-medium text-black leading-snug font-outfit">
           {title}
@@ -163,6 +171,13 @@ className="object-contain"
         onIncrease={onIncrease}
         onDecrease={onDecrease}
         cartQty={cartQty}
+      />
+
+      <RatingsFaqModal
+        open={ratingsModal.open}
+        onClose={ratingsModal.closeModal}
+        rating={rating}
+        account={account}
       />
     </>
   );

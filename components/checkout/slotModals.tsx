@@ -7,6 +7,7 @@ type Props = {
   open: boolean;
   onClose: () => void;
   onProceed: () => void;
+  onSlotSelect?: (day: string, date: number, time: string) => void;
 };
 
 const days = [
@@ -32,17 +33,26 @@ export default function SlotModal({
   open,
   onClose,
   onProceed,
+  onSlotSelect,
 }: Props) {
   const [selectedDay, setSelectedDay] = useState(21);
   const [selectedTime, setSelectedTime] = useState("09:00 AM");
 
+  const handleProceed = () => {
+    const selectedDayData = days.find(d => d.date === selectedDay);
+    if (selectedDayData && onSlotSelect) {
+      onSlotSelect(selectedDayData.day, selectedDay, selectedTime);
+    }
+    onProceed();
+  };
+
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+    <div className="fixed inset-0 z-50 flex items-end lg:items-center justify-center bg-black/40">
 
       {/* MODAL */}
-      <div className="w-full max-w-md rounded-2xl bg-white shadow-lg">
+      <div className="w-full max-w-md rounded-t-2xl lg:rounded-2xl bg-white shadow-lg max-h-[90vh] lg:max-h-none overflow-y-auto">
 
         {/* HEADER */}
         <div className="flex items-start justify-between px-6 py-4 border-b">
@@ -115,7 +125,7 @@ export default function SlotModal({
         {/* FOOTER */}
         <div className="px-6 py-4 border-t">
           <button
-            onClick={onProceed}
+            onClick={handleProceed}
             className="w-full rounded-xl bg-prime hover:bg-prime text-white py-3 text-sm font-semibold"
           >
             Proceed to Payment
