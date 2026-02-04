@@ -395,7 +395,7 @@ Checkout                    </button>
 
           {/* RIGHT COLUMN - Mobile: Show first, Desktop: Show on right */}
           <div className="space-y-6 order-1 lg:order-2">
-                          <h2 className="hidden lg:block font-semibold text-slate-900 mb-4">Items in Cart</h2>
+                          <h2 className="hidden lg:block font-semibold text-slate-900 mb-2">Items in Cart</h2>
 
             {/* Items in Cart */}
             <div className="bg-white rounded-lg border border-[#E6EFFA] p-6">
