@@ -16,6 +16,15 @@ export default function CheckoutFlow() {
   const [contactFormOpen, setContactFormOpen] = useState<boolean>(false);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<{day: string, date: number, time: string} | null>(null);
   
+  const [contactInfo, setContactInfo] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+  });
+  const [contactSubmitted, setContactSubmitted] = useState<boolean>(false);
+  const [contactError, setContactError] = useState<string>("");
+  
   // Cart items with quantities
   const [cartItems, setCartItems] = useState([
     { id: 1, name: "Foam-Jet service (2 AC's) X 1", price: 2000, originalPrice: 3200, quantity: 1 },
@@ -34,6 +43,23 @@ export default function CheckoutFlow() {
     setCartItems(prev => prev.map(item => 
       item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
     ));
+  };
+
+  const submitContactInfo = () => {
+    const firstName = contactInfo.firstName.trim();
+    const lastName = contactInfo.lastName.trim();
+    const phone = contactInfo.phone.trim();
+    const email = contactInfo.email.trim();
+
+    if (!firstName || !lastName || !phone || !email) {
+      setContactError("Please fill all contact details.");
+      return false;
+    }
+
+    setContactError("");
+    setContactSubmitted(true);
+    setContactFormOpen(false);
+    return true;
   };
 
   const handleAddressSelect = (title?: string, address?: string) => {
@@ -74,12 +100,12 @@ export default function CheckoutFlow() {
 Checkout                    </button>
           <div className="flex items-center gap-4">
             <button className="p-2 hover:bg-slate-100 rounded-lg transition-colors">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {/* <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
+              </svg> */}
             </button>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-pink-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+              <div className="w-8 h-8 bg-linear-to-br from-orange-400 to-pink-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
                 N
               </div>
               <span className="text-sm font-medium">Nitesh </span>
@@ -88,7 +114,7 @@ Checkout                    </button>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-6 py-8 pb-24 lg:pb-8">
+      <div className="max-w-7xl mx-auto px-6 py-8 pb-36 lg:pb-8">
         {/* Checkout Heading and Savings Banner - Top (Both Mobile & Desktop) */}
         <div className="mb-6">
           <h2 className="font-semibold text-xl mb-4">Checkout</h2>
@@ -161,12 +187,49 @@ Checkout                    </button>
                 </div>
                 {/* Contact Form Fields - Mobile Expandable */}
                 {contactFormOpen && (
-                  <div className="grid grid-cols-1 gap-4 mt-4">
-                    <InputField label="First Name" value="" />
-                    <InputField label="Last Name" value="" />
-                    <InputField label="Phone" value="" />
-                    <InputField label="Email" value="" />
-                  </div>
+                  <>
+                    <div className="grid grid-cols-1 gap-4 mt-4">
+                      <InputField
+                        label="First Name"
+                        value={contactInfo.firstName}
+                        onChange={(v) =>
+                          setContactInfo((p) => ({ ...p, firstName: v }))
+                        }
+                      />
+                      <InputField
+                        label="Last Name"
+                        value={contactInfo.lastName}
+                        onChange={(v) =>
+                          setContactInfo((p) => ({ ...p, lastName: v }))
+                        }
+                      />
+                      <InputField
+                        label="Phone"
+                        value={contactInfo.phone}
+                        onChange={(v) => setContactInfo((p) => ({ ...p, phone: v }))}
+                      />
+                      <InputField
+                        label="Email"
+                        value={contactInfo.email}
+                        onChange={(v) => setContactInfo((p) => ({ ...p, email: v }))}
+                      />
+                    </div>
+                    {contactError && (
+                      <p className="mt-3 text-xs text-red-600">{contactError}</p>
+                    )}
+                    {contactSubmitted && !contactError && (
+                      <p className="mt-3 text-xs text-green-600">
+                        Contact details saved.
+                      </p>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => submitContactInfo()}
+                      className="mt-4 w-full bg-prime hover:bg-prime text-white py-2.5 rounded-lg text-sm font-semibold transition-colors"
+                    >
+                      Save Details
+                    </button>
+                  </>
                 )}
               </div>
 
@@ -242,6 +305,14 @@ Checkout                    </button>
                 <Image src={Checkout.checkoutImg4} alt="" className="w-5 h-5" />
                 <h2 className="text-base font-semibold text-black">Contact Information</h2>
                 </div>
+                {/* Desktop: Save button */}
+                <button
+                  type="button"
+                  onClick={() => submitContactInfo()}
+                  className="hidden lg:inline text-xs text-prime font-medium underline"
+                >
+                  Save
+                </button>
                 {/* Edit button - only on mobile */}
                 <button
                   onClick={() => setContactFormOpen(!contactFormOpen)}
@@ -254,10 +325,26 @@ Checkout                    </button>
               {/* Contact Form Fields - Desktop: always visible, Mobile: toggle */}
               <div className={`${contactFormOpen ? 'block' : 'hidden lg:block'}`}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <InputField label="First Name" value="" />
-                <InputField label="Last Name" value="" />
-                <InputField label="Phone" value="" />
-                <InputField label="Email" value="" />
+                <InputField
+                  label="First Name"
+                  value={contactInfo.firstName}
+                  onChange={(v) => setContactInfo((p) => ({ ...p, firstName: v }))}
+                />
+                <InputField
+                  label="Last Name"
+                  value={contactInfo.lastName}
+                  onChange={(v) => setContactInfo((p) => ({ ...p, lastName: v }))}
+                />
+                <InputField
+                  label="Phone"
+                  value={contactInfo.phone}
+                  onChange={(v) => setContactInfo((p) => ({ ...p, phone: v }))}
+                />
+                <InputField
+                  label="Email"
+                  value={contactInfo.email}
+                  onChange={(v) => setContactInfo((p) => ({ ...p, email: v }))}
+                />
               </div>
               </div>
 
@@ -394,7 +481,7 @@ Checkout                    </button>
           </div>
 
           {/* RIGHT COLUMN - Mobile: Show first, Desktop: Show on right */}
-          <div className="space-y-6 order-1 lg:order-2">
+          <div className="space-y-6 order-1 lg:order-2 lg:-mt-24">
                           <h2 className="hidden lg:block font-semibold text-slate-900 mb-2">Items in Cart</h2>
 
             {/* Items in Cart */}
@@ -460,8 +547,15 @@ Checkout                    </button>
       </div>
 
       {/* Sticky Bottom Button for Mobile - Sequence: Select Address -> Select Time Slot -> Proceed To Pay */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 shadow-lg p-4">
-        {!addressSelected ? (
+      <div className="lg:hidden fixed bottom-16 left-0 right-0 z-40 bg-white border-t border-gray-200 shadow-lg p-4">
+        {contactFormOpen ? (
+          <button
+            onClick={() => submitContactInfo()}
+            className="w-full bg-prime hover:bg-prime text-white py-3 rounded-lg text-sm font-semibold transition-colors"
+          >
+            Save Details
+          </button>
+        ) : !addressSelected ? (
           <button
             onClick={() => setAddressModalOpen(true)}
             className="w-full bg-prime hover:bg-prime text-white py-3 rounded-lg text-sm font-semibold transition-colors"
@@ -506,16 +600,18 @@ Checkout                    </button>
 interface InputFieldProps {
   label: string;
   value: string;
+  onChange?: (value: string) => void;
 }
 
-function InputField({ label, value }: InputFieldProps) {
+function InputField({ label, value, onChange }: InputFieldProps) {
   return (
     <div>
       <label className="block text-xs font-medium text-slate-700 mb-1.5">{label}</label>
       <input
         type="text"
         value={value}
-        readOnly
+        onChange={(e) => onChange?.(e.target.value)}
+        readOnly={!onChange}
         className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-900"
       />
     </div>

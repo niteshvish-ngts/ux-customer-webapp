@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Booking, Cart } from "../shared/images/image";
+import BottomNavbar from "../common/bottom-navbar/page";
 
 export default function EmptyCartPage() {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function EmptyCartPage() {
       </div>
 
       {/* CENTER CONTENT */}
-      <div className="flex flex-col items-center justify-center text-center h-[calc(100vh-56px)] px-4">
+      <div className="flex flex-col items-center justify-center text-center h-[calc(100vh-56px)] px-4 pb-24">
         {/* ICON */}
         <div className="relative mb-7">
           <div className="w-22 h-22 rounded-full bg-orange-50 flex items-center justify-center">
@@ -56,6 +57,7 @@ export default function EmptyCartPage() {
           Back Home
         </button>
       </div>
+      <BottomNavbar />
     </div>
   );
 }

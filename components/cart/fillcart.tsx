@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Booking, Cart } from "../shared/images/image";
 import { useState } from "react";
+import BottomNavbar from "../common/bottom-navbar/page";
 
 export default function CartPage() {
   const router = useRouter();
@@ -106,7 +107,7 @@ const totalPayable = cartTotal - totalDiscount;
       </div>
 
       {/* CONTENT */}
-      <div className="container py-8 grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-8">
+      <div className="container py-8 pb-24 lg:pb-8 grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-8">
         {/* LEFT – CART ITEMS */}
         <div>
           <h2 className="text-xl font-medium font-outfit mb-4">
@@ -193,6 +194,7 @@ const totalPayable = cartTotal - totalDiscount;
           </div>
         </div>
       </div>
+      <BottomNavbar />
     </div>
   );
 }
