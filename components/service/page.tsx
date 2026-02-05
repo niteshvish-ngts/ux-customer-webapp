@@ -3,13 +3,13 @@
 
 import ServiceCard from "@/components/service/service-card";
 import CartSidebar from "@/components/service/cart";
-import Navbar from "../common/navbar/page";
 import Image from "next/image";
 import { Services } from "../shared/images/image";
 import { useState, useRef, useEffect } from "react";
 import Footer from "../common/footer/page";
 import BottomNavbar from "../common/bottom-navbar/page";
 import { useRouter } from "next/navigation";
+import Navbar2 from "../common/navbar2/page";
 
 type CartItem = {
   id: string;
@@ -149,7 +149,7 @@ const installationRef = useRef<HTMLDivElement>(null);
 
   return (
     <>
-      <Navbar />
+      <Navbar2 />
       <div className=" bg-background " ref={headerRef}>
         <div className="container flex flex-col lg:flex-row lg:items-center lg:justify-between py-5 gap-4">
           {/* LEFT */}

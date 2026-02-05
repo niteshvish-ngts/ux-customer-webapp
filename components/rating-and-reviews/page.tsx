@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Booking } from "../shared/images/image";
 import Router from "next/router";
 import { useRouter } from "next/navigation";
+import Navbar2 from "../common/navbar2/page";
 
 const StarRating = ({
   value,
@@ -84,7 +85,7 @@ export default function RatingsReviewsPage() {
   const router = useRouter();
   return (
     <>  
-    <Navbar />
+    <Navbar2 />
      <div className="min-h-screen bg-[#F8FAFC]">
       {/* HEADER */}
       <div className="border-b bg-white">

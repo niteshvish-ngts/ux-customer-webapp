@@ -1,8 +1,8 @@
 "use client";
 
 import BookingCard from "@/components/bookings/page";
-import Navbar from "@/components/common/navbar/page";
 import BottomNavbar from "@/components/common/bottom-navbar/page";
+import Navbar2 from "@/components/common/navbar2/page";
 import { Booking } from "@/components/shared/images/image";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -15,7 +15,7 @@ export default function MyBookingsPage() {
 
   return (
     <>
-    <Navbar/>
+    <Navbar2/>
     <div className="min-h-screen bg-background font-[var(--font-outfit)]">
 
 

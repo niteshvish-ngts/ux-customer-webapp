@@ -9,7 +9,7 @@ import BottomNavbar from "../common/bottom-navbar/page";
 export default function CartPage() {
   const router = useRouter();
 
-  // ✅ Cart state (single source of truth)
+  //  Cart state (single source of truth)
   const [cartItems, setCartItems] = useState([
     {
       id: 1,

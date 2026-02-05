@@ -173,7 +173,7 @@ Checkout                    </button>
             <div className="lg:hidden space-y-3">
               {/* Contact Information Card - Mobile Summary */}
               <div className="bg-slate-50 rounded-lg p-4">
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Image src={Checkout.checkoutImg4} alt="" className="w-5 h-5" />
                     <span className="text-sm font-semibold text-slate-900">Contact Information</span>
@@ -222,13 +222,13 @@ Checkout                    </button>
                         Contact details saved.
                       </p>
                     )}
-                    <button
+                    {/* <button
                       type="button"
                       onClick={() => submitContactInfo()}
                       className="mt-4 w-full bg-prime hover:bg-prime text-white py-2.5 rounded-lg text-sm font-semibold transition-colors"
                     >
                       Save Details
-                    </button>
+                    </button> */}
                   </>
                 )}
               </div>
@@ -324,7 +324,7 @@ Checkout                    </button>
 
               {/* Contact Form Fields - Desktop: always visible, Mobile: toggle */}
               <div className={`${contactFormOpen ? 'block' : 'hidden lg:block'}`}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
                 <InputField
                   label="First Name"
                   value={contactInfo.firstName}
@@ -547,7 +547,7 @@ Checkout                    </button>
       </div>
 
       {/* Sticky Bottom Button for Mobile - Sequence: Select Address -> Select Time Slot -> Proceed To Pay */}
-      <div className="lg:hidden fixed bottom-16 left-0 right-0 z-40 bg-white border-t border-gray-200 shadow-lg p-4">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 shadow-lg p-4">
         {contactFormOpen ? (
           <button
             onClick={() => submitContactInfo()}

@@ -189,7 +189,7 @@ const route = useRouter();
       {/* Services Dropdown - Desktop */}
       {servicesDropdownOpen && (
         <div 
-          className="hidden lg:block absolute left-0 right-0 top-full z-[100] bg-white border-b border-slate-200 shadow-xl"
+          className="hidden lg:block absolute left-0 right-0 top-full z-100 bg-white border-b border-slate-200 shadow-xl"
         >
           <div className="container py-8">
             <div className="grid grid-cols-4 gap-8">
@@ -204,7 +204,7 @@ const route = useRouter();
                         <Link 
                           href="#" 
                           onClick={() => setServicesDropdownOpen(false)}
-                          className="text-sm  hover:text-orange-600 transition-colors block font-lato"
+                          className="text-sm  hover:text-prime transition-colors block font-lato"
                         >
                           {item.name}
                           {item.count && (
@@ -220,7 +220,7 @@ const route = useRouter();
                         <Link 
                           href="#" 
                           onClick={() => setServicesDropdownOpen(false)}
-                          className="text-sm text-orange-600 hover:text-orange-700 font-medium"
+                          className="text-sm text-prime hover:text-prime font-medium"
                         >
                           See All Services
                         </Link>
@@ -269,7 +269,7 @@ const route = useRouter();
                         <li key={itemIndex}>
                           <Link 
                             href="#" 
-                            className="text-sm text-slate-700 hover:text-orange-600 transition-colors block"
+                            className="text-sm text-slate-700 hover:text-prime transition-colors block"
                           >
                             {item.name}
                             {item.count && (
@@ -284,7 +284,7 @@ const route = useRouter();
                         <li>
                           <Link 
                             href="#" 
-                            className="text-sm text-orange-600 hover:text-orange-700 font-medium"
+                            className="text-sm text-prime hover:text-prime font-medium"
                           >
                             See All Services
                           </Link>
