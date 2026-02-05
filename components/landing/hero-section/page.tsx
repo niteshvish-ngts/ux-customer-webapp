@@ -102,6 +102,25 @@ export default function HeroSection() {
                   </button>
                 </div>
               </div>
+              {/* get a quote button  */}
+              <button
+  onClick={() => window.open("https://wa.link/pfsm61", "_blank")}
+  className="
+    px-6 py-1.5
+    bg-[#F68836] 
+    hover:bg-[#F68836]/90
+    text-white 
+    font-semibold
+    text-sm
+    rounded-lg
+    transition-all
+    shadow-md
+    hover:shadow-lg
+    w-full sm:w-auto
+  "
+>
+  Get A Quote
+</button>
 
               {/* Dashed Divider */}
               <div className="w-full max-w-[670px] mx-auto lg:mx-0 my-4">

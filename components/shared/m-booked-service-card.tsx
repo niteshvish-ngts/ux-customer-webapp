@@ -24,7 +24,7 @@ export default function ServiceOfferCardMobile({
   originalPrice,
 }: Props) {
   return (
-    <div className="w-45 leading-2 ">
+    <div className="w-41 leading-2 ">
       {/* IMAGE */}
       <div className="relative aspect-square rounded-2xl overflow-hidden">
         <Image
