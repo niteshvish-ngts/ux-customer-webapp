@@ -105,7 +105,7 @@ Checkout                    </button>
               </svg> */}
             </button>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-linear-to-br from-orange-400 to-pink-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+              <div className="w-8 h-8 bg-linear-to-br from-prime to-pink-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
                 N
               </div>
               <span className="text-sm font-medium">Nitesh </span>
@@ -508,7 +508,7 @@ Checkout                    </button>
                 <input
                   type="text"
                   placeholder="eg. UX10OFF"
-                  className="flex-1 px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  className="flex-1 px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring- focus:border-transparent"
                 />
                 <button className="px-4 py-2 bg-slate-600 hover:bg-slate-700 text-white text-sm font-medium rounded-lg transition-colors">
                   Apply Coupon

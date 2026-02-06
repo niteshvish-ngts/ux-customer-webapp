@@ -231,28 +231,28 @@ body {
   /* Small screens */
   @media (min-width: 640px) {
     .container {
-      @apply max-w-[640px] px-12;
+      @apply max-w-640 px-12;
     }
   }
 
   /* Medium screens */
   @media (min-width: 768px) {
     .container {
-      @apply max-w-[768px] px-5;
+      @apply max-w-3xl px-5;
     }
   }
 
   /* Large screens */
   @media (min-width: 1024px) {
     .container {
-      @apply max-w-[1024px] px-12;
+      @apply max-w-5xl px-12;
     }
   }
 
   /* Extra large screens */
   @media (min-width: 1280px) {
     .container {
-      @apply max-w-[1280px] px-24;
+      @apply max-w-7xl px-24;
     }
   }
 
