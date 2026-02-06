@@ -16,7 +16,6 @@ export default function Landing() {
       <ExploreService />
       <SpecialOfferForYou />
       <MostBookedService />
-    
       <CleaningNeeds />
       <EpcEssentialServices />
       <PremiumBanner />

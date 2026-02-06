@@ -128,7 +128,7 @@ export default function ServiceCard({
         >
           −
         </button>
-        <span className="text-xs font-medium min-w-[20px] text-center">
+        <span className="text-xs font-medium min-w-5 text-center">
           {cartQty}
         </span>
         <button

@@ -25,34 +25,32 @@ export default function CartSidebar({
   updateItemQty,
 }: CartSidebarProps) {
   const ref = useRef<HTMLDivElement>(null);
-
   const [isFixed, setIsFixed] = useState(false);
   const [startTop, setStartTop] = useState(0);
   const [left, setLeft] = useState(0);
+  const [placeholderHeight, setPlaceholderHeight] = useState(0);
 
-  // cart ka initial position ek baar calculate
   useEffect(() => {
     if (!ref.current) return;
-
     const rect = ref.current.getBoundingClientRect();
     setStartTop(rect.top + window.scrollY);
     setLeft(rect.left);
   }, []);
 
-  // scroll handler
   useEffect(() => {
     const onScroll = () => {
-      // 80px ka buffer (thoda scroll ke baad fix)
       if (window.scrollY > startTop - 80) {
+        if (ref.current && placeholderHeight === 0) {
+          setPlaceholderHeight(ref.current.offsetHeight);
+        }
         setIsFixed(true);
       } else {
         setIsFixed(false);
       }
     };
-
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, [startTop]);
+  }, [startTop, placeholderHeight]);
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.qty,
@@ -62,22 +60,26 @@ export default function CartSidebar({
   const router = useRouter();
 
   return (
-    <aside
-      ref={ref}
-      style={
-        isFixed
-          ? {
-              position: "fixed",
-              top: 96, // navbar ke niche
-              left: left,
-              width: 320,
-            }
-          : {
-              position: "relative",
-              width: 320,
-            }
-      }
+    <div
+      className="w-[320px] shrink-0"
+      style={isFixed ? { minHeight: placeholderHeight } : undefined}
     >
+      <aside
+        ref={ref}
+        style={
+          isFixed
+            ? {
+                position: "fixed",
+                top: 96,
+                left: left,
+                width: 320,
+              }
+            : {
+                position: "relative",
+                width: 320,
+              }
+        }
+      >
       <h2 className="mb-4 text-2xl font-semibold text-black font-outfit">
         Cart
       </h2>
@@ -138,18 +140,17 @@ export default function CartSidebar({
             </div>
           ))}
         </div>
-
-        {/* CTA */}
-        <div className="mt-5">
-          <button
-            onClick={() => router.push("/cart")}
-            className="flex w-full items-center justify-between rounded-xl bg-prime px-5 py-3 text-white font-semibold"
-          >
-            <span>₹{total}</span>
-            <span>View Cart</span>
-          </button>
-        </div>
       </div>
+
+      {/* View Cart button - outside the white card */}
+      <button
+        onClick={() => router.push("/cart")}
+        className="mt-4 flex w-full items-center justify-between rounded-xl bg-prime px-5 py-3 text-white font-semibold"
+      >
+        <span>₹{total}</span>
+        <span>View Cart</span>
+      </button>
     </aside>
+    </div>
   );
 }

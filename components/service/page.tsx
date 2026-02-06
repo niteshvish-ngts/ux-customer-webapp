@@ -240,9 +240,9 @@ const installationRef = useRef<HTMLDivElement>(null);
       </div>
 
       {/* CONTENT */}
-      <div className="container py-8 pb-24 lg:pb-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="container py-8 pb-24 lg:pb-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-6">
         {/* SERVICES */}
-        <div className="lg:col-span-2 space-y-10">
+        <div className="min-w-0 space-y-10">
           <section  ref={maxxSaverRef}>
             <h2 className="text-2xl font-medium mb-4 font-outfit">
               Maxx Saver Services

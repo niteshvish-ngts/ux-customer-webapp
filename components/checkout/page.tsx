@@ -385,9 +385,9 @@ Checkout                    </button>
                       <div className="flex items-start justify-between gap-2">
                         <div className="flex items-start gap-2 flex-1 min-w-0">
                           <Image src={Checkout.checkoutImg5} alt="" className="w-5 h-5 shrink-0 mt-0.5" />
-                          <div className="min-w-0 flex-1 break-words">
+                          <div className="min-w-0 flex-1 wrap-break-word">
                             <span className="text-sm font-semibold text-black">{selectedAddress?.title} - </span>
-                            <span className="text-sm text-gray-500 break-words">{selectedAddress?.address}</span>
+                            <span className="text-sm text-gray-500 wrap-break-word">{selectedAddress?.address}</span>
                           </div>
                         </div>
                         <button
