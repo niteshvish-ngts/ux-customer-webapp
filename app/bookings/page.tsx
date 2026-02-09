@@ -28,7 +28,7 @@ export default function MyBookingsPage() {
             <div className="space-y-1">
               <button
                 onClick={() => router.back()}
-                className="flex items-center gap-2 text-sm text-muted-foreground"
+                className="hidden md:flex items-center gap-2 text-sm text-muted-foreground"
               >
                 <Image src={Booking.bookingImg3} alt="Back" width={16} height={16} />
                 back

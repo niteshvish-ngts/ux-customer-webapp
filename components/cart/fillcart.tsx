@@ -71,40 +71,7 @@ const totalPayable = cartTotal - totalDiscount;
   return (
     <div className="min-h-screen bg-white">
       {/* TOP BAR */}
-      <div className="border-b">
-        <div className="container h-14 flex items-center justify-between">
-          <button
-            onClick={() => router.back()}
-            className="flex items-center gap-2 text-sm text-muted-foreground"
-          >
-            <Image
-              src={Booking.bookingImg3}
-              alt="Back"
-              width={16}
-              height={16}
-            />
-            My Cart
-          </button>
-
-          <div className="flex items-center gap-3">
-            <button className="w-9 h-9 rounded-full border flex items-center justify-center">
-              🛒
-            </button>
-            <div className="flex items-center gap-2">
-              <Image
-                src={Cart.cartImg1}
-                alt="user"
-                width={32}
-                height={32}
-                className="rounded-full"
-              />
-              <span className="text-sm font-medium">
-                Nitesh Vishwakarma
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       {/* CONTENT */}
       <div className="container py-8 pb-24 lg:pb-8 grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-8">
@@ -216,8 +183,8 @@ function CartItem({
 }: any) {
   return (
     <div className="rounded-xl border border-[#E6EFFA] bg-white p-4 flex gap-4">
-      {/* IMAGE */}
-      <div className="relative w-33 h-33 rounded-lg overflow-hidden border">
+      {/* IMAGE - hidden on mobile, visible on desktop */}
+      <div className="relative w-33 h-33 rounded-lg overflow-hidden border hidden md:block shrink-0">
         {badge && (
           <span className="absolute top-1 left-1 text-[10px] bg-black text-white px-1.5 py-0.5 rounded">
             {badge}

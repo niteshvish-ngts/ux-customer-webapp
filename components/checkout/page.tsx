@@ -85,34 +85,7 @@ export default function CheckoutFlow() {
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
       {/* Header */}
-      <header className="bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <button
-                      onClick={() => router.back()}
-                      className="flex items-center gap-2 text-sm text-muted-foreground"
-                    >
-                      <Image
-                        src={Booking.bookingImg3}
-                        alt="Back"
-                        width={16}
-                        height={16}
-                      />
-Checkout                    </button>
-          <div className="flex items-center gap-4">
-            <button className="p-2 hover:bg-slate-100 rounded-lg transition-colors">
-              {/* <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg> */}
-            </button>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-linear-to-br from-prime to-pink-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
-                N
-              </div>
-              <span className="text-sm font-medium">Nitesh </span>
-            </div>
-          </div>
-        </div>
-      </header>
+      
 
       <div className="max-w-7xl mx-auto px-6 py-8 pb-36 lg:pb-8">
         {/* Checkout Heading and Savings Banner - Top (Both Mobile & Desktop) */}

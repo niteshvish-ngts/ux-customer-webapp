@@ -85,7 +85,7 @@ export default function RatingsReviewsPage() {
   const router = useRouter();
   return (
     <>  
-    <Navbar2 />
+    
      <div className="min-h-screen bg-[#F8FAFC]">
       {/* HEADER */}
       <div className="border-b bg-white">
@@ -93,7 +93,7 @@ export default function RatingsReviewsPage() {
           <div>
            <button
              onClick={() => router.back()}
-             className="flex items-center gap-2 text-sm text-muted-foreground"
+             className="hidden md:flex items-center gap-2 text-sm text-muted-foreground"
            >
              <Image src={Booking.bookingImg3} alt="Back" width={16} height={16} />
              back

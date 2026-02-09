@@ -6,10 +6,7 @@ import CartSidebar from "@/components/service/cart";
 import Image from "next/image";
 import { Services } from "../shared/images/image";
 import { useState, useRef, useEffect } from "react";
-import Footer from "../common/footer/page";
-import BottomNavbar from "../common/bottom-navbar/page";
 import { useRouter } from "next/navigation";
-import Navbar2 from "../common/navbar2/page";
 
 type CartItem = {
   id: string;
@@ -149,12 +146,21 @@ const installationRef = useRef<HTMLDivElement>(null);
 
   return (
     <>
-      <Navbar2 />
-      <div className=" bg-background " ref={headerRef}>
+      
+      <div className="bg-background font-[var(--font-outfit)]" ref={headerRef}>
         <div className="container flex flex-col lg:flex-row lg:items-center lg:justify-between py-5 gap-4">
-          {/* LEFT */}
-          <div>
-            <h1 className="text-4xl font-semibold text-dark leading-tight">
+          {/* LEFT - Mobile: My Bookings style (icon + title), Desktop: as before */}
+          <div className="space-y-1">
+            <h1 className="flex items-center gap-2 text-2xl lg:text-4xl font-semibold text-dark leading-8 font-outfit">
+              {/* <span className="flex items-center justify-center w-7 h-7 shrink-0">
+                <Image
+                  src={Services.serviceImg3}
+                  alt="Service"
+                  width={28}
+                  height={28}
+                  className="object-contain"
+                />
+              </span> */}
               AC Service & Repair
             </h1>
 
@@ -168,14 +174,14 @@ const installationRef = useRef<HTMLDivElement>(null);
                 className="object-contain"
               />
 
-              <span className="text-xs text-dark font-lato">
+              <span className="text-xs text-dark font-lato underline-offset-4 underline">
                 2M reviews (11.9M Bookings)
               </span>
             </div>
           </div>
 
-          {/* RIGHT FILTERS - Desktop: Right side, Mobile: Below title */}
-          <div className="flex items-center gap-1 rounded-lg border bg-background p-1 w-full lg:w-auto">
+          {/* TABS - Mobile: My Bookings style (border-2 border-[#eef1f6]), Desktop: as before */}
+          <div className="flex gap-2 border-2 border-[#eef1f6] rounded-lg overflow-hidden p-1 bg-background w-full lg:w-auto">
             <button
               onClick={() => {
                 setActiveTab("Maxx Saver");
@@ -184,8 +190,8 @@ const installationRef = useRef<HTMLDivElement>(null);
                   block: "start",
                 });
               }}
-              className={`rounded-md px-4 py-1.5 text-sm font-semibold text-dark hover:bg-muted flex-1 lg:flex-none ${
-                activeTab === "Maxx Saver" ? "bg-muted" : ""
+              className={`rounded-lg px-2 py-2 text-xs lg:text-sm font-semibold text-dark font-lato flex-1 lg:flex-none transition-colors hover:bg-secondary ${
+                activeTab === "Maxx Saver" ? "bg-slate-100" : ""
               }`}
             >
               Maxx Saver
@@ -199,8 +205,8 @@ const installationRef = useRef<HTMLDivElement>(null);
                   block: "start",
                 });
               }}
-              className={`rounded-md px-4 py-1.5 text-sm font-semibold text-dark hover:bg-muted flex-1 lg:flex-none ${
-                activeTab === "Service" ? "bg-muted" : ""
+              className={`rounded-lg px-2 py-2 text-xs lg:text-sm font-semibold text-dark font-lato flex-1 lg:flex-none transition-colors hover:bg-secondary ${
+                activeTab === "Service" ? "bg-slate-100" : ""
               }`}
             >
               Service
@@ -214,8 +220,8 @@ const installationRef = useRef<HTMLDivElement>(null);
                   block: "start",
                 });
               }}
-              className={`rounded-md px-4 py-1.5 text-sm font-semibold text-dark hover:bg-muted flex-1 lg:flex-none ${
-                activeTab === "Repair" ? "bg-muted" : ""
+              className={`rounded-lg px-2 py-2 text-xs lg:text-sm font-semibold text-dark font-lato flex-1 lg:flex-none transition-colors hover:bg-secondary ${
+                activeTab === "Repair" ? "bg-slate-100" : ""
               }`}
             >
               Repair
@@ -229,8 +235,8 @@ const installationRef = useRef<HTMLDivElement>(null);
                   block: "start",
                 });
               }}
-              className={`rounded-md px-4 py-1.5 text-sm font-semibold text-dark hover:bg-muted flex-1 lg:flex-none ${
-                activeTab === "Installation" ? "bg-muted" : ""
+              className={`rounded-lg px-2 py-2 text-xs lg:text-sm font-semibold text-dark font-lato flex-1 lg:flex-none transition-colors hover:bg-secondary ${
+                activeTab === "Installation" ? "bg-slate-100" : ""
               }`}
             >
               Installation
@@ -244,7 +250,7 @@ const installationRef = useRef<HTMLDivElement>(null);
         {/* SERVICES */}
         <div className="min-w-0 space-y-10">
           <section  ref={maxxSaverRef}>
-            <h2 className="text-2xl font-medium mb-4 font-outfit">
+            <h2 className="text-xl lg:text-2xl font-medium mb-4 font-outfit">
               Maxx Saver Services
             </h2>
 
@@ -346,7 +352,7 @@ const installationRef = useRef<HTMLDivElement>(null);
           <hr className="my-12 border-[#E6EFFA]" />
 
           <section ref={serviceRef} className="space-y-4">
-            <h2 className="text-2xl font-medium font-outfit">Service</h2>
+            <h2 className="text-xl lg:text-2xl font-medium font-outfit">Service</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <ServiceCard
@@ -367,7 +373,7 @@ const installationRef = useRef<HTMLDivElement>(null);
             </div>
           </section>
           <section  ref={repairRef} className="space-y-4">
-            <h2 className="text-2xl font-medium font-outfit">
+            <h2 className="text-xl lg:text-2xl font-medium font-outfit">
               Repair & gas refill
             </h2>
 
@@ -439,7 +445,7 @@ const installationRef = useRef<HTMLDivElement>(null);
           </section>
           {/* installetion */}
           <section  ref={installationRef} className="space-y-4">
-            <h2 className="text-2xl font-medium font-outfit">
+            <h2 className="text-xl lg:text-2xl font-medium font-outfit">
               Installation/uninstallation
             </h2>
 
@@ -537,8 +543,6 @@ const installationRef = useRef<HTMLDivElement>(null);
         </div>
       )}
 
-      <Footer/>
-      <BottomNavbar />
   </>
   );
 }
