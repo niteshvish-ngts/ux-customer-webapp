@@ -312,6 +312,7 @@ export default function CheckoutFlow() {
                   label="Phone"
                   value={contactInfo.phone}
                   onChange={(v) => setContactInfo((p) => ({ ...p, phone: v }))}
+                  
                 />
                 <InputField
                   label="Email"
@@ -341,7 +342,7 @@ export default function CheckoutFlow() {
                 ) : (
                   <>
                     {/* Desktop: Original format */}
-                    <div className="hidden lg:flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-lg">
+                    <div className="hidden lg:flex items-center justify-between p-3 border-b ">
                     <div className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-green-600" />
                       <p className="text-sm font-medium text-black">Address Selected</p>
@@ -475,7 +476,7 @@ export default function CheckoutFlow() {
             </div>
 
             {/* Coupon Code */}
-            <div className="bg-white rounded-lg border border-[#E6EFFA] p-6">
+            <div className="bg-white rounded-lg  py-3">
               <h2 className="font-semibold text-slate-900 mb-4">Coupon Code</h2>
               <div className="flex gap-2">
                 <input
@@ -483,34 +484,34 @@ export default function CheckoutFlow() {
                   placeholder="eg. UX10OFF"
                   className="flex-1 px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring- focus:border-transparent"
                 />
-                <button className="px-4 py-2 bg-slate-600 hover:bg-slate-700 text-white text-sm font-medium rounded-lg transition-colors">
+                <button className="px-4 py-2 bg-dark-50 hover:bg-slate-700 text-white text-sm font-medium rounded-lg transition-colors">
                   Apply Coupon
                 </button>
               </div>
             </div>
+              <h2 className="font-semibold text-slate-900 mb-4">Payment Summary</h2>
 
             {/* Payment Summary - Hidden on mobile, visible on desktop */}
             <div className="hidden lg:block bg-white rounded-lg border border-[#E6EFFA] p-6">
-              <h2 className="font-semibold text-slate-900 mb-4">Payment Summary</h2>
               
-              <div className="space-y-2.5 text-sm">
-                <div className="flex justify-between text-slate-600">
+              <div className="space-y-2.5 ">
+                <div className="flex justify-between text-black text-base font-medium font-lato">
                   <span>Cart Total</span>
                   <div className="text-right">
                     <span className="line-through text-slate-400 text-xs mr-1">₹{originalCartTotal.toLocaleString('en-IN')}</span>
                     <span className="font-medium text-slate-900">₹{cartTotal.toLocaleString('en-IN')}</span>
                   </div>
                 </div>
-                <div className="flex justify-between text-slate-600">
+                <div className="flex justify-between text-dark-50 text-xs font-medium font-lato">
                   <span>Taxes & Fee</span>
-                  <span className="text-slate-900">₹ {taxes.toFixed(2)}</span>
+                  <span className="text-dark-50 text-xs font-medium font-lato">₹ {taxes.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-slate-600">
+                <div className="flex justify-between text-black text-base font-medium font-lato">
                   <span>Total Discount</span>
                   <span className="text-red-600 font-medium">(-) ₹{discount.toLocaleString('en-IN')}</span>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-200 flex justify-between items-center">
-                  <span className="font-semibold text-slate-900">Amount To Pay</span>
+                  <span className="font-semibold text-black font-lato">Amount To Pay</span>
                   <span className="text-xl font-bold text-slate-900">₹{totalPayable.toLocaleString('en-IN')}</span>
                 </div>
               </div>
