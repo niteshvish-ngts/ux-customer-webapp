@@ -1,13 +1,14 @@
 "use client";
 
 import { X } from "lucide-react";
+import { title } from "process";
 import { useState } from "react";
 
 type Props = {
   open: boolean;
   onClose: () => void;
   onProceed: () => void;
-  onSlotSelect?: (day: string, date: number, time: string) => void;
+  onSlotSelect?: (title: string, day: string, date: number, time: string) => void;
 };
 
 const days = [
@@ -37,11 +38,12 @@ export default function SlotModal({
 }: Props) {
   const [selectedDay, setSelectedDay] = useState(21);
   const [selectedTime, setSelectedTime] = useState("09:00 AM");
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState<{title: string, day: string, date: number, time: string} | null>(null);
 
   const handleProceed = () => {
     const selectedDayData = days.find(d => d.date === selectedDay);
     if (selectedDayData && onSlotSelect) {
-      onSlotSelect(selectedDayData.day, selectedDay, selectedTime);
+      onSlotSelect(selectedTimeSlot?.title || "Slot", selectedDayData.day, selectedDay, selectedTime);
     }
     onProceed();
   };

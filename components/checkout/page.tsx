@@ -14,7 +14,7 @@ export default function CheckoutFlow() {
   const [slotSelected, setSlotSelected] = useState<boolean>(false);
   const [selectedAddress, setSelectedAddress] = useState<{title: string, address: string} | null>(null);
   const [contactFormOpen, setContactFormOpen] = useState<boolean>(false);
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState<{day: string, date: number, time: string} | null>(null);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState<{title: string, day: string, date: number, time: string} | null>(null);
   
   const [contactInfo, setContactInfo] = useState({
     firstName: "",
@@ -72,12 +72,12 @@ export default function CheckoutFlow() {
     setAddressModalOpen(false);
   };
 
-  const handleSlotSelect = (day?: string, date?: number, time?: string) => {
+  const handleSlotSelect = (title?: string,day?: string, date?: number, time?: string) => {
     setSlotSelected(true);
-    if (day && date && time) {
-      setSelectedTimeSlot({ day, date, time });
+    if (title && day && date && time) {
+      setSelectedTimeSlot({ title, day, date, time });
     } else {
-      setSelectedTimeSlot({ day: "Sat", date: 20, time: "08:00 AM" });
+      setSelectedTimeSlot({ title: "Slot", day: "Sat", date: 20, time: "08:00 AM" });
     }
     setSlotModalOpen(false);
   };
@@ -243,9 +243,13 @@ export default function CheckoutFlow() {
                 <div className="bg-slate-50 rounded-lg p-4 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Image src={Checkout.checkoutImg3} alt="" className="w-5 h-5" />
-                    <span className="text-sm font-semibold text-slate-900">
+                    {/* <span className="text-sm font-semibold text-slate-900">
                       Time Slot - {selectedTimeSlot?.day}, Dec {selectedTimeSlot?.date} - {selectedTimeSlot?.time}
-                    </span>
+                    </span> */}
+                    <div className="min-w-0 flex overflow-hidden">
+                      <span className="text-sm font-semibold text-slate-900">{selectedTimeSlot?.title} - </span>
+                      <span className="text-sm text-slate-600 truncate block">{selectedTimeSlot?.day}, Dec {selectedTimeSlot?.date} - {selectedTimeSlot?.time}</span>
+                    </div>
                   </div>
                   <button
                     onClick={() => setSlotModalOpen(true)}
@@ -341,14 +345,15 @@ export default function CheckoutFlow() {
                   </button>
                 ) : (
                   <>
-                    {/* Desktop: Original format */}
-                    <div className="hidden lg:flex items-center justify-between p-3 border-b ">
-                    <div className="flex items-center gap-2">
-                      <p className="text-sm font-medium text-black">Address Selected</p> 
+                    {/* Desktop: Show selected address like mobile */}
+                    <div className="hidden lg:flex items-center justify-between p-3 border-b gap-2">
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                      <span className="text-sm font-semibold text-black">{selectedAddress?.title} - </span>
+                      <span className="text-sm text-dark truncate">{selectedAddress?.address}</span>
                     </div>
                     <button
   onClick={() => setAddressModalOpen(true)}
-  className="flex items-center gap-1.5 px-2 py-1 border border-gray-200 rounded-md text-sm font-medium text-primary hover:bg-gray-50 transition-colors"
+  className="flex items-center gap-1.5 px-2 py-1 border border-gray-200 rounded-md text-sm font-medium text-primary hover:bg-gray-50 transition-colors shrink-0"
 >
   Edit
   <Image 
@@ -404,19 +409,28 @@ export default function CheckoutFlow() {
                         Select Time Slot
                       </div>
                     </>
-                  ) : (
-                    <div className="w-full py-2.5 rounded-lg bg-slate-50 text-slate-400 text-sm font-medium text-center border border-slate-200">
-                      Select Time Slot
-                    </div>
-                  )
+                  ) 
+                  // : (
+
+                  //   <div className="w-full py-2.5 rounded-lg bg-slate-50 text-slate-400 text-sm font-medium text-center border border-slate-200">
+                  //     Select Time Slot
+                  //   </div>
+                  // )
+                 : null
                 ) : (
-                  <div className="flex items-center justify-between p-3 border-b ">
-                    <div className="flex items-center gap-2">
-                      <p className="text-sm font-medium text-green">Time Slot Selected</p>
+                  <div className="flex items-center justify-between p-3 border-b gap-2">
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                      {/* <span className="text-sm font-semibold text-slate-900">
+                        {selectedTimeSlot?.title} - {selectedTimeSlot?.day}, Dec {selectedTimeSlot?.date} - {selectedTimeSlot?.time}
+                      </span> */}
+                      {/* <div className="flex items-center gap-2 flex-1 min-w-0"> */}
+                      <span className="text-sm font-semibold text-black">{selectedTimeSlot?.title} - </span>
+                      <span className="text-sm text-slate-600 truncate"> {selectedTimeSlot?.day}, Dec {selectedTimeSlot?.date} - {selectedTimeSlot?.time}</span>
+                    {/* </div> */}
                     </div>
                     <button
   onClick={() => setSlotModalOpen(true)}
-  className="flex items-center gap-1.5 px-2 py-1 border border-gray-200 rounded-md text-sm font-medium text-primary hover:bg-gray-50 transition-colors"
+  className="flex items-center gap-1.5 px-2 py-1 border border-gray-200 rounded-md text-sm font-medium text-primary hover:bg-gray-50 transition-colors shrink-0"
 >
   Edit
   <Image 
@@ -440,11 +454,13 @@ export default function CheckoutFlow() {
                   <button className="w-full bg-prime hover:bg-prime text-white py-2.5 rounded-lg text-sm font-medium transition-colors">
                     Proceed To Pay
                   </button>
-                ) : (
-                  <div className="w-full py-2.5 rounded-lg bg-slate-50 text-slate-400 text-sm font-medium text-center border border-slate-200">
-                    Payment Method
-                  </div>
-                )}
+                ) : null
+                // (
+                //   <div className="w-full py-2.5 rounded-lg bg-slate-50 text-slate-400 text-sm font-medium text-center border border-slate-200">
+                //     Payment Method
+                //   </div>
+                // )
+                }
               </div>
             </div>
 
