@@ -59,6 +59,7 @@ import banknote from "@/public/assets/images/checkout/banknote.svg"
 import clock from "@/public/assets/images/checkout/clock.svg"
 import contact from "@/public/assets/images/checkout/contact.svg"
 import map from "@/public/assets/images/checkout/map.svg"
+import checkoutpencil from "@/public/assets/images/checkout/checkoutpencil.svg"
 
 // modal2
 import homepainting from "@/public/assets/images/modal-icon/painting-modal/homepainting.svg"
@@ -185,6 +186,7 @@ export const Checkout = {
     checkoutImg3: clock,
     checkoutImg4:  contact,
     checkoutImg5: map,
+    checkoutImg6: checkoutpencil,
     // cartImg5: Water,
     // cartImg6: Carpenter,
 

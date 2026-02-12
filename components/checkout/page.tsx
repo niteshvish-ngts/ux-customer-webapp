@@ -279,13 +279,13 @@ export default function CheckoutFlow() {
                 <h2 className="text-base font-semibold text-black">Contact Information</h2>
                 </div>
                 {/* Desktop: Save button */}
-                <button
+                {/* <button
                   type="button"
                   onClick={() => submitContactInfo()}
                   className="hidden lg:inline text-xs text-prime font-medium underline"
                 >
                   Save
-                </button>
+                </button> */}
                 {/* Edit button - only on mobile */}
                 <button
                   onClick={() => setContactFormOpen(!contactFormOpen)}
@@ -344,15 +344,19 @@ export default function CheckoutFlow() {
                     {/* Desktop: Original format */}
                     <div className="hidden lg:flex items-center justify-between p-3 border-b ">
                     <div className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-green-600" />
-                      <p className="text-sm font-medium text-black">Address Selected</p>
+                      <p className="text-sm font-medium text-black">Address Selected</p> 
                     </div>
                     <button
-                      onClick={() => setAddressModalOpen(true)}
-                      className="text-xs text-green-700 hover:text-green-900 font-medium underline"
-                    >
-                      Edit
-                    </button>
+  onClick={() => setAddressModalOpen(true)}
+  className="flex items-center gap-1.5 px-2 py-1 border border-gray-200 rounded-md text-sm font-medium text-primary hover:bg-gray-50 transition-colors"
+>
+  Edit
+  <Image 
+    src={Checkout.checkoutImg6} 
+    alt="Edit" 
+    className="w-3 h-3"
+  />
+</button>
                   </div>
                     {/* Mobile: New format with address display */}
                     <div className="lg:hidden space-y-3">
@@ -406,17 +410,21 @@ export default function CheckoutFlow() {
                     </div>
                   )
                 ) : (
-                  <div className="flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-lg">
+                  <div className="flex items-center justify-between p-3 border-b ">
                     <div className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-green-600" />
                       <p className="text-sm font-medium text-green">Time Slot Selected</p>
                     </div>
                     <button
-                      onClick={() => setSlotModalOpen(true)}
-                      className="text-xs text-green-700 hover:text-green-900 font-medium underline"
-                    >
-                      Edit
-                    </button>
+  onClick={() => setSlotModalOpen(true)}
+  className="flex items-center gap-1.5 px-2 py-1 border border-gray-200 rounded-md text-sm font-medium text-primary hover:bg-gray-50 transition-colors"
+>
+  Edit
+  <Image 
+    src={Checkout.checkoutImg6} 
+    alt="Edit" 
+    className="w-3 h-3"
+  />
+</button>
                   </div>
                 )}
               </div>
