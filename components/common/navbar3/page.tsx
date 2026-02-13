@@ -7,13 +7,20 @@ import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { getAccessToken } from '@/utils/token';
+import { logout as logoutApi } from '@/services/auth';
 
 export default function Navbar3() {
-    const router = useRouter();
-    const pathname = usePathname();
-    const headingText = pathname === '/cart' ? 'My Cart' : pathname === '/checkout' ? 'Checkout' : 'Checkout';
-const [locationDropdownOpen, setLocationDropdownOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+  const headingText = pathname === '/cart' ? 'My Cart' : pathname === '/checkout' ? 'Checkout' : 'Checkout';
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [locationDropdownOpen, setLocationDropdownOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    setIsLoggedIn(!!getAccessToken());
+  }, [pathname]);
   const [locationStyle, setLocationStyle] = useState({ top: 0, left: 0, minWidth: 0 });
   const [userStyle, setUserStyle] = useState({ top: 0, right: 0, left: "auto" as number | "auto" });
   const locationRef = useRef<HTMLDivElement>(null);
@@ -105,7 +112,7 @@ const [locationDropdownOpen, setLocationDropdownOpen] = useState(false);
               <ShoppingCart className="w-5 h-5 text-dark" />
             </button>
 
-            {/* User Profile Dropdown */}
+            {isLoggedIn ? (
             <div ref={userRef} className="relative">
               <button
                 onClick={() => setUserDropdownOpen(!userDropdownOpen)}
@@ -117,9 +124,9 @@ const [locationDropdownOpen, setLocationDropdownOpen] = useState(false);
                   transition
                 "
               >
-                <div className="relative w-8 h-8 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400">
+                <div className="relative w-9 h-9 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400">
                   <Image
-                    src={Booking.bookingImg2} 
+                    src="/user-avatar.jpg"
                     alt="User"
                     fill
                     className="object-cover"
@@ -132,7 +139,7 @@ const [locationDropdownOpen, setLocationDropdownOpen] = useState(false);
                 {/* Name + chevron hidden on mobile, only avatar shows; click opens dropdown */}
                 <div className="hidden md:flex flex-col items-start">
                   <span className="text-sm font-medium text-gray-900">
-                    Nitesh 
+                    User
                   </span>
                 </div>
                 <ChevronDown 
@@ -177,7 +184,9 @@ const [locationDropdownOpen, setLocationDropdownOpen] = useState(false);
                       className="block w-full text-left px-3 py-2 text-xs text-red-600 hover:bg-gray-50 rounded-lg transition font-medium md:px-4 md:py-2.5 md:text-sm"
                       onClick={() => {
                         setUserDropdownOpen(false);
-                        // Add logout logic here
+                        setIsLoggedIn(false);
+                        logoutApi();
+                        router.push('/');
                       }}
                     >
                       Logout
@@ -186,6 +195,14 @@ const [locationDropdownOpen, setLocationDropdownOpen] = useState(false);
                   document.body
                 )}
             </div>
+            ) : (
+              <Link
+                href="/login"
+                className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-body border border-border rounded-md text-gray-900 hover:bg-gray-50 transition"
+              >
+                Login
+              </Link>
+            )}
           </div>
                   </div>
                 </header>  

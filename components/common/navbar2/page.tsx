@@ -6,11 +6,19 @@ import { createPortal } from "react-dom";
 import { Search, ShoppingCart, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { logoImage, Booking } from "@/components/shared/images/image";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import { getAccessToken } from "@/utils/token";
+import { logout as logoutApi } from "@/services/auth";
 
 export default function Navbar2() {
   const [locationDropdownOpen, setLocationDropdownOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsLoggedIn(!!getAccessToken());
+  }, [pathname]);
   const [locationStyle, setLocationStyle] = useState({ top: 0, left: 0, minWidth: 0 });
   const [userStyle, setUserStyle] = useState({ top: 0, right: 0, left: "auto" as number | "auto" });
   const locationRef = useRef<HTMLDivElement>(null);
@@ -215,42 +223,41 @@ export default function Navbar2() {
               <ShoppingCart className="w-5 h-5 text-dark" />
             </button>
 
-            {/* User Profile Dropdown */}
-            <div ref={userRef} className="relative">
-              <button
-                onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                className="
-                  flex items-center gap-2
-                  px-3 py-2
-                  hover:bg-gray-50
-                  rounded-md
-                  transition
-                "
-              >
-                <div className="relative w-9 h-9 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400">
-                  <Image
-                    src="/user-avatar.jpg" // Replace with actual user image
-                    alt="User"
-                    fill
-                    className="object-cover"
-                    onError={(e) => {
-                      // Fallback if image fails
-                      e.currentTarget.style.display = 'none';
-                    }}
+            {/* User Profile Dropdown (when logged in) or Login (when not) */}
+            {isLoggedIn ? (
+              <div ref={userRef} className="relative">
+                <button
+                  onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                  className="
+                    flex items-center gap-2
+                    px-3 py-2
+                    hover:bg-gray-50
+                    rounded-md
+                    transition
+                  "
+                >
+                  <div className="relative w-9 h-9 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400">
+                    <Image
+                      src="/user-avatar.jpg"
+                      alt="User"
+                      fill
+                      className="object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                  </div>
+                  <div className="hidden md:flex flex-col items-start">
+                    <span className="text-sm font-medium text-gray-900">
+                      User
+                    </span>
+                  </div>
+                  <ChevronDown 
+                    className={`hidden md:block w-4 h-4 text-gray-500 transition-transform ${
+                      userDropdownOpen ? 'rotate-180' : ''
+                    }`} 
                   />
-                </div>
-                {/* Name + chevron hidden on mobile, only avatar shows; click opens dropdown */}
-                <div className="hidden md:flex flex-col items-start">
-                  <span className="text-sm font-medium text-gray-900">
-                    Nitesh 
-                  </span>
-                </div>
-                <ChevronDown 
-                  className={`hidden md:block w-4 h-4 text-gray-500 transition-transform ${
-                    userDropdownOpen ? 'rotate-180' : ''
-                  }`} 
-                />
-              </button>
+                </button>
 
               {/* User Dropdown Menu - Portal so it appears below button, above bottom nav */}
               {typeof document !== "undefined" &&
@@ -287,7 +294,9 @@ export default function Navbar2() {
                       className="block w-full text-left px-3 py-2 text-xs text-red-600 hover:bg-gray-50 rounded-lg transition font-medium md:px-4 md:py-2.5 md:text-sm"
                       onClick={() => {
                         setUserDropdownOpen(false);
-                        // Add logout logic here
+                        setIsLoggedIn(false);
+                        logoutApi();
+                        router.push('/');
                       }}
                     >
                       Logout
@@ -295,7 +304,22 @@ export default function Navbar2() {
                   </div>,
                   document.body
                 )}
-            </div>
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="
+                  inline-flex items-center justify-center
+                  px-4 py-2.5 text-sm font-body
+                  border border-border rounded-md
+                  text-gray-900
+                  hover:bg-gray-50
+                  transition
+                "
+              >
+                Login
+              </Link>
+            )}
           </div>
 
         </div>

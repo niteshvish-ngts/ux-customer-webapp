@@ -2,12 +2,26 @@
 
 import Image from 'next/image';
 import { auth, logoImage } from '@/components/shared/images/image';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useMemo, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { verifyOtp } from '@/services/auth';
 
 export default function OtpVerifyPage() {
   const [otp, setOtp] = useState<string[]>(Array(6).fill(''));
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const phone = useMemo(() => searchParams.get('phone') ?? '', [searchParams]);
+
+  useEffect(() => {
+    if (!phone) router.replace('/login');
+  }, [phone, router]);
+  const maskedPhone = useMemo(() => {
+    if (phone.length < 4) return '****';
+    return '****' + phone.slice(-4);
+  }, [phone]);
 
   const handleChange = (value: string, index: number) => {
     if (!/^\d?$/.test(value)) return;
@@ -22,10 +36,30 @@ export default function OtpVerifyPage() {
     }
   };
 
-const handleVerifyOTP = async () => {
-  // verify logic ...
-  router.push('/'); 
-};
+  const handleVerifyOTP = async () => {
+    const otpString = otp.join('');
+    if (!otpString || otpString.length !== 6 || !phone) return;
+    setError(null);
+    setLoading(true);
+    try {
+      await verifyOtp({
+        phone,
+        otp: otpString,
+        userType: 'CUSTOMER',
+      });
+      router.push('/');
+    } catch (err: unknown) {
+      const res = err && typeof err === 'object' && 'response' in err
+        ? (err as { response?: { data?: { message?: string; errors?: string[] } } }).response?.data
+        : null;
+      const message = res?.message ?? res?.errors?.[0] ?? (err instanceof Error ? err.message : 'Verification failed');
+      setError(message || 'Verification failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleEditPhone = () => router.push('/login');
 
   return (
     <div className="min-h-screen bg-white flex items-start justify-center pt-8 pb-8 px-5 relative overflow-hidden">
@@ -68,9 +102,12 @@ const handleVerifyOTP = async () => {
           {/* Title with Edit phone */}
           <div className="mb-2">
             <h2 className="text-h4 text-dark font-heading font-semibold flex items-center justify-between flex-wrap gap-1">
-              <span className="flex-1 min-w-0">Enter OTP Sent to +91 987****12</span>
+              <span className="flex-1 min-w-0">
+                Enter OTP Sent to {phone ? `+91 ${maskedPhone}` : 'your number'}
+              </span>
               <button
                 type="button"
+                onClick={handleEditPhone}
                 className="flex items-center gap-1 text-prime text-xs font-medium underline whitespace-nowrap"
               >
                 <Image
@@ -90,6 +127,10 @@ const handleVerifyOTP = async () => {
             Please be patient OTP waiting time is 1 minute
           </p>
 
+          {error && (
+            <p className="text-body-sm text-red-600 mb-3 font-body">{error}</p>
+          )}
+
           {/* OTP Inputs */}
           <div className="flex justify-center gap-3 mb-6">
             {otp.map((digit, index) => (
@@ -107,10 +148,10 @@ const handleVerifyOTP = async () => {
           {/* Button */}
           <button
             onClick={handleVerifyOTP}
-            disabled={otp.some((d) => !d)}
+            disabled={otp.some((d) => !d) || loading || !phone}
             className="w-full bg-prime hover:bg-prime/90 disabled:bg-dark-20 disabled:cursor-not-allowed text-white py-3 rounded-xl text-button transition-all shadow-sm font-body font-semibold"
           >
-            Verify OTP
+            {loading ? 'Verifying…' : 'Verify OTP'}
           </button>
 
           {/* Terms */}

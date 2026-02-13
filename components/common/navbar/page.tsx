@@ -1,35 +1,72 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
-import { Search, ShoppingCart, Menu, X } from "lucide-react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
+import { createPortal } from "react-dom";
+import { Search, ShoppingCart, Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { logoImage } from "@/components/shared/images/image";
-import { ChevronDown } from "lucide-react";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import { getAccessToken } from "@/utils/token";
+import { logout as logoutApi } from "@/services/auth";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userStyle, setUserStyle] = useState({ top: 0, right: 0, left: "auto" as number | "auto" });
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const userRef = useRef<HTMLDivElement>(null);
+  const userRefMobile = useRef<HTMLDivElement>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsLoggedIn(!!getAccessToken());
+  }, [pathname]);
+
+  const updateUserPosition = () => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const el = isMobile ? userRefMobile.current : userRef.current;
+    if (el) {
+      const rect = el.getBoundingClientRect();
+      setUserStyle({ top: rect.bottom + 8, right: window.innerWidth - rect.right, left: "auto" });
+    }
+  };
+
+  useLayoutEffect(() => {
+    if (userDropdownOpen) updateUserPosition();
+  }, [userDropdownOpen]);
+
+  useEffect(() => {
+    if (!userDropdownOpen) return;
+    const handleScrollResize = () => updateUserPosition();
+    window.addEventListener('scroll', handleScrollResize, true);
+    window.addEventListener('resize', handleScrollResize);
+    return () => {
+      window.removeEventListener('scroll', handleScrollResize, true);
+      window.removeEventListener('resize', handleScrollResize);
+    };
+  }, [userDropdownOpen]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
         setServicesDropdownOpen(false);
+      }
+      const userTrigger = userRef.current ?? userRefMobile.current;
+      if (userDropdownOpen && userTrigger && !userTrigger.contains(target) && userMenuRef.current && !userMenuRef.current.contains(target)) {
+        setUserDropdownOpen(false);
       }
     };
 
-    if (servicesDropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [servicesDropdownOpen]);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [servicesDropdownOpen, userDropdownOpen]);
 
   const services = [
     {
@@ -156,19 +193,79 @@ const route = useRouter();
               <ShoppingCart className="w-5 h-5 text-dark" />
             </button>
 
-            <Link
-              href="/login"
-              className="
-                hidden sm:inline-flex items-center justify-center
-                px-6.5 py-2.5 text-sm font-body
-                border border-border rounded-md
-                text-black
-                hover:bg-muted
-                transition
-              "
-            >
-              Login
-            </Link>
+            {isLoggedIn ? (
+              <div ref={userRef} className="relative hidden sm:block">
+               <button
+                               onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                               className="
+                                 flex items-center gap-2
+                                 px-3 py-2
+                                 hover:bg-gray-50
+                                 rounded-md
+                                 transition
+                               "
+                             >
+                               <div className="relative w-9 h-9 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400">
+                                 <Image
+                                   src="/user-avatar.jpg"
+                                   alt="User"
+                                   fill
+                                   className="object-cover"
+                                   onError={(e) => {
+                                     // Fallback if image fails
+                                     e.currentTarget.style.display = 'none';
+                                   }}
+                                 />
+                               </div>
+                               {/* Name + chevron hidden on mobile, only avatar shows; click opens dropdown */}
+                               <div className="hidden md:flex flex-col items-start">
+                                 <span className="text-sm font-medium text-gray-900">
+                                   User
+                                 </span>
+                               </div>
+                               <ChevronDown 
+                                 className={`hidden md:block w-4 h-4 text-gray-500 transition-transform ${
+                                   userDropdownOpen ? 'rotate-180' : ''
+                                 }`} 
+                               />
+                             </button>
+                {typeof document !== 'undefined' && userDropdownOpen && createPortal(
+                  <div
+                    ref={userMenuRef}
+                    className="fixed w-48 py-2 rounded-xl bg-white border border-border shadow-lg z-[100]"
+                    style={{ top: userStyle.top, right: userStyle.right, left: userStyle.left }}
+                  >
+                    <Link href="/help-center" className="block px-4 py-2.5 text-sm text-foreground hover:bg-muted rounded-lg transition" onClick={() => setUserDropdownOpen(false)}>
+                      Help Center
+                    </Link>
+                    <Link href="/bookings" className="block px-4 py-2.5 text-sm text-foreground hover:bg-muted rounded-lg transition" onClick={() => setUserDropdownOpen(false)}>
+                      My Bookings
+                    </Link>
+                    <Link href="/settings" className="block px-4 py-2.5 text-sm text-foreground hover:bg-muted rounded-lg transition" onClick={() => setUserDropdownOpen(false)}>
+                      Settings
+                    </Link>
+                    <button type="button" className="block w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-muted rounded-lg transition font-medium" onClick={() => { setUserDropdownOpen(false); setIsLoggedIn(false); logoutApi(); route.push('/'); }}>
+                      Logout
+                    </button>
+                  </div>,
+                  document.body
+                )}
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="
+                  hidden sm:inline-flex items-center justify-center
+                  px-6.5 py-2.5 text-sm font-body
+                  border border-border rounded-md
+                  text-black
+                  hover:bg-muted
+                  transition
+                "
+              >
+                Login
+              </Link>
+            )}
 
             {/* MOBILE MENU BUTTON */}
             <button
@@ -316,18 +413,57 @@ const route = useRouter();
               />
             </div>
 
-            <Link
-              href="/login"
-              className="
-                block w-full text-center
-                px-4 py-2
-                border border-border rounded-md
-                text-foreground
-                hover:bg-muted
-              "
-            >
-              Login
-            </Link>
+            {isLoggedIn ? (
+              <div ref={userRefMobile} className="py-2">
+                <button
+                                onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                                className="
+                                  flex items-center gap-2
+                                  px-3 py-2
+                                  hover:bg-gray-50
+                                  rounded-md
+                                  transition
+                                "
+                              >
+                                <div className="relative w-9 h-9 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400">
+                                  <Image
+                                    src="/user-avatar.jpg"
+                                    alt="User"
+                                    fill
+                                    className="object-cover"
+                                    onError={(e) => {
+                                      // Fallback if image fails
+                                      e.currentTarget.style.display = 'none';
+                                    }}
+                                  />
+                                </div>
+                                {/* Name + chevron hidden on mobile, only avatar shows; click opens dropdown */}
+                                <div className="hidden md:flex flex-col items-start">
+                                  <span className="text-sm font-medium text-gray-900">
+                                    User
+                                  </span>
+                                </div>
+                                <ChevronDown 
+                                  className={`hidden md:block w-4 h-4 text-gray-500 transition-transform ${
+                                    userDropdownOpen ? 'rotate-180' : ''
+                                  }`} 
+                                />
+                              </button>
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="
+                  block w-full text-center
+                  px-4 py-2
+                  border border-border rounded-md
+                  text-foreground
+                  hover:bg-muted
+                "
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       )}

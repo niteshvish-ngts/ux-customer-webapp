@@ -4,18 +4,38 @@ import { auth, logoImage } from '@/components/shared/images/image';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import { sendOtp } from '@/services/auth';
 
 export default function PhoneLoginPage() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode, setCountryCode] = useState('+91');
   const [isVerified, setIsVerified] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  const handleSubmit = () => {
-    if (isVerified && phoneNumber) {
-      console.log('Phone:', countryCode + phoneNumber);
+  const handleSubmit = async () => {
+    if (!isVerified || !phoneNumber) return;
+    setError(null);
+    setLoading(true);
+    try {
+      await sendOtp({
+        phone: phoneNumber,
+        userType: 'CUSTOMER',
+      });
+      router.push(`/otp-verify?phone=${encodeURIComponent(phoneNumber)}`);
+    } catch (err: unknown) {
+      const message =
+        err && typeof err === 'object' && 'response' in err
+          ? (err as { response?: { data?: { message?: string; errors?: string[] } } }).response?.data?.message ||
+            (err as { response?: { data?: { errors?: string[] } } }).response?.data?.errors?.[0]
+          : err instanceof Error
+            ? err.message
+            : 'Failed to send OTP';
+      setError(message || 'Failed to send OTP');
+    } finally {
+      setLoading(false);
     }
-    router.push('/otp-verify');
   };
 
   return (
@@ -93,6 +113,11 @@ export default function PhoneLoginPage() {
             </div>
           </div>
 
+          {/* Error message */}
+          {error && (
+            <p className="text-body-sm text-red-600 mb-3 font-body">{error}</p>
+          )}
+
           {/* Cloudflare Verification */}
           <div className="mb-5">
             <div className="flex items-center justify-between px-5 py-3 border border-border rounded-xl bg-white">
@@ -124,10 +149,10 @@ export default function PhoneLoginPage() {
           {/* Continue Button */}
           <button
             onClick={handleSubmit}
-            disabled={!isVerified || !phoneNumber}
+            disabled={!isVerified || !phoneNumber || loading}
             className="w-full bg-prime hover:bg-prime/90 disabled:bg-dark-20 disabled:cursor-not-allowed text-white text-button py-3 rounded-xl transition-all shadow-sm font-body font-semibold"
           >
-            Continue
+            {loading ? 'Sending…' : 'Continue'}
           </button>
 
           {/* Terms */}
