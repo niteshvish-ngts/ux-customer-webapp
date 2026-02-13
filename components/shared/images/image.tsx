@@ -46,6 +46,7 @@ import back from "@/public/assets/images/booking/back.svg"
 import star from "@/public/assets/images/booking/star.svg"
 // rating
 import imageplus from "@/public/assets/images/rating/imageplus.svg"
+import ratingstar from "@/public/assets/images/rating/ratingstar.svg"
 // services
 import singlestar from "@/public/assets/images/services/singlestar.svg"
 import stars from "@/public/assets/images/services/stars.svg"
@@ -164,7 +165,7 @@ export const Booking = {
 }
 export const Rating = {
     ratingImg1: imageplus, 
-    // ratingImg2: receipt,
+    ratingImg2: ratingstar,
     // ratingImg3: back,
     // ratingImg4: star
     

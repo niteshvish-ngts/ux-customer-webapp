@@ -113,14 +113,14 @@ export default function Navbar2() {
                 onClick={() => setLocationDropdownOpen(!locationDropdownOpen)}
                 className="
                   flex items-center gap-2
-                  px-4 py-2
+                  px-4 py-2.5
                   text-sm text-gray-700
                   hover:bg-gray-50
                   rounded-md
-                  border border-gray-200
+                  border border-dark-20
                   transition
-                  min-w-[220px]
-                  z-[10]
+                  min-w-55
+                  z-10
                 "
               >
                 <svg 
@@ -161,13 +161,13 @@ export default function Navbar2() {
                     className="fixed bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-[9999]"
                     style={{ top: locationStyle.top, left: locationStyle.left, minWidth: locationStyle.minWidth }}
                   >
-                    <div className="px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">
+                    <div className="px-3 py-2 text-sm text-dark-50 hover:bg-dark-20 cursor-pointer">
                       Gurugram - Delhi Expressway
                     </div>
-                    <div className="px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">
+                    <div className="px-3 py-2 text-sm text-dark-50 hover:bg-dark-20 cursor-pointer">
                       New Delhi
                     </div>
-                    <div className="px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">
+                    <div className="px-3 py-2 text-sm text-dark-50 hover:bg-dark-20 cursor-pointer">
                       Noida
                     </div>
                   </div>,
@@ -177,19 +177,19 @@ export default function Navbar2() {
 
             {/* Search Bar */}
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-dark" />
               <input
                 type="text"
                 placeholder="Search for 'AC Service & Repair'"
                 className="
                   w-full pl-10 pr-4 py-2.5
-                  text-sm text-gray-700
+                  text-sm text-dark-50
                   placeholder:text-gray-400
                   bg-white
-                  border border-gray-200
+                  border border-dark-20
                   rounded-md
                   focus:outline-none
-                  focus:ring-2
+                  focus:ring-1
                   focus:ring-prime
                   focus:border-transparent
                 "
@@ -227,7 +227,7 @@ export default function Navbar2() {
                   transition
                 "
               >
-                <div className="relative w-8 h-8 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400">
+                <div className="relative w-9 h-9 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400">
                   <Image
                     src="/user-avatar.jpg" // Replace with actual user image
                     alt="User"

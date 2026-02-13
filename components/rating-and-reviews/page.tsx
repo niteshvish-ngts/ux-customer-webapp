@@ -166,12 +166,13 @@ export default function RatingsReviewsPage() {
              <Image src={Booking.bookingImg3} alt="Back" width={16} height={16} />
              back
            </button>
-            <h1 className="flex items-center gap-2 text-4xl font-semibold font-outfit mt-2">
-              ⭐ Ratings & Reviews
-            </h1>
+            <h1 className="flex items-center gap-2 text-4xl font-semibold font-outfit mt-3">
+  <Image src={Rating.ratingImg2} alt="Star" className="w-10 h-10" />
+  Ratings & Reviews
+</h1>
           </div>
 
-          <div className="text-sm text-muted-foreground text-right">
+          <div className="text-sm text-muted-foreground ">
             <p className="font-medium text-foreground">
               Foam-jet service (2 ACs)
             </p>
