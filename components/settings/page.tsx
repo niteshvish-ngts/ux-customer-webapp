@@ -3,10 +3,14 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { LogOut } from 'lucide-react';
-import SettingsLayout from './SettingsLayout';
-import ProfileDetails from './ProfileDetails';
 import { logout as logoutApi } from '@/services/auth';
-import MyBookingsPage from '@/app/bookings/page';
+import MyBookingsPage from '@/components/bookings/page';
+import ProfileDetails from './ProfileDetails';
+import MyRatings from './MyRatings';
+import SettingsLayout from './SettingsLayout';
+import ManageAddress from './manageAddress';
+import HelpAndSupport from './Help-and-Support';
+import About from './About';
 
 export type SettingsSection =
   | 'profile'
@@ -59,13 +63,13 @@ export default function SettingsPage({ section: sectionParam }: SettingsPageProp
   };
 
   const sidebar = (
-    <nav className="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 flex flex-col">
+    <nav className="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 flex flex-col min-h-[280px] lg:h-full">
       <ul className="space-y-0.5">
         {SIDEBAR_ITEMS.map((item) => (
           <li key={item.id}>
             <Link
               href={`/settings/${item.id}`}
-              className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-body transition ${
+              className={`block w-full text-left px-4 py-3 rounded-lg text-base font-outfit transition font-medium ${
                 activeSection === item.id
                   ? 'bg-prime/10 text-prime font-medium'
                   : 'text-gray-700 hover:bg-gray-50'
@@ -92,17 +96,17 @@ export default function SettingsPage({ section: sectionParam }: SettingsPageProp
       case 'profile':
         return <ProfileDetails />;
       case 'ratings':
-        return <PlaceholderContent title="My Ratings" />;
+        return <MyRatings />;
       case 'bookings':
-        return <MyBookingsPage />;
+        return <MyBookingsPage disableBackButton />;
       case 'addresses':
-        return <PlaceholderContent title="Manage Addresses" />;
+        return <ManageAddress />;
       case 'refer':
         return <PlaceholderContent title="Refer & Earn" />;
       case 'help':
-        return <PlaceholderContent title="Help & Support" />;
+        return <HelpAndSupport />;
       case 'about':
-        return <PlaceholderContent title="About UX" />;
+        return <About />;
       default:
         return <ProfileDetails />;
     }

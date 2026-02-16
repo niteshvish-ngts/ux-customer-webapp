@@ -89,6 +89,8 @@ import vect2 from "@/public/assets/images/modal-icon/ac-modal/vect2.svg"
 import vect3 from "@/public/assets/images/modal-icon/ac-modal/vect3.svg"
 import vect4 from "@/public/assets/images/modal-icon/ac-modal/vect4.svg"
 import vect5 from "@/public/assets/images/modal-icon/ac-modal/vect5.svg"
+// settings
+import settingsIcon from "@/public/assets/images/settings/settingsIcon.svg"
 
 
 export const logoImage = {
@@ -242,4 +244,13 @@ export const Modal5 = {
     modalImg4: vect4,
     modalImg5: vect5,
     modalImg6: vect6
+}
+export const Settings = {
+    settingsImg1: settingsIcon, 
+    settingsImg2: ratingstar,
+    // settingsImg3: back,
+    // settingsImg4: star
+    
+
+
 }
