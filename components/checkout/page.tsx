@@ -6,6 +6,13 @@ import SlotModal from './slotModals';
 import Image from 'next/image';
 import { Booking, Checkout } from '../shared/images/image';
 import { useRouter } from 'next/navigation';
+import { getProfile } from '@/services/profile';
+
+function formatPhone(phone: string | null | undefined): string {
+  if (!phone) return '';
+  const trimmed = String(phone).trim();
+  return trimmed.length === 10 ? `+91 ${trimmed}` : trimmed;
+}
 
 export default function CheckoutFlow() {
   const [addressModalOpen, setAddressModalOpen] = useState<boolean>(false);
@@ -64,10 +71,8 @@ export default function CheckoutFlow() {
 
   const handleAddressSelect = (title?: string, address?: string) => {
     setAddressSelected(true);
-    if (title && address) {
+    if (title != null && address != null) {
       setSelectedAddress({ title, address });
-    } else {
-      setSelectedAddress({ title: "Home", address: "145, Sector B, Nagin Nagar, Indore, MP 452010, India" });
     }
     setAddressModalOpen(false);
   };
@@ -82,6 +87,35 @@ export default function CheckoutFlow() {
     setSlotModalOpen(false);
   };
   const router = useRouter();
+
+  // Prefill checkout contact info from customer profile
+  useEffect(() => {
+    let cancelled = false;
+    getProfile()
+      .then((res) => {
+        if (cancelled || !res?.success || !res?.data) return;
+        const p = res.data;
+        setContactInfo((prev) => {
+          // Don't overwrite if user already started typing
+          const hasAny = Boolean(prev.firstName || prev.lastName || prev.phone || prev.email);
+          if (hasAny) return prev;
+          return {
+            firstName: p.firstName ?? '',
+            lastName: p.lastName ?? '',
+            phone: formatPhone(p.phone),
+            email: p.email ?? '',
+          };
+        });
+      })
+      .catch((err) => {
+        // Keep UI usable even if profile fetch fails
+        console.error('[CheckoutFlow] getProfile failed:', err?.response?.data ?? err);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
       {/* Header */}

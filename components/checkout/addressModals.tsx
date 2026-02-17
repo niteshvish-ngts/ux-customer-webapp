@@ -1,8 +1,28 @@
 "use client";
 
 import { X, Plus } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddAddressModal from "./addAddressModal";
+import { getAllAddresses, type CustomerAddress } from "@/services/address";
+
+function labelFromAddressType(addressType: string | null | undefined): string {
+  const t = (addressType ?? "").toUpperCase();
+  if (t === "HOME") return "Home";
+  if (t === "WORK" || t === "OFFICE") return t === "WORK" ? "Work" : "Office";
+  if (t === "OTHER") return "Other";
+  return t ? t.charAt(0) + t.slice(1).toLowerCase() : "Address";
+}
+
+function formatAddressLine(a: CustomerAddress): string {
+  const parts: string[] = [];
+  if (a.line1) parts.push(a.line1);
+  if (a.line2) parts.push(a.line2);
+  if (a.landmark) parts.push(a.landmark);
+  const cityState = [a.city, a.state].filter(Boolean).join(", ");
+  if (cityState) parts.push(cityState);
+  if (a.pincode) parts.push(a.pincode);
+  return parts.join(", ").trim();
+}
 
 type Props = {
   open: boolean;
@@ -17,16 +37,43 @@ export default function AddressModal({
   onProceed,
   onAddressSelect,
 }: Props) {
-  const [selectedAddress, setSelectedAddress] = useState<{title: string, address: string} | null>(null);
+  const [addresses, setAddresses] = useState<CustomerAddress[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState<CustomerAddress | null>(null);
   const [addAddressModalOpen, setAddAddressModalOpen] = useState<boolean>(false);
 
-  const handleSelect = (title: string, address: string) => {
-    setSelectedAddress({ title, address });
-  };
+  useEffect(() => {
+    if (!open) return;
+    let cancelled = false;
+    setLoading(true);
+    setAddresses([]);
+    setSelectedAddress(null);
+    getAllAddresses()
+      .then((res) => {
+        if (cancelled) return;
+        const list = (res?.data ?? []).filter((a) => !a.isDeleted);
+        setAddresses(list);
+        const defaultAddr = list.find((a) => a.isDefault);
+        if (defaultAddr) setSelectedAddress(defaultAddr);
+        else if (list.length > 0) setSelectedAddress(list[0]);
+      })
+      .catch(() => {
+        if (!cancelled) setAddresses([]);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [open]);
 
   const handleProceed = () => {
     if (selectedAddress && onAddressSelect) {
-      onAddressSelect(selectedAddress.title, selectedAddress.address);
+      onAddressSelect(
+        labelFromAddressType(selectedAddress.addressType),
+        formatAddressLine(selectedAddress)
+      );
     }
     onProceed();
   };
@@ -73,18 +120,21 @@ export default function AddressModal({
           <div className="border-t" />
 
           {/* ADDRESS LIST */}
-          <AddressOption
-            checked
-            title="Home"
-            address="145, Sector B, Nagin Nagar, Indore, MP 452010, India"
-            onClick={() => handleSelect("Home", "145, Sector B, Nagin Nagar, Indore, MP 452010, India")}
-          />
-
-          <AddressOption
-            title="Shop"
-            address="Shop No. 12, Ground Floor, Silver Mall, MG Road, Indore, MP 452001"
-            onClick={() => handleSelect("Shop", "Shop No. 12, Ground Floor, Silver Mall, MG Road, Indore, MP 452001")}
-          />
+          {loading ? (
+            <p className="text-sm text-muted-foreground">Loading addresses…</p>
+          ) : addresses.length === 0 ? (
+            <p className="text-sm text-muted-foreground">No saved addresses. Add one above.</p>
+          ) : (
+            addresses.map((addr) => (
+              <AddressOption
+                key={addr.id}
+                title={labelFromAddressType(addr.addressType)}
+                address={formatAddressLine(addr)}
+                checked={selectedAddress?.id === addr.id}
+                onClick={() => setSelectedAddress(addr)}
+              />
+            ))
+          )}
         </div>
 
         {/* FOOTER */}
@@ -123,15 +173,15 @@ function AddressOption({
   onClick?: () => void;
 }) {
   return (
-    <label className="flex gap-3 cursor-pointer" onClick={onClick}>
+    <label className="flex gap-3 cursor-pointer">
       <input
         type="radio"
         name="address"
-        defaultChecked={checked}
+        checked={checked ?? false}
+        onChange={() => onClick?.()}
         className="mt-1 accent-prime"
       />
-
-      <div>
+      <div className="flex-1 min-w-0" onClick={() => onClick?.()}>
         <p className="text-sm font-semibold">{title}</p>
         <p className="text-xs text-muted-foreground mt-1">
           {address}
