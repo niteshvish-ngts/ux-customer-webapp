@@ -18,6 +18,7 @@ export default function OtpVerifyPage() {
   useEffect(() => {
     if (!phone) router.replace('/login');
   }, [phone, router]);
+
   const maskedPhone = useMemo(() => {
     if (phone.length < 4) return '****';
     return '****' + phone.slice(-4);
@@ -66,13 +67,13 @@ export default function OtpVerifyPage() {
       {/* Decorative orange shapes in top corners */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-[#FFF5E2] rounded-full blur-3xl opacity-60 -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute top-0 right-0 w-64 h-64 bg-[#FFF5E2] rounded-full blur-3xl opacity-60 translate-x-1/2 -translate-y-1/2"></div>
-      
+
       <div className="w-full max-w-lg relative z-10 mt-4">
         {/* Logo */}
         <div className="flex justify-center mb-3">
-          <div className=" flex items-center justify-center p-2">
+          <div className="flex items-center justify-center p-2">
             <Image
-              src={logoImage.logoImg} 
+              src={logoImage.logoImg}
               alt="Logo"
               width={50}
               height={50}
@@ -132,7 +133,7 @@ export default function OtpVerifyPage() {
           )}
 
           {/* OTP Inputs */}
-          <div className="flex justify-center gap-3 mb-6">
+          <div className="flex justify-center gap-1.5 sm:gap-3 mb-6">
             {otp.map((digit, index) => (
               <input
                 key={index}
@@ -140,7 +141,9 @@ export default function OtpVerifyPage() {
                 value={digit}
                 onChange={(e) => handleChange(e.target.value, index)}
                 maxLength={1}
-                className="w-16 h-14 text-center text-lg font-body border border-border rounded-lg focus:ring-2 focus:ring-prime focus:border-transparent outline-none"
+                inputMode="numeric"
+                pattern="\d*"
+                className="w-10 h-10 sm:w-16 sm:h-14 text-center text-base sm:text-lg font-body border border-border rounded-lg focus:ring-2 focus:ring-prime focus:border-transparent outline-none flex-shrink-0"
               />
             ))}
           </div>
