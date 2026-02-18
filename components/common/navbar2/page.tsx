@@ -9,15 +9,33 @@ import { logoImage, Booking } from "@/components/shared/images/image";
 import { useRouter, usePathname } from "next/navigation";
 import { getAccessToken } from "@/utils/token";
 import { logout as logoutApi } from "@/services/auth";
+import { getProfile } from "@/services/profile";
 
 export default function Navbar2() {
   const [locationDropdownOpen, setLocationDropdownOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userFullName, setUserFullName] = useState<string>("User");
   const pathname = usePathname();
 
   useEffect(() => {
-    setIsLoggedIn(!!getAccessToken());
+    const loggedIn = !!getAccessToken();
+    setIsLoggedIn(loggedIn);
+    if (loggedIn) {
+      getProfile()
+        .then((res) => {
+          if (res?.success && res?.data) {
+            const d = res.data;
+            const name =
+              d.fullName ??
+              [d.firstName, d.lastName].filter(Boolean).join(" ").trim();
+            setUserFullName(name || "User");
+          }
+        })
+        .catch(() => setUserFullName("User"));
+    } else {
+      setUserFullName("User");
+    }
   }, [pathname]);
   const [locationStyle, setLocationStyle] = useState({ top: 0, left: 0, minWidth: 0 });
   const [userStyle, setUserStyle] = useState({ top: 0, right: 0, left: "auto" as number | "auto" });
@@ -249,7 +267,7 @@ export default function Navbar2() {
                   </div>
                   <div className="hidden md:flex flex-col items-start">
                     <span className="text-sm font-medium text-gray-900">
-                      User
+                      {userFullName}
                     </span>
                   </div>
                   <ChevronDown 

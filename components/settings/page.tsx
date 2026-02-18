@@ -11,6 +11,7 @@ import SettingsLayout from './SettingsLayout';
 import ManageAddress from './manageAddress';
 import HelpAndSupport from './Help-and-Support';
 import About from './About';
+import { useState } from 'react';
 
 export type SettingsSection =
   | 'profile'
@@ -53,13 +54,23 @@ interface SettingsPageProps {
   section?: string;
 }
 
+
 export default function SettingsPage({ section: sectionParam }: SettingsPageProps) {
   const activeSection = getSection(sectionParam);
   const router = useRouter();
+  const [loggingOut, setLoggingOut] = useState(false);
 
   const handleLogout = () => {
-    logoutApi();
-    router.push('/');
+    setLoggingOut(true);
+    logoutApi()
+      .then(() => {
+        router.push('/');
+      })
+      .catch(() => {
+        // Tokens cleared in auth service; redirect anyway
+        router.push('/');
+      })
+      .finally(() => setLoggingOut(false));
   };
 
   const sidebar = (
@@ -83,9 +94,10 @@ export default function SettingsPage({ section: sectionParam }: SettingsPageProp
       <button
         type="button"
         onClick={handleLogout}
-        className="mt-auto flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg bg-red-500 text-white text-sm font-medium hover:bg-red-600 transition font-body"
+        disabled={loggingOut}
+        className="mt-auto flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg bg-red-500 text-white text-sm font-medium hover:bg-red-600 disabled:opacity-70 disabled:cursor-not-allowed transition font-body"
       >
-        Logout
+        {loggingOut ? 'Logging out…' : 'Logout'}
         <LogOut className="w-4 h-4" />
       </button>
     </nav>

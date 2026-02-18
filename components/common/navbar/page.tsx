@@ -10,12 +10,14 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { useRouter, usePathname } from "next/navigation";
 import { getAccessToken } from "@/utils/token";
 import { logout as logoutApi } from "@/services/auth";
+import { getProfile } from "@/services/profile";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userFullName, setUserFullName] = useState<string>("User");
   const [userStyle, setUserStyle] = useState({ top: 0, right: 0, left: "auto" as number | "auto" });
   const dropdownRef = useRef<HTMLDivElement>(null);
   const userRef = useRef<HTMLDivElement>(null);
@@ -24,7 +26,23 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    setIsLoggedIn(!!getAccessToken());
+    const loggedIn = !!getAccessToken();
+    setIsLoggedIn(loggedIn);
+    if (loggedIn) {
+      getProfile()
+        .then((res) => {
+          if (res?.success && res?.data) {
+            const d = res.data;
+            const name =
+              d.fullName ??
+              [d.firstName, d.lastName].filter(Boolean).join(" ").trim();
+            setUserFullName(name || "User");
+          }
+        })
+        .catch(() => setUserFullName("User"));
+    } else {
+      setUserFullName("User");
+    }
   }, [pathname]);
 
   const updateUserPosition = () => {
@@ -220,7 +238,7 @@ const route = useRouter();
                                {/* Name + chevron hidden on mobile, only avatar shows; click opens dropdown */}
                                <div className="hidden md:flex flex-col items-start">
                                  <span className="text-sm font-medium text-gray-900">
-                                   User
+                                   {userFullName}
                                  </span>
                                </div>
                                <ChevronDown 
@@ -440,7 +458,7 @@ const route = useRouter();
                                 {/* Name + chevron hidden on mobile, only avatar shows; click opens dropdown */}
                                 <div className="hidden md:flex flex-col items-start">
                                   <span className="text-sm font-medium text-gray-900">
-                                    User
+                                    {userFullName}
                                   </span>
                                 </div>
                                 <ChevronDown 

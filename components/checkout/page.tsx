@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { MapPin, Clock, CreditCard, Check, Pencil } from 'lucide-react';
-import AddressModal from './addressModals';
-import SlotModal from './slotModals';
+import AddressModal from '../ui/modals/addressModals';
+import SlotModal from '../ui/modals/slotModals';
 import Image from 'next/image';
 import { Booking, Checkout } from '../shared/images/image';
 import { useRouter } from 'next/navigation';

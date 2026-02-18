@@ -9,17 +9,35 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { getAccessToken } from '@/utils/token';
 import { logout as logoutApi } from '@/services/auth';
+import { getProfile } from '@/services/profile';
 
 export default function Navbar3() {
   const router = useRouter();
   const pathname = usePathname();
   const headingText = pathname === '/cart' ? 'My Cart' : pathname === '/checkout' ? 'Checkout' : 'Checkout';
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userFullName, setUserFullName] = useState<string>('User');
   const [locationDropdownOpen, setLocationDropdownOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
   useEffect(() => {
-    setIsLoggedIn(!!getAccessToken());
+    const loggedIn = !!getAccessToken();
+    setIsLoggedIn(loggedIn);
+    if (loggedIn) {
+      getProfile()
+        .then((res) => {
+          if (res?.success && res?.data) {
+            const d = res.data;
+            const name =
+              d.fullName ??
+              [d.firstName, d.lastName].filter(Boolean).join(' ').trim();
+            setUserFullName(name || 'User');
+          }
+        })
+        .catch(() => setUserFullName('User'));
+    } else {
+      setUserFullName('User');
+    }
   }, [pathname]);
   const [locationStyle, setLocationStyle] = useState({ top: 0, left: 0, minWidth: 0 });
   const [userStyle, setUserStyle] = useState({ top: 0, right: 0, left: "auto" as number | "auto" });
@@ -139,7 +157,7 @@ export default function Navbar3() {
                 {/* Name + chevron hidden on mobile, only avatar shows; click opens dropdown */}
                 <div className="hidden md:flex flex-col items-start">
                   <span className="text-sm font-medium text-gray-900">
-                    User
+                    {userFullName}
                   </span>
                 </div>
                 <ChevronDown 

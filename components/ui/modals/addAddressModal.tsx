@@ -2,6 +2,7 @@
 
 import { X } from "lucide-react";
 import { useState } from "react";
+import { createAddress, type CustomerAddress } from "@/services/address";
 
 type Props = {
   open: boolean;
@@ -13,6 +14,42 @@ const FULL_ADDRESS =
   "Flat 302, Shree Residency, Vijay Nagar, Indore, Madhya Pradesh 452010, India";
 const MAIN_ADDRESS = "Flat 302, Shree Residency";
 
+const DEFAULT_LAT = 59.076;
+const DEFAULT_LNG = 66.8777;
+const DEFAULT_CITY = "Indore";
+const DEFAULT_STATE = "MP";
+const DEFAULT_PINCODE = "452010";
+
+function normalizeAddressType(s: string): string {
+  const t = s.trim().toUpperCase();
+  if (t === "HOME" || t === "WORK" || t === "OFFICE" || t === "OTHER") return t;
+  if (t.includes("OFFICE")) return "OFFICE";
+  if (t.includes("WORK")) return "WORK";
+  if (t.includes("OTHER")) return "OTHER";
+  return "HOME";
+}
+
+function formatAddressLine(a: CustomerAddress): string {
+  const parts: string[] = [];
+  if (a.line1) parts.push(a.line1);
+  if (a.line2) parts.push(a.line2);
+  if (a.landmark) parts.push(a.landmark);
+  const cityState = [a.city, a.state].filter(Boolean).join(", ");
+  if (cityState) parts.push(cityState);
+  if (a.pincode) parts.push(a.pincode);
+  return parts.join(", ").trim();
+}
+
+function addressTypeToLabel(type: string): string {
+  const map: Record<string, string> = {
+    HOME: "Home",
+    WORK: "Work",
+    OFFICE: "Office",
+    OTHER: "Other",
+  };
+  return map[type] ?? type;
+}
+
 export default function AddAddressModal({
   open,
   onClose,
@@ -22,15 +59,50 @@ export default function AddAddressModal({
   const [landmark, setLandmark] = useState("");
   const [name, setName] = useState("");
   const [saveAs, setSaveAs] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSave = () => {
-    const addressTitle = saveAs.trim() || "Home";
-    const completeAddress = `${houseNo ? houseNo + ", " : ""}${FULL_ADDRESS}${landmark ? ", " + landmark : ""}`;
-    onSave(addressTitle, completeAddress);
-    setHouseNo("");
-    setLandmark("");
-    setName("");
-    setSaveAs("");
+    setError(null);
+    const line1Trim = houseNo.trim();
+    if (!line1Trim) {
+      setError("Please enter House / Flat No.");
+      return;
+    }
+    setSaving(true);
+    createAddress({
+      addressType: normalizeAddressType(saveAs),
+      line1: line1Trim,
+      landmark: landmark.trim() || null,
+      city: DEFAULT_CITY,
+      state: DEFAULT_STATE,
+      pincode: DEFAULT_PINCODE,
+      latitude: DEFAULT_LAT,
+      longitude: DEFAULT_LNG,
+    })
+      .then((res) => {
+        if (res?.success && res.data) {
+          const title = addressTypeToLabel(res.data.addressType);
+          const address = formatAddressLine(res.data);
+          onSave(title, address);
+          setHouseNo("");
+          setLandmark("");
+          setName("");
+          setSaveAs("");
+          onClose();
+        } else {
+          setError("Failed to save address.");
+        }
+      })
+      .catch((err) => {
+        const msg =
+          err?.response?.data?.message ??
+          err?.response?.data?.errors?.[0] ??
+          err?.message ??
+          "Failed to save address.";
+        setError(msg);
+      })
+      .finally(() => setSaving(false));
   };
 
   if (!open) return null;
@@ -170,13 +242,16 @@ export default function AddAddressModal({
                 </div>
               </div>
 
-              {/* Save button - full width, orange */}
+              {error && (
+                <p className="mt-4 text-sm text-red-600 font-outfit">{error}</p>
+              )}
               <button
                 type="button"
                 onClick={handleSave}
-                className="w-full mt-6 py-3 rounded-lg bg-prime hover:bg-prime-20 text-white text-sm font-medium tracking-wide transition font-outfit "
+                disabled={saving}
+                className="w-full mt-6 py-3 rounded-lg bg-prime hover:bg-prime-20 disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-medium tracking-wide transition font-outfit"
               >
-                Save & Select Address
+                {saving ? "Saving…" : "Save & Select Address"}
               </button>
             </div>
           </div>
