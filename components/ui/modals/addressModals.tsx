@@ -4,6 +4,7 @@ import { X, Plus } from "lucide-react";
 import { useState, useEffect } from "react";
 import AddAddressModal from "./addAddressModal";
 import { getAllAddresses, type CustomerAddress } from "@/services/address";
+import { ModalDrawer } from "@/components/ui/ModalDrawer";
 
 function labelFromAddressType(addressType: string | null | undefined): string {
   const t = (addressType ?? "").toUpperCase();
@@ -89,11 +90,12 @@ export default function AddressModal({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end lg:items-center justify-center bg-black/40">
-
-      {/* MODAL */}
-      <div className="w-full max-w-md rounded-t-2xl lg:rounded-2xl bg-white shadow-lg max-h-[90vh] lg:max-h-none overflow-y-auto">
-
+    <>
+      <ModalDrawer
+        open={open}
+        onClose={onClose}
+        contentClassName="w-full max-w-md bg-white shadow-lg max-h-[90vh] overflow-y-auto"
+      >
         {/* HEADER */}
         <div className="flex items-center justify-between px-6 py-4 border-b">
           <h2 className="text-lg font-semibold">Select Address</h2>
@@ -107,9 +109,7 @@ export default function AddressModal({
 
         {/* BODY */}
         <div className="px-6 py-4 space-y-4">
-
-          {/* ADD NEW */}
-          <button 
+          <button
             onClick={() => setAddAddressModalOpen(true)}
             className="flex items-center gap-2 text-sm font-medium text-prime hover:underline"
           >
@@ -119,7 +119,6 @@ export default function AddressModal({
 
           <div className="border-t" />
 
-          {/* ADDRESS LIST */}
           {loading ? (
             <p className="text-sm text-muted-foreground">Loading addresses…</p>
           ) : addresses.length === 0 ? (
@@ -147,15 +146,14 @@ export default function AddressModal({
             Proceed to Slots
           </button>
         </div>
-      </div>
+      </ModalDrawer>
 
-      {/* Add Address Modal */}
       <AddAddressModal
         open={addAddressModalOpen}
         onClose={() => setAddAddressModalOpen(false)}
         onSave={handleAddAddress}
       />
-    </div>
+    </>
   );
 }
 

@@ -3,6 +3,7 @@
 import { X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { updateAddress, type CustomerAddress } from '@/services/address';
+import { ModalDrawer } from '@/components/ui/ModalDrawer';
 
 const ADDRESS_TYPE_OPTIONS = [
   { value: 'HOME', label: 'Home' },
@@ -98,9 +99,12 @@ export default function EditAddressModal({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <div className="w-full max-w-xl rounded-2xl bg-white shadow-xl overflow-hidden">
-        <div className="flex items-center justify-between px-6 py-4 border-b">
+    <ModalDrawer
+      open={open}
+      onClose={onClose}
+      contentClassName="w-full max-w-xl bg-white shadow-xl overflow-hidden max-h-[90vh] overflow-y-auto"
+    >
+      <div className="flex items-center justify-between px-6 py-4 border-b">
           <h2 className="text-lg font-semibold text-[#2D3748]">Edit Address</h2>
           <button
             type="button"
@@ -259,7 +263,6 @@ export default function EditAddressModal({
             {saving ? 'Saving…' : 'Update Address'}
           </button>
         </div>
-      </div>
-    </div>
+    </ModalDrawer>
   );
 }

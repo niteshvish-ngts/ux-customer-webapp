@@ -3,6 +3,7 @@
 import { X } from "lucide-react";
 import { useState } from "react";
 import { createAddress, type CustomerAddress } from "@/services/address";
+import { ModalDrawer } from "@/components/ui/ModalDrawer";
 
 type Props = {
   open: boolean;
@@ -108,10 +109,13 @@ export default function AddAddressModal({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-60 flex items-end lg:items-center justify-center bg-black/40">
-      <div className="w-full h-full lg:h-auto lg:max-w-4xl lg:max-h-[90vh] lg:rounded-2xl bg-white shadow-xl overflow-hidden flex flex-col">
-        {/* Body: Map (left) + Form (right) */}
-        <div className="flex-1 flex flex-col lg:flex-row min-h-0">
+    <ModalDrawer
+      open={open}
+      onClose={onClose}
+      contentClassName="w-full h-full lg:h-auto lg:max-w-4xl lg:max-h-[90vh] bg-white shadow-xl overflow-hidden flex flex-col"
+      showDrawerHandle={false}
+    >
+      <div className="flex-1 flex flex-col lg:flex-row min-h-0">
           {/* LEFT: Map */}
           <div className="w-full lg:w-1/2 h-[40vh] lg:h-[70vh] bg-[#e8e8e8] relative shrink-0">
             <div className="absolute inset-0 bg-linear-to-br from-slate-100 to-slate-200">
@@ -256,7 +260,6 @@ export default function AddAddressModal({
             </div>
           </div>
         </div>
-      </div>
-    </div>
+    </ModalDrawer>
   );
 }
