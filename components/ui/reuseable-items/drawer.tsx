@@ -59,6 +59,30 @@ function DrawerContent({
 }
 DrawerContent.displayName = "DrawerContent";
 
+/** Left-side drawer content for nav/sidebar. Use with <Drawer direction="left">. High z-index for overlay. */
+function DrawerContentLeft({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof VaulDrawer.Content>) {
+  return (
+    <DrawerPortal>
+      <VaulDrawer.Overlay className="fixed inset-0 z-80 bg-black/40" />
+      <VaulDrawer.Content
+        className={cn(
+          "fixed inset-y-0 left-0 z-101 flex h-full w-[65%] max-w-sm flex-col border-r border-border bg-background",
+          className
+        )}
+        {...props}
+      >
+        <VaulDrawer.Title className="sr-only">Menu</VaulDrawer.Title>
+        {children}
+      </VaulDrawer.Content>
+    </DrawerPortal>
+  );
+}
+DrawerContentLeft.displayName = "DrawerContentLeft";
+
 function DrawerHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
@@ -112,6 +136,7 @@ export {
   DrawerClose,
   DrawerOverlay,
   DrawerContent,
+  DrawerContentLeft,
   DrawerHeader,
   DrawerFooter,
   DrawerTitle,

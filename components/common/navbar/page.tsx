@@ -11,6 +11,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { getAccessToken } from "@/utils/token";
 import { logout as logoutApi } from "@/services/auth";
 import { getProfile } from "@/services/profile";
+import { Drawer, DrawerContentLeft } from "@/components/ui/reuseable-items/drawer";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -20,6 +21,7 @@ export default function Navbar() {
   const [userFullName, setUserFullName] = useState<string>("User");
   const [userStyle, setUserStyle] = useState({ top: 0, right: 0, left: "auto" as number | "auto" });
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const mobileServicesTriggerRef = useRef<HTMLButtonElement>(null);
   const userRef = useRef<HTMLDivElement>(null);
   const userRefMobile = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
@@ -69,22 +71,35 @@ export default function Navbar() {
     };
   }, [userDropdownOpen]);
 
-  // Close dropdown when clicking outside
+  // Close dropdown when clicking outside (ignore clicks on the trigger buttons so toggle works)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
-      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
+      const isOnServicesTrigger =
+        dropdownRef.current?.contains(target) || mobileServicesTriggerRef.current?.contains(target);
+      if (!isOnServicesTrigger) {
         setServicesDropdownOpen(false);
       }
       const userTrigger = userRef.current ?? userRefMobile.current;
-      if (userDropdownOpen && userTrigger && !userTrigger.contains(target) && userMenuRef.current && !userMenuRef.current.contains(target)) {
+      const isOnUserTrigger = userTrigger?.contains(target);
+      const isOnUserMenu = userMenuRef.current?.contains(target);
+      if (userDropdownOpen && !isOnUserTrigger && !isOnUserMenu) {
         setUserDropdownOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [servicesDropdownOpen, userDropdownOpen]);
+
+  // Close mobile drawer when resizing to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== "undefined" && window.innerWidth >= 1024) setOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const services = [
     {
@@ -213,61 +228,28 @@ const route = useRouter();
 
             {isLoggedIn ? (
               <div ref={userRef} className="relative hidden sm:block">
-               <button
-                               onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                               className="
-                                 flex items-center gap-2
-                                 px-3 py-2
-                                 hover:bg-gray-50
-                                 rounded-md
-                                 transition
-                               "
-                             >
-                               <div className="relative w-9 h-9 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400">
-                                 <Image
-                                   src="/user-avatar.jpg"
-                                   alt="User"
-                                   fill
-                                   className="object-cover"
-                                   onError={(e) => {
-                                     // Fallback if image fails
-                                     e.currentTarget.style.display = 'none';
-                                   }}
-                                 />
-                               </div>
-                               {/* Name + chevron hidden on mobile, only avatar shows; click opens dropdown */}
-                               <div className="hidden md:flex flex-col items-start">
-                                 <span className="text-sm font-medium text-gray-900">
-                                   {userFullName}
-                                 </span>
-                               </div>
-                               <ChevronDown 
-                                 className={`hidden md:block w-4 h-4 text-gray-500 transition-transform ${
-                                   userDropdownOpen ? 'rotate-180' : ''
-                                 }`} 
-                               />
-                             </button>
-                {typeof document !== 'undefined' && userDropdownOpen && createPortal(
-                  <div
-                    ref={userMenuRef}
-                    className="fixed w-48 py-2 rounded-xl bg-white border border-border shadow-lg z-[100]"
-                    style={{ top: userStyle.top, right: userStyle.right, left: userStyle.left }}
-                  >
-                    <Link href="/help-center" className="block px-4 py-2.5 text-sm text-foreground hover:bg-muted rounded-lg transition" onClick={() => setUserDropdownOpen(false)}>
-                      Help Center
-                    </Link>
-                    <Link href="/bookings" className="block px-4 py-2.5 text-sm text-foreground hover:bg-muted rounded-lg transition" onClick={() => setUserDropdownOpen(false)}>
-                      My Bookings
-                    </Link>
-                    <Link href="/settings" className="block px-4 py-2.5 text-sm text-foreground hover:bg-muted rounded-lg transition" onClick={() => setUserDropdownOpen(false)}>
-                      Settings
-                    </Link>
-                    <button type="button" className="block w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-muted rounded-lg transition font-medium" onClick={() => { setUserDropdownOpen(false); setIsLoggedIn(false); logoutApi(); route.push('/'); }}>
-                      Logout
-                    </button>
-                  </div>,
-                  document.body
-                )}
+                <button
+                  onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                  className="flex items-center gap-2 px-3 py-2 hover:bg-gray-50 rounded-md transition"
+                >
+                  <div className="relative w-9 h-9 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400">
+                    <Image
+                      src="/user-avatar.jpg"
+                      alt="User"
+                      fill
+                      className="object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
+                  </div>
+                  <div className="hidden md:flex flex-col items-start">
+                    <span className="text-sm font-medium text-gray-900">{userFullName}</span>
+                  </div>
+                  <ChevronDown
+                    className={`hidden md:block w-4 h-4 text-gray-500 transition-transform ${userDropdownOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
               </div>
             ) : (
               <Link
@@ -349,47 +331,39 @@ const route = useRouter();
         </div>
       )}
 
-      {/* MOBILE MENU */}
-      {open && (
-        <div className="lg:hidden border-t border-border bg-background">
-          <div className="container py-4 space-y-3 text-sm font-lato">
-            <Link href="#" className="block text-muted-foreground hover:text-foreground">
+      {/* MOBILE MENU – left drawer with z-index */}
+      <Drawer direction="left" open={open} onOpenChange={setOpen}>
+        <DrawerContentLeft className="lg:hidden">
+          <div className="flex flex-col h-full overflow-y-auto p-4 pt-6 space-y-4 text-sm font-lato">
+            <Link href="#" className="block text-muted-foreground hover:text-foreground" onClick={() => setOpen(false)}>
               How it works?
             </Link>
-            
             <button
+              ref={mobileServicesTriggerRef}
+              type="button"
               onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-              className="
-                flex items-center gap-1
-                text-muted-foreground
-                hover:text-foreground
-                transition
-                w-full
-              "
+              className="flex items-center gap-1 text-left text-muted-foreground hover:text-foreground transition w-full"
             >
               Services
-              <ChevronDown className={`w-4 h-4 transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`w-4 h-4 transition-transform ${servicesDropdownOpen ? "rotate-180" : ""}`} />
             </button>
-
-            {/* Mobile Services Dropdown */}
             {servicesDropdownOpen && (
               <div className="pl-4 space-y-4 py-2">
                 {services.map((service, index) => (
                   <div key={index}>
-                    <h3 className="font-semibold text-slate-900 text-sm mb-2">
-                      {service.category}
-                    </h3>
+                    <h3 className="font-semibold text-slate-900 text-sm mb-2">{service.category}</h3>
                     <ul className="space-y-2 pl-2">
                       {service.items.map((item, itemIndex) => (
                         <li key={itemIndex}>
-                          <Link 
-                            href="#" 
+                          <Link
+                            href="#"
                             className="text-sm text-slate-700 hover:text-prime transition-colors block"
+                            onClick={() => setOpen(false)}
                           >
                             {item.name}
-                            {item.count && (
+                            {item.count != null && (
                               <span className="text-slate-500">
-                                {' '}({item.count} {item.suffix || 'bathrooms'})
+                                {" "}({item.count} {item.suffix || "bathrooms"})
                               </span>
                             )}
                           </Link>
@@ -397,10 +371,7 @@ const route = useRouter();
                       ))}
                       {service.viewAll && (
                         <li>
-                          <Link 
-                            href="#" 
-                            className="text-sm text-prime hover:text-prime font-medium"
-                          >
+                          <Link href="#" className="text-sm text-prime font-medium" onClick={() => setOpen(false)}>
                             See All Services
                           </Link>
                         </li>
@@ -410,81 +381,100 @@ const route = useRouter();
                 ))}
               </div>
             )}
-
-            <Link href="#" className="block text-muted-foreground hover:text-foreground">
+            <Link href="#" className="block text-muted-foreground hover:text-foreground" onClick={() => setOpen(false)}>
               Become a provider
             </Link>
-
             <div className="relative pt-2">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Search"
-                className="
-                  w-full pl-9 pr-3 py-2 text-sm
-                  bg-background text-foreground
-                  border border-input rounded-md
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-ring
-                "
+                className="w-full pl-9 pr-3 py-2 text-sm bg-background text-foreground border border-input rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
-
             {isLoggedIn ? (
               <div ref={userRefMobile} className="py-2">
                 <button
-                                onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                                className="
-                                  flex items-center gap-2
-                                  px-3 py-2
-                                  hover:bg-gray-50
-                                  rounded-md
-                                  transition
-                                "
-                              >
-                                <div className="relative w-9 h-9 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400">
-                                  <Image
-                                    src="/user-avatar.jpg"
-                                    alt="User"
-                                    fill
-                                    className="object-cover"
-                                    onError={(e) => {
-                                      // Fallback if image fails
-                                      e.currentTarget.style.display = 'none';
-                                    }}
-                                  />
-                                </div>
-                                {/* Name + chevron hidden on mobile, only avatar shows; click opens dropdown */}
-                                <div className="hidden md:flex flex-col items-start">
-                                  <span className="text-sm font-medium text-gray-900">
-                                    {userFullName}
-                                  </span>
-                                </div>
-                                <ChevronDown 
-                                  className={`hidden md:block w-4 h-4 text-gray-500 transition-transform ${
-                                    userDropdownOpen ? 'rotate-180' : ''
-                                  }`} 
-                                />
-                              </button>
+                  type="button"
+                  onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                  className="flex items-center gap-2 px-3 py-2 hover:bg-gray-50 rounded-md transition w-full"
+                >
+                  <div className="relative w-9 h-9 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400 shrink-0">
+                    <Image
+                      src="/user-avatar.jpg"
+                      alt="User"
+                      fill
+                      className="object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900 truncate">{userFullName}</span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-gray-500 transition-transform shrink-0 ${userDropdownOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
               </div>
             ) : (
               <Link
                 href="/login"
-                className="
-                  block w-full text-center
-                  px-4 py-2
-                  border border-border rounded-md
-                  text-foreground
-                  hover:bg-muted
-                "
+                className="block w-full text-center px-4 py-2 border border-border rounded-md text-foreground hover:bg-muted"
+                onClick={() => setOpen(false)}
               >
                 Login
               </Link>
             )}
           </div>
-        </div>
-      )}
+        </DrawerContentLeft>
+      </Drawer>
+
+      {/* User dropdown – desktop + mobile (drawer) – portal so it shows above drawer */}
+      {typeof document !== "undefined" &&
+        isLoggedIn &&
+        userDropdownOpen &&
+        createPortal(
+          <div
+            ref={userMenuRef}
+            className="fixed w-48 py-2 rounded-xl bg-white border border-border shadow-lg z-102"
+            style={{ top: userStyle.top, right: userStyle.right, left: userStyle.left }}
+          >
+            <Link
+              href="/help-center"
+              className="block px-4 py-2.5 text-sm text-foreground hover:bg-muted rounded-lg transition"
+              onClick={() => setUserDropdownOpen(false)}
+            >
+              Help Center
+            </Link>
+            <Link
+              href="/bookings"
+              className="block px-4 py-2.5 text-sm text-foreground hover:bg-muted rounded-lg transition"
+              onClick={() => setUserDropdownOpen(false)}
+            >
+              My Bookings
+            </Link>
+            <Link
+              href="/settings"
+              className="block px-4 py-2.5 text-sm text-foreground hover:bg-muted rounded-lg transition"
+              onClick={() => setUserDropdownOpen(false)}
+            >
+              Settings
+            </Link>
+            <button
+              type="button"
+              className="block w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-muted rounded-lg transition font-medium"
+              onClick={() => {
+                setUserDropdownOpen(false);
+                setIsLoggedIn(false);
+                logoutApi();
+                route.push("/");
+              }}
+            >
+              Logout
+            </button>
+          </div>,
+          document.body
+        )}
     </header>
   );
 }
