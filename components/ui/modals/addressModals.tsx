@@ -4,7 +4,7 @@ import { X, Plus } from "lucide-react";
 import { useState, useEffect } from "react";
 import AddAddressModal from "./addAddressModal";
 import { getAllAddresses, type CustomerAddress } from "@/services/address";
-import { ModalDrawer } from "@/components/ui/ModalDrawer";
+import { ModalDrawer } from "@/components/ui/reuseable-items/ModalDrawer";
 
 function labelFromAddressType(addressType: string | null | undefined): string {
   const t = (addressType ?? "").toUpperCase();

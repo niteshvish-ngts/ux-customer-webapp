@@ -1,7 +1,7 @@
   "use client"
 import { Star } from "lucide-react";
-import { HeroImage } from "./images/image";
 import Image from "next/image";
+import { HeroImage } from "../images/image";
 
 type TestimonialCardProps = {
   rating: number;

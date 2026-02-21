@@ -1,12 +1,12 @@
 "use client";
 
 import { HeroImage } from "@/components/shared/images/image";
-import OfferBannerCard from "@/components/shared/offer-banner";
+import OfferBannerCard from "@/components/shared/desktop-section/offer-banner";
 import CarouselSection from "@/components/shared/carousel/carousel";
 import { StaticImageData } from "next/image";
 import { useMediaQuery } from "react-responsive";
 
-import MobileOfferBannerCard from "@/components/shared/m-offer-banner";
+import MobileOfferBannerCard from "@/components/shared/mobile-screen/m-offer-banner";
 
 type Offer = {
   id: number;

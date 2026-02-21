@@ -5,8 +5,8 @@ import { ServicesImage } from "@/components/shared/images/image";
 import { StaticImageData } from "next/image";
 import { useMediaQuery } from "react-responsive";
 
-import ServiceOfferCard from "@/components/shared/booked-services-card";
-import ServiceOfferCardMobile from "@/components/shared/m-booked-service-card";
+import ServiceOfferCard from "@/components/shared/desktop-section/booked-services-card";
+import ServiceOfferCardMobile from "@/components/shared/mobile-screen/m-booked-service-card";
 
 type ServiceOffer = {
   id: number;

@@ -4,8 +4,8 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
-import CardHeading from "../special-offers-cards/card-heading";
+} from "@/components/ui/modals/carousel";
+import CardHeading from "../card-heading-and carousel/card-heading";
 
 type CarouselSectionProps<T> = {
   title?: string;

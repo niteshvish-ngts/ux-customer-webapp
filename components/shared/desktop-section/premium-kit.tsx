@@ -1,8 +1,8 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import { Button } from "@/components/ui/button";
-import { HeroImage } from "./images/image";
+import { Button } from "@/components/ui/reuseable-items/button";
+import { HeroImage } from "../images/image";
 
 type PremiumOfferBannerProps = {
   badgeText: string;

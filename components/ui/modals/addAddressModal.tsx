@@ -3,7 +3,7 @@
 import { X } from "lucide-react";
 import { useState } from "react";
 import { createAddress, type CustomerAddress } from "@/services/address";
-import { ModalDrawer } from "@/components/ui/ModalDrawer";
+import { ModalDrawer } from "@/components/ui/reuseable-items/ModalDrawer";
 
 type Props = {
   open: boolean;
@@ -59,7 +59,7 @@ export default function AddAddressModal({
   const [houseNo, setHouseNo] = useState("");
   const [landmark, setLandmark] = useState("");
   const [name, setName] = useState("");
-  const [saveAs, setSaveAs] = useState("");
+  const [addressType, setAddressType] = useState<"HOME" | "OTHER" | "WORK">("HOME");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -72,7 +72,7 @@ export default function AddAddressModal({
     }
     setSaving(true);
     createAddress({
-      addressType: normalizeAddressType(saveAs),
+      addressType,
       line1: line1Trim,
       landmark: landmark.trim() || null,
       city: DEFAULT_CITY,
@@ -89,7 +89,7 @@ export default function AddAddressModal({
           setHouseNo("");
           setLandmark("");
           setName("");
-          setSaveAs("");
+          setAddressType("HOME");
           onClose();
         } else {
           setError("Failed to save address.");
@@ -236,13 +236,15 @@ export default function AddAddressModal({
                   <label className="block text-sm font-medium text-foreground mb-1.5 font-outfit">
                     Save Address As
                   </label>
-                  <input
-                    type="text"
-                    placeholder="eg. Home"
-                    value={saveAs}
-                    onChange={(e) => setSaveAs(e.target.value)}
-                    className="w-full px-3 py-2.5 text-sm text-[#2D3748] placeholder:text-[#A0AEC0] border border-[#E2E8F0] rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#ED8936] focus:border-[#ED8936]"
-                  />
+                  <select
+                    value={addressType}
+                    onChange={(e) => setAddressType(e.target.value as "HOME" | "OTHER" | "WORK")}
+                    className="w-full px-3 py-2.5 text-sm text-[#2D3748] border border-[#E2E8F0] rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#ED8936] focus:border-[#ED8936]"
+                  >
+                    <option value="HOME">Home</option>
+                    <option value="OTHER">Other</option>
+                    <option value="WORK">Work</option>
+                  </select>
                 </div>
               </div>
 

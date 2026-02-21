@@ -2,7 +2,7 @@
 
 import Image, { StaticImageData } from "next/image";
 import { Star } from "lucide-react";
-import { HeroImage } from "./images/image";
+import { HeroImage } from "../images/image";
 
 type ServiceOfferCardProps = {
   image: string | StaticImageData;

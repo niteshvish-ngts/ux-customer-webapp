@@ -1,8 +1,8 @@
 "use client";
 
 import CarouselSection from "@/components/shared/carousel/carousel";
-import TestimonialCard from "@/components/shared/testimonial-card";
-import TestimonialCardMobile from "@/components/shared/m-testimonial-card";
+import TestimonialCard from "@/components/shared/desktop-section/testimonial-card";
+import TestimonialCardMobile from "@/components/shared/mobile-screen/m-testimonial-card";
 import { StaticImageData } from "next/image";
 import { useMediaQuery } from "react-responsive";
 

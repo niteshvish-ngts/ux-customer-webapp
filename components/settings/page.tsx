@@ -67,7 +67,7 @@ export default function SettingsPage({ section: sectionParam }: SettingsPageProp
         router.push('/');
       })
       .catch(() => {
-        // Tokens cleared in auth service; redirect anyway
+        
         router.push('/');
       })
       .finally(() => setLoggingOut(false));

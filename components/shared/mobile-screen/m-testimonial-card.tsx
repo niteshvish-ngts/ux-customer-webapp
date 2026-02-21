@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { StaticImageData } from "next/image";
-import { HeroImage } from "./images/image";
+import { HeroImage } from "../images/image";
 
 type Props = {
   name: string;

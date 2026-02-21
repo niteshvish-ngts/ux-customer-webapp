@@ -22,8 +22,8 @@ import React from 'react'
 
 import { useMediaQuery } from "react-responsive";
 import { HeroImage } from "@/components/shared/images/image";
-import PremiumOfferBanner from "@/components/shared/premium-kit";
-import MobilePremiumOfferBanner from '@/components/shared/m-premium-kit';
+import MobilePremiumOfferBanner from '@/components/shared/mobile-screen/m-premium-kit';
+import PremiumOfferBanner from '@/components/shared/desktop-section/premium-kit';
 
 export const PremiumBanner = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { MapPin } from 'lucide-react';
 import { getProfile } from '@/services/profile';
 import { getAllAddresses, deleteAddress, type CustomerAddress } from '@/services/address';
-import EditAddressModal from '../ui/modals/EditAddressModal';
+import AddAddressModal from '../ui/modals/addAddressModal';
 
 function formatPhone(phone: string | null | undefined): string {
   if (!phone) return '';
@@ -37,8 +37,7 @@ export default function ManageAddress() {
   const [addresses, setAddresses] = useState<CustomerAddress[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [editModalOpen, setEditModalOpen] = useState(false);
-  const [editingAddress, setEditingAddress] = useState<CustomerAddress | null>(null);
+  const [addModalOpen, setAddModalOpen] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [deleteError, setDeleteError] = useState<string | null>(null);
 
@@ -92,14 +91,12 @@ export default function ManageAddress() {
     return copy;
   }, [addresses]);
 
-  const openEditModal = (addr: CustomerAddress) => {
-    setEditingAddress(addr);
-    setEditModalOpen(true);
+  const openAddModal = () => {
+    setAddModalOpen(true);
   };
 
-  const closeEditModal = () => {
-    setEditModalOpen(false);
-    setEditingAddress(null);
+  const closeAddModal = () => {
+    setAddModalOpen(false);
   };
 
   const refetchAddresses = () => {
@@ -190,13 +187,13 @@ export default function ManageAddress() {
                   ) : null}
                 </div>
                 <div className="flex items-center gap-3">
-                  <button
-                    type="button"
-                    onClick={() => openEditModal(addr)}
-                    className="text-sm font-normal text-[#4A5568] font-body underline hover:text-gray-800 transition"
-                  >
-                    Edit
-                  </button>
+                <button
+                  type="button"
+                  onClick={openAddModal}
+                  className="text-sm font-normal text-[#4A5568] font-body underline hover:text-gray-800 transition"
+                >
+                  Edit
+                </button>
                   <button
                     type="button"
                     onClick={() => handleDelete(addr)}
@@ -211,13 +208,12 @@ export default function ManageAddress() {
           ))}
       </div>
 
-      <EditAddressModal
-        open={editModalOpen}
-        onClose={closeEditModal}
-        address={editingAddress}
-        onSaved={() => {
+      <AddAddressModal
+        open={addModalOpen}
+        onClose={closeAddModal}
+        onSave={() => {
           refetchAddresses();
-          closeEditModal();
+          closeAddModal();
         }}
       />
     </div>

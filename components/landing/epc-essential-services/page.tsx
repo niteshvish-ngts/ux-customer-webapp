@@ -1,9 +1,9 @@
 "use client";
 
-import ServiceOfferCard from "@/components/shared/booked-services-card";
+import ServiceOfferCard from "@/components/shared/desktop-section/booked-services-card";
 import CarouselSection from "@/components/shared/carousel/carousel";
 import { ServicesImage } from "@/components/shared/images/image";
-import ServiceOfferCardMobile from "@/components/shared/m-booked-service-card";
+import ServiceOfferCardMobile from "@/components/shared/mobile-screen/m-booked-service-card";
 import { StaticImageData } from "next/image";
 import { useMediaQuery } from "react-responsive";
 

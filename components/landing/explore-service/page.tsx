@@ -3,7 +3,7 @@
 import { useState } from "react";
 import CarouselSection from "@/components/shared/carousel/carousel";
 import {  Modal2, Modal3, Modal4, Modal5, ServiceIcon } from "@/components/shared/images/image";
-import ServiceCard from "@/components/shared/service-card";
+import ServiceCard from "@/components/shared/desktop-section/service-card";
 import ServiceCategoryModal from "@/components/ui/modals/service-categoryModal";
 import Image from "next/image";
 

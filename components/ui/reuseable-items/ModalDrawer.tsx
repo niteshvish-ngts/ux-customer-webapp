@@ -7,7 +7,7 @@ import {
   DrawerContent as DrawerContentBase,
   DrawerOverlay,
   DrawerPortal,
-} from "@/components/ui/drawer";
+} from "@/components/ui/reuseable-items/drawer";
 import { cn } from "@/lib/utils";
 
 type ModalDrawerProps = {
@@ -50,7 +50,7 @@ export function ModalDrawer({
           <DrawerContentBase
             className={cn(
               "max-h-[90vh] overflow-y-auto",
-              !showDrawerHandle && "[&>div:first-child]:hidden",
+              !showDrawerHandle && "[&>div:nth-child(2)]:hidden",
               contentClassName
             )}
           >

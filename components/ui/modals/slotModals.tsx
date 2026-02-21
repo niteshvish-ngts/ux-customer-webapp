@@ -2,7 +2,7 @@
 
 import { X } from "lucide-react";
 import { useState } from "react";
-import { ModalDrawer } from "@/components/ui/ModalDrawer";
+import { ModalDrawer } from "@/components/ui/reuseable-items/ModalDrawer";
 
 type Props = {
   open: boolean;

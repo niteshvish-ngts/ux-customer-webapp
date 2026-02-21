@@ -50,6 +50,7 @@ function DrawerContent({
         )}
         {...props}
       >
+        <VaulDrawer.Title className="sr-only">Modal</VaulDrawer.Title>
         <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted" />
         {children}
       </VaulDrawer.Content>
