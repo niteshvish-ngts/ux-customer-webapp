@@ -159,75 +159,81 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* RIGHT IMAGES -  */}
-            <div className="hidden lg:block w-[519px] h-[519px]">
-  <div className="grid grid-cols-2 gap-5 h-full">
-    <div className="flex flex-col gap-4">
-      {/* First Card with Star */}
-      <div className="relative h-[319px] rounded-[20px] overflow-hidden">
-        <Image 
-          src={HeroImage.heroImg5} 
-          alt="" 
-          width={40} 
-          height={40} 
-          className="absolute top-0 -left-4 z-10" 
-        />
-        <Image 
-          src={HeroImage.heroImg2} 
-          alt="" 
-          fill 
-          className="object-cover" 
-        />
-      </div>
+            {/* RIGHT IMAGES - corner decor aligned like first image (at panel corners, partly outside) */}
+            <div className="hidden lg:block w-[519px] h-[519px] overflow-visible">
+              <div className="grid grid-cols-2 gap-5 h-full">
+                <div className="flex flex-col gap-4">
+                  {/* First Card – top-left corner decor */}
+                  <div className="relative h-[319px] rounded-[20px] overflow-visible">
+                    <div className="absolute inset-0 rounded-[20px] overflow-hidden">
+                      <Image
+                        src={HeroImage.heroImg2}
+                        alt=""
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <Image
+                      src={HeroImage.heroImg5}
+                      alt=""
+                      width={42}
+                      height={42}
+                      className="absolute -top-2 -left-2 z-10"
+                    />
+                  </div>
 
-      {/* Second Card */}
-      <div className="relative h-[180px] rounded-[20px] overflow-hidden">
-        <Image 
-          src={HeroImage.heroImg4} 
-          alt="" 
-          fill 
-          className="object-cover" 
-        />
-      </div>
-    </div>
+                  {/* Second Card */}
+                  <div className="relative h-[180px] rounded-[20px] overflow-hidden">
+                    <Image
+                      src={HeroImage.heroImg4}
+                      alt=""
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
 
-    <div className="flex flex-col gap-4">
-      {/* Third Card with Star */}
-      <div className="relative h-[180px] rounded-[20px] overflow-hidden">
-        <Image 
-          src={HeroImage.heroImg6} 
-          alt="" 
-          width={40} 
-          height={40} 
-          className="absolute top-3 right-3 z-10" 
-        />
-        <Image 
-          src={HeroImage.heroImg3} 
-          alt="" 
-          fill 
-          className="object-cover" 
-        />
-      </div>
+                <div className="flex flex-col gap-4">
+                  {/* Third Card – top-right corner decor */}
+                  <div className="relative h-[180px] rounded-[20px] overflow-visible">
+                    <div className="absolute inset-0 rounded-[20px] overflow-hidden">
+                      <Image
+                        src={HeroImage.heroImg3}
+                        alt=""
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <Image
+                      src={HeroImage.heroImg6}
+                      alt=""
+                      width={40}
+                      height={40}
+                      className="absolute -top-4 -right-7 z-10"
+                    />
+                  </div>
 
-      {/* Fourth Card with Circle */}
-      <div className="relative h-[319px] rounded-[20px] overflow-hidden">
-        <Image 
-          src={HeroImage.heroImg7} 
-          alt="" 
-          width={40} 
-          height={40} 
-          className="absolute bottom-0 right-0 z-10" 
-        />
-        <Image 
-          src={HeroImage.heroImg1} 
-          alt="" 
-          fill 
-          className="object-cover" 
-        />
-      </div>
-    </div>
-  </div>
-</div>
+                  {/* Fourth Card – bottom-right corner decor */}
+                  <div className="relative h-[319px] rounded-[20px] overflow-visible">
+                    <div className="absolute inset-0 rounded-[20px] overflow-hidden">
+                      <Image
+                        src={HeroImage.heroImg1}
+                        alt=""
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <Image
+                      src={HeroImage.heroImg7}
+                      alt=""
+                      width={40}
+                      height={40}
+                      className="absolute bottom-0 right-0 z-10 rounded-br-xl"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
