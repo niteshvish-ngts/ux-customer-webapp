@@ -183,7 +183,7 @@ export default function HeroSection() {
                   </div>
 
                   {/* Second Card */}
-                  <div className="relative h-[180px] rounded-[20px] overflow-hidden">
+                  <div className="relative h-45 rounded-4xl overflow-hidden">
                     <Image
                       src={HeroImage.heroImg4}
                       alt=""
@@ -214,8 +214,8 @@ export default function HeroSection() {
                   </div>
 
                   {/* Fourth Card – bottom-right corner decor */}
-                  <div className="relative h-[319px] rounded-[20px] overflow-visible">
-                    <div className="absolute inset-0 rounded-[20px] overflow-hidden">
+                  <div className="relative h-[319px] rounded-4xl overflow-visible">
+                    <div className="absolute inset-0 rounded-4xl overflow-hidden">
                       <Image
                         src={HeroImage.heroImg1}
                         alt=""

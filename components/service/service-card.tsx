@@ -79,14 +79,14 @@ export default function ServiceCard({
           e.stopPropagation();
           modal.openModal();
         }}
-        className="w-6 h-6 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors shrink-0 ml-2"
+        className="w-4 h-4 flex items-center justify-center rounded-full  bg-black hover:bg-gray-800  shrink-0 ml-2 "
         aria-label="View service details"
       >
-        <Info className="w-4 h-4 text-dark" />
+        <Info className="w-4 h-4 text-white " />
       </button>
     </div>
 
-    <p className="text-xs text-muted-foreground mt-2">
+    <p className="text-xs text-muted-foreground mt-2 ">
        {time} worktime
     </p>
 
