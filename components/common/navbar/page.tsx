@@ -25,6 +25,7 @@ export default function Navbar() {
   const userRef = useRef<HTMLDivElement>(null);
   const userRefMobile = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
+  const userClosedByTriggerRef = useRef(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -334,7 +335,70 @@ const route = useRouter();
       {/* MOBILE MENU – left drawer with z-index */}
       <Drawer direction="left" open={open} onOpenChange={setOpen}>
         <DrawerContentLeft className="lg:hidden">
-          <div className="flex flex-col h-full overflow-y-auto p-4 pt-6 space-y-4 text-sm font-lato">
+          <div
+            className="flex flex-col h-full overflow-y-auto p-4 pt-6 space-y-4 text-sm font-lato"
+            onClick={(e) => {
+              if (userDropdownOpen && userRefMobile.current?.contains(e.target as Node)) {
+                setUserDropdownOpen(false);
+              }
+            }}
+          >
+            {/* User profile / Login at top of drawer */}
+            {isLoggedIn ? (
+              <div ref={userRefMobile} className={`pb-2 ${userDropdownOpen ? "relative z-103" : ""}`}>
+                <button
+                  type="button"
+                  onTouchStart={(e) => {
+                    if (userDropdownOpen) {
+                      setUserDropdownOpen(false);
+                      userClosedByTriggerRef.current = true;
+                    }
+                  }}
+                  onMouseDown={(e) => {
+                    if (userDropdownOpen) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setUserDropdownOpen(false);
+                      userClosedByTriggerRef.current = true;
+                    }
+                  }}
+                  onClick={() => {
+                    if (userClosedByTriggerRef.current) {
+                      userClosedByTriggerRef.current = false;
+                      return;
+                    }
+                    setUserDropdownOpen((prev) => !prev);
+                  }}
+                  className="flex items-center gap-2 pl-1 py-2 hover:bg-gray-50 rounded-md transition w-full justify-start text-left"
+                >
+                  <div className="relative w-9 h-9 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400 shrink-0">
+                    <Image
+                      src="/user-avatar.jpg"
+                      alt="User"
+                      fill
+                      className="object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900 truncate">{userFullName}</span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-gray-500 transition-transform shrink-0 ${userDropdownOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+              </div>
+            ) : (
+              <div className="pb-2 border-b border-border">
+                <Link
+                  href="/login"
+                  className="block w-full text-center px-4 py-2 border border-border rounded-md text-foreground hover:bg-muted"
+                  onClick={() => setOpen(false)}
+                >
+                  Login
+                </Link>
+              </div>
+            )}
             <Link href="#" className="block text-muted-foreground hover:text-foreground" onClick={() => setOpen(false)}>
               How it works?
             </Link>
@@ -384,47 +448,14 @@ const route = useRouter();
             <Link href="#" className="block text-muted-foreground hover:text-foreground" onClick={() => setOpen(false)}>
               Become a provider
             </Link>
-            <div className="relative pt-2">
+            {/* <div className="relative pt-2">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Search"
                 className="w-full pl-9 pr-3 py-2 text-sm bg-background text-foreground border border-input rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
-            </div>
-            {isLoggedIn ? (
-              <div ref={userRefMobile} className="py-2">
-                <button
-                  type="button"
-                  onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                  className="flex items-center gap-2 px-3 py-2 hover:bg-gray-50 rounded-md transition w-full"
-                >
-                  <div className="relative w-9 h-9 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400 shrink-0">
-                    <Image
-                      src="/user-avatar.jpg"
-                      alt="User"
-                      fill
-                      className="object-cover"
-                      onError={(e) => {
-                        e.currentTarget.style.display = "none";
-                      }}
-                    />
-                  </div>
-                  <span className="text-sm font-medium text-gray-900 truncate">{userFullName}</span>
-                  <ChevronDown
-                    className={`w-4 h-4 text-gray-500 transition-transform shrink-0 ${userDropdownOpen ? "rotate-180" : ""}`}
-                  />
-                </button>
-              </div>
-            ) : (
-              <Link
-                href="/login"
-                className="block w-full text-center px-4 py-2 border border-border rounded-md text-foreground hover:bg-muted"
-                onClick={() => setOpen(false)}
-              >
-                Login
-              </Link>
-            )}
+            </div> */}
           </div>
         </DrawerContentLeft>
       </Drawer>
